@@ -7,14 +7,14 @@ import { API_ENDPOINT } from '@/configs/request.config';
 async function InvitationDetailPage({
   params,
 }: {
-  params: { invitationUid: string };
+  params: Promise<{ invitationUid: string }>;
 }) {
-  const { invitationUid } = params;
-
+  const { invitationUid } = await params;
+  console.log(invitationUid);
   const res = await fetch(`${API_ENDPOINT}/invitation/${invitationUid}`, {
     cache: 'no-store',
   });
-
+  console.log(res);
   if (res.status === 404) return notFound();
   if (!res.ok) throw new Error('Failed to fetch invitation');
   const invitation = await res.json();
