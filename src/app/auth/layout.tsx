@@ -5,7 +5,7 @@ export default async function AuthLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }>) {
   return (
     <Container h="100%">
