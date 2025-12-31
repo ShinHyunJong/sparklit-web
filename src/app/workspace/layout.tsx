@@ -7,10 +7,8 @@ import { layoutConstants } from '@/constants/layout';
 
 export default async function WorkspaceLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
 }>) {
   return (
     <>

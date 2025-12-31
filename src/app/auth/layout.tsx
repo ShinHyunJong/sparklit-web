@@ -2,10 +2,8 @@ import { Box, Container, Flex, Heading } from '@chakra-ui/react';
 
 export default async function AuthLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
 }>) {
   return (
     <Container h="100%">

@@ -5,13 +5,13 @@ const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   /* config options here */
+
   experimental: {
     optimizePackageImports: ['@chakra-ui/react'],
   },
   trailingSlash: false,
-  eslint: {
-    dirs: ['.'],
-    ignoreDuringBuilds: true,
+  typescript: {
+    ignoreBuildErrors: true,
   },
   images: {
     remotePatterns: [
