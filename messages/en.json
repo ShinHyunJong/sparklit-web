@@ -1,0 +1,115 @@
+{
+  "Metadata": {
+    "title": "Sparklit",
+    "description": ""
+  },
+  "workspace": {
+    "invitation": {
+      "title": "Invitation",
+      "untitled": "Untitled",
+      "newInvitation": "New Invitation"
+    },
+    "invitationEditor": {
+      "saveButton": "Save",
+      "saveSuccess": "Invitation saved successfully",
+      "saveError": "Failed to save invitation",
+      "loading": "Loading...",
+      "error": "An error occurred while loading the invitation",
+      "date": {
+        "title": "Date Configuration",
+        "date": "Date",
+        "time": "Time",
+        "ampm": "AM/PM",
+        "hour": "Hour",
+        "minute": "Minute"
+      },
+      "base": {
+        "title": "Personal Information Configuration"
+      },
+      "places": {
+        "title": "Location & Time Configuration",
+        "address": "Address",
+        "time": "Time",
+        "addressPlaceholder": "Enter the address",
+        "enterAddress": "Click to Search address"
+      },
+      "photo": {
+        "title": "Gallery",
+        "addButton": "Add Photo",
+        "uploadButton": "Upload Photo",
+        "uploading": "Uploading...",
+        "uploadSuccess": "Photo uploaded successfully",
+        "uploadError": "Failed to upload photo",
+        "editButton": "Edit Photo",
+        "removeButton": "Remove Photo"
+      },
+      "bride": {
+        "title": "Bride",
+        "lastName": "Last Name",
+        "lastNamePlaceholder": "last name",
+        "lastNameRequired": "Last name is required",
+        "firstName": "First Name",
+        "firstNamePlaceholder": "first name",
+        "firstNameRequired": "First name is required",
+        "middleName": "Middle Name",
+        "middleNamePlaceholder": "middle name",
+        "momLabel": "Mother",
+        "momNamePlaceholder": "mother's name",
+        "dadLabel": "Father",
+        "dadNamePlaceholder": "father's name",
+        "name": "Name",
+        "namePlaceholder": "name",
+        "email": "Email",
+        "emailPlaceholder": "email"
+      },
+      "groom": {
+        "title": "Groom",
+        "lastName": "Last Name",
+        "lastNamePlaceholder": "last name",
+        "lastNameRequired": "Last name is required",
+        "firstName": "First Name",
+        "firstNamePlaceholder": "first name",
+        "firstNameRequired": "First name is required",
+        "middleName": "Middle Name",
+        "middleNamePlaceholder": "middle name",
+        "momLabel": "Mother",
+        "momNamePlaceholder": "mother's name",
+        "dadLabel": "Father",
+        "dadNamePlaceholder": "father's name",
+        "name": "Name",
+        "namePlaceholder": "name",
+        "email": "Email",
+        "emailPlaceholder": "email"
+      }
+    }
+  },
+  "login": {
+    "title": "Login",
+    "description": "Access your Sparklit account.",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "loginButton": "Login",
+    "forgotPassword": "Forgot Password?"
+  },
+  "register": {
+    "title": "Register",
+    "description": "Create your account to access Sparklit.",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Re-enter your password",
+    "registerButton": "Register",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email format",
+    "emailExists": "Email already exists",
+    "passwordRequired": "Password is required",
+    "confirmPasswordRequired": "Confirm password is required",
+    "passwordMinLength": "Password must be at least 8 characters",
+    "passwordConditions": "Password must contain at least one letter and one number",
+    "passwordMismatch": "Passwords do not match"
+  }
+}

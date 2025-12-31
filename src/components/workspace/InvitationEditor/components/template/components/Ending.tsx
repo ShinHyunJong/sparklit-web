@@ -1,0 +1,51 @@
+import { AspectRatio, Box } from '@chakra-ui/react';
+import { useAtomValue } from 'jotai';
+import Image from 'next/image';
+
+import invitationEditorAtom from '@/atoms/invitationEditor';
+import { S3_BUCKET_URL } from '@/configs/domain.config';
+import { useInvitationDetail } from '@/hooks/invitation';
+
+import TextEditorViewer from '../../inputs/TextEditor/viewer';
+import PhotoPlaceholder from './PhotoPlaceholder';
+
+function Ending() {
+  const { invitationDetail } = useInvitationDetail();
+  const endPhoto = invitationDetail?.invitationCoverPhotoList.find(
+    (photo) => photo.type === 'end',
+  );
+  const endingText = useAtomValue(invitationEditorAtom.endingText);
+
+  return (
+    <>
+      {endPhoto ? (
+        <AspectRatio
+          ratio={endPhoto.width / endPhoto.height}
+          position="relative"
+        >
+          <Box position="relative">
+            <Box position="sticky" top={0} w="full" h="full">
+              <Image
+                src={`${S3_BUCKET_URL}${endPhoto.croppedKey}`}
+                alt="Parallax image"
+                fill
+                priority
+                sizes="100vw"
+                style={{ objectFit: 'cover' }}
+              />
+
+              <Box position="absolute" inset={0} bg="blackAlpha.400" />
+              <Box position="absolute" inset={0} p={8} color="white">
+                <TextEditorViewer content={endingText} />
+              </Box>
+            </Box>
+          </Box>
+        </AspectRatio>
+      ) : (
+        <PhotoPlaceholder />
+      )}
+    </>
+  );
+}
+
+export default Ending;

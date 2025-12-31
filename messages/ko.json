@@ -1,0 +1,131 @@
+{
+  "Metadata": {
+    "title": "로버스",
+    "description": "글로벌 농업 IP 상업화 솔루션"
+  },
+  "header": {
+    "blogText": "블로그",
+    "inquiryText": "문의하기"
+  },
+  "greeting": {
+    "title1": "글로벌 농업 IP",
+    "title2": "상업화 솔루션",
+    "description": "로버스는 유망 품종을 발굴하고 기술로 최적재배지를 탐색해 전세계로 상업화 시킵니다.",
+    "applyText": "IP 상업화 문의",
+    "inquiryText": "문의하기"
+  },
+  "stats": {
+    "title1": "이미 글로벌로 IP 상업화를",
+    "title2": "증명하고 있습니다",
+    "description": "품종 등록,보호,거래,유통까지 원스탑으로 해결하세요.",
+    "db": {
+      "title": "품종 데이터베이스",
+      "value": "35만개"
+    },
+    "businessIP": {
+      "title": "사업화 품종",
+      "value": "155개"
+    },
+    "businessCountryCount": {
+      "title": "사업화 국가",
+      "value": "5개"
+    },
+    "businessSpeed": {
+      "title": "기존 대비 사업화 속도",
+      "value": "4배"
+    }
+  },
+  "imageLoop": {
+    "message": "로버스는 우수 품종만을 선별하여 상업화합니다."
+  },
+  "portfolio": {
+    "title": "ROVERS IP 포트폴리오",
+    "coreIpDesc": "시장의 변동성에도 흔들리지 않는 곡물류 품종을 발굴합니다. 안정적인 수요와 매출을 보장하는 핵심 품종을 연구하고 확보합니다.",
+    "seasonalIpDesc": "계절별 특성을 반영한 과채류 품종을 탐색하고 개발합니다. 시기에 맞는 최적의 품종을 선별하여 지속적인 생산 가능성을 검토합니다.",
+    "variableIpDesc": "고객의 요구를 반영하거나 자체 연구를 통해 새로운 품종을 발굴합니다. 변화하는 시장 환경에 적응할 수 있는 유연한 품종 개발에 집중합니다.",
+    "futureIpDesc": "AI 기반 육종 솔루션을 활용하여 차세대 품종을 개발합니다. 데이터와 기술을 접목한 혁신적인 품종을 연구하여 미래 농업을 준비합니다."
+  },
+  "businessCase": {
+    "title": "IP 사업화 사례",
+    "target": "타겟 국가",
+    "source": "소싱 국가",
+    "cropArea": "재배지",
+    "description": "사업화 내용",
+    "usa1": {
+      "variety": "쌀",
+      "description": "현지 재배 - 수출 연결",
+      "area": "우드랜드, 캘리포니아"
+    },
+    "usa2": {
+      "variety": "참외",
+      "description": "현지 품종 재배 테스트중",
+      "area": "우드랜드, 캘리포니아"
+    },
+    "mexico": {
+      "variety": "고추,토마토,양배추",
+      "description": "현지 품종 테스트 - 생육 평가 및 선별 - 상업화",
+      "area": "셀라야, 과나후아토"
+    },
+    "netherland": {
+      "variety": "화훼류",
+      "description": "현지 재배 - 수출 연결",
+      "area": "암스테르담"
+    },
+    "korea": {
+      "variety": "만감류(그린향)",
+      "description": "유통",
+      "area": "제주"
+    }
+  },
+  "featureCN": {
+    "title1": "IP 상업화 원스탑 솔루션",
+    "title2": "크롭 네비게이터",
+    "description": "",
+    "search": {
+      "title": "품종 검색",
+      "description": "전세계 35만개의 품종 키워드/시맨틱 검색을 지원합니다."
+    },
+    "royalty": {
+      "title": "로열티 계약 체결",
+      "description": "전용/통상 실시권 계약을 체결하고 관리합니다."
+    },
+    "inout": {
+      "title": "국가간 수출입 지원",
+      "description": "국가간 품종 수출입 절차를 안내하고 지원합니다."
+    },
+    "management": {
+      "title": "품종 관리",
+      "description": "품종 유통, 정산등 사후 절차를 관리합니다."
+    }
+  },
+  "vision": {
+    "visionLabel": "비전",
+    "title1": "농업의 불확실성을 종자/품종 단계에서부터 해결해",
+    "title2": "전체 벨류체인을 지속가능하게 Drive 합니다."
+  },
+  "inquiry": {
+    "title1": "IP 전문가인 로버스에게",
+    "title2": "상업화를 믿고 맡기세요.",
+    "buttonText": "의뢰하기"
+  },
+  "inquiryDialog": {
+    "triggerText": "문의하기",
+    "title": "IP 상업화 문의",
+    "name": "성함",
+    "nameMinLength": "성함은 2글자 이상 입력해주세요",
+    "namePlaceholder": "성함을 입력해주세요",
+    "email": "이메일",
+    "emailPlaceholder": "이메일을 입력해주세요",
+    "emailInvalid": "이메일 형식이 올바르지 않습니다",
+    "emailRequired": "이메일을 입력해주세요",
+    "phone": "전화번호",
+    "phonePlaceholder": "전화번호를 입력해주세요",
+    "nation": "국가명",
+    "nationPlaceholder": "국가명을 입력해주세요",
+    "inquiry": "문의내용",
+    "inquiryPlaceholder": "문의내용을 입력해주세요",
+    "buttonText": "문의하기",
+    "cancelText": "취소",
+    "inquirySubmitted": "문의가 접수되었습니다. 빠른 시일 내에 답변드리겠습니다."
+  }
+}
