@@ -15,7 +15,6 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import React from 'react';
-import { Footer } from 'react-day-picker';
 import { LuArrowRight } from 'react-icons/lu';
 
 import { Nav } from '@/components/landing/Nav';

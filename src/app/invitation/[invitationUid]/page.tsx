@@ -4,11 +4,11 @@ import { notFound } from 'next/navigation';
 import InvitationDetail from '@/components/invitation/InvitationDetail';
 import { API_ENDPOINT } from '@/configs/request.config';
 
-type PageProps = {
+async function InvitationDetailPage({
+  params,
+}: {
   params: { invitationUid: string };
-};
-
-async function InvitationDetailPage({ params }: PageProps) {
+}) {
   const { invitationUid } = params;
 
   const res = await fetch(`${API_ENDPOINT}/invitation/${invitationUid}`, {
