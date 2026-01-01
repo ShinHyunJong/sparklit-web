@@ -24,13 +24,13 @@ function Ending() {
           position="relative"
         >
           <Box position="relative">
-            <Box position="sticky" top={0} w="full" h="full">
+            <Box position="absolute" top={0} w="full" h="full">
               <Image
+                unoptimized
                 src={`${S3_BUCKET_URL}${endPhoto.croppedKey}`}
                 alt="Parallax image"
                 fill
-                priority
-                sizes="100vw"
+                sizes="(max-width: 768px) 100vw, 420px"
                 style={{ objectFit: 'cover' }}
               />
 

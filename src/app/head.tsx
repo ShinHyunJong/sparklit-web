@@ -1,10 +1,10 @@
 export default function Head() {
   return (
     <>
-      <meta
+      {/* <meta
         name="naver-site-verification"
         content="22aaf14eb4306bc1a85ec5431e849740e3f7fb54"
-      />
+      /> */}
       <meta
         name="viewport"
         content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width"

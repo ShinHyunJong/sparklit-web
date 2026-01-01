@@ -1,22 +1,29 @@
 'use client';
-import { ChakraProvider } from '@chakra-ui/react';
+import { Box, ChakraProvider } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createStore, Provider as JotaiProvider } from 'jotai';
 
-import { useCustomSystem } from '@/configs/theme.config';
+import { customSystem } from '@/configs/theme.config';
 
-import { ColorModeProvider, type ColorModeProviderProps } from './color-mode';
 const client = new QueryClient();
 export const globalStore = createStore();
+const system = customSystem();
 
-export function Provider(props: ColorModeProviderProps) {
-  const system = useCustomSystem();
-
+export function Provider(props: { children: React.ReactNode }) {
   return (
     <JotaiProvider store={globalStore}>
       <QueryClientProvider client={client}>
         <ChakraProvider value={system}>
-          <ColorModeProvider {...props} defaultTheme="light" />
+          <Box
+            position="fixed"
+            inset={0}
+            w="100vw"
+            h="100vh"
+            overflow="auto"
+            bg="gray.100"
+          >
+            {props.children}
+          </Box>
         </ChakraProvider>
       </QueryClientProvider>
     </JotaiProvider>

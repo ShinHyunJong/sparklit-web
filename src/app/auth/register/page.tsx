@@ -2,7 +2,6 @@
 
 import { Button, Field, Fieldset, Input } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
@@ -36,7 +35,6 @@ function Register() {
     },
   });
 
-  const t = useTranslations('register');
   const router = useRouter();
   const { setInitialUser } = useUpdateUser();
   const [registerLoading, setRegisterLoading] = useState(false);
@@ -70,14 +68,14 @@ function Register() {
         if (result) {
           setError('email', {
             type: 'manual',
-            message: t('emailExists'),
+            message: 'Email already exists',
           });
         }
       } catch (error) {
         setEmailExists(false);
       }
     },
-    [t, setError],
+    [setError],
   );
 
   useEffect(() => {
@@ -96,7 +94,7 @@ function Register() {
       // 1) 직접 setError 하기
       setError('confirmPassword', {
         type: 'validate',
-        message: t('passwordMismatch'),
+        message: 'Passwords do not match',
       });
     } else {
       clearErrors('confirmPassword');
@@ -107,7 +105,6 @@ function Register() {
     formState.errors.password,
     setError,
     clearErrors,
-    t,
   ]);
 
   return (
@@ -119,15 +116,15 @@ function Register() {
         <>
           <Fieldset.Content>
             <Field.Root invalid={!!formState.errors.email}>
-              <Field.Label>{t('email')}</Field.Label>
+              <Field.Label>Email</Field.Label>
               <Controller
                 control={control}
                 name="email"
                 rules={{
-                  required: t('emailRequired'),
+                  required: 'Email is required',
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: t('emailInvalid'),
+                    message: 'Invalid email address',
                   },
                 }}
                 render={({ field }) => (
@@ -151,17 +148,18 @@ function Register() {
               )}
             </Field.Root>
             <Field.Root invalid={!!formState.errors.password}>
-              <Field.Label>{t('password')}</Field.Label>
+              <Field.Label>Password</Field.Label>
               <Input
                 {...register('password', {
-                  required: t('passwordRequired'),
+                  required: 'Password is required',
                   minLength: {
                     value: 8,
-                    message: t('passwordMinLength'),
+                    message: 'Password must be at least 8 characters',
                   },
                   pattern: {
                     value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d\W_]{8,}$/,
-                    message: t('passwordConditions'),
+                    message:
+                      'Password must contain at least one letter and one number',
                   },
                 })}
                 name="password"
@@ -175,12 +173,12 @@ function Register() {
               )}
             </Field.Root>
             <Field.Root invalid={!!formState.errors.confirmPassword}>
-              <Field.Label>{t('confirmPassword')}</Field.Label>
+              <Field.Label>Confirm Password</Field.Label>
               <Input
                 {...register('confirmPassword', {
-                  required: t('confirmPasswordRequired'),
+                  required: 'Confirm Password is required',
                   validate: (value) =>
-                    value === passwordValue || t('passwordMismatch'),
+                    value === passwordValue || 'Passwords do not match',
                 })}
                 name="confirmPassword"
                 type="password"
@@ -199,7 +197,7 @@ function Register() {
             type="submit"
             alignSelf="flex-start"
           >
-            {t('registerButton')}
+            Register
           </Button>
         </>
       </form>

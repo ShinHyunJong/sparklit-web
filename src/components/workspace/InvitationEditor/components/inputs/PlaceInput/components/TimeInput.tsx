@@ -12,7 +12,6 @@ import {
 } from '@chakra-ui/react';
 import dayjs from 'dayjs';
 import { useAtom } from 'jotai';
-import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { PiTrashLight } from 'react-icons/pi';
@@ -36,8 +35,6 @@ function TimeInput({
   placeId: number;
   timeData: InvitationPlaceTime;
 }) {
-  const t = useTranslations('workspace.invitationEditor.date');
-
   const [date, setDate] = useAtom(invitationEditorAtom.selectedDate);
   const [selectedAmPm, setSelectedAmPm] = useState(
     dayjs(timeData.time).format('A'),
@@ -126,7 +123,7 @@ function TimeInput({
     <Flex gap={3}>
       <DataList.Root>
         <DataList.Item>
-          <DataList.ItemLabel>{t('time')}</DataList.ItemLabel>
+          <DataList.ItemLabel>Time</DataList.ItemLabel>
           <DataList.ItemValue>
             <Flex gap={1} alignItems="center">
               <Menu.Root>
@@ -157,7 +154,7 @@ function TimeInput({
               <Menu.Root>
                 <Menu.Trigger asChild>
                   <Button variant="subtle" size="sm">
-                    {selectedMinute || t('minute')}
+                    {selectedMinute || 'Minute'}
                   </Button>
                 </Menu.Trigger>
                 <Portal>
@@ -181,7 +178,7 @@ function TimeInput({
               <Menu.Root>
                 <Menu.Trigger asChild>
                   <Button variant="subtle" size="sm">
-                    {selectedAmPm || t('ampm')}
+                    {selectedAmPm || 'AM/PM'}
                   </Button>
                 </Menu.Trigger>
                 <Portal>

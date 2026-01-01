@@ -51,27 +51,6 @@ a {
 }
 
 
-.greetingBg {
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/backgroundImg.jpg');
-  background-size: cover;  /* Ensures the image covers the entire background */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat; /* Prevents repeating */
-}
-
-.portfolioBg {
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/portfolioBg.jpg');
-  background-size: cover;  /* Ensures the image covers the entire background */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat; /* Prevents repeating */
-}
-
-.visionBg {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/visionBg.jpg');
-  background-size: cover;  /* Ensures the image covers the entire background */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat; /* Prevents repeating */
-}
-
 
 /* @media (prefers-color-scheme: dark) {
   html {

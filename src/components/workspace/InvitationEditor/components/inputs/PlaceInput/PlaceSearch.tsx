@@ -9,8 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
 import { useSearchParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDebounceValue } from 'usehooks-ts';
 import { v4 as uuidv4 } from 'uuid';
@@ -46,7 +45,6 @@ function PlaceSearch({
     },
   });
 
-  const t = useTranslations('workspace.invitationEditor.places');
   const searchParams = useSearchParams();
   const uid = searchParams.get('uid');
 
@@ -76,7 +74,6 @@ function PlaceSearch({
   );
   const startNewSession = useCallback(() => {
     sessionTokenRef.current = uuidv4();
-    console.log('새로운 세션 토큰 생성:', sessionTokenRef.current);
   }, []);
 
   const fetchPredictions = async (input: string) => {
@@ -205,7 +202,7 @@ function PlaceSearch({
                       setDebounceValue(e.target.value);
                     }}
                     type="text"
-                    placeholder={t('addressPlaceholder')}
+                    placeholder="Address"
                   />
                 )}
               />

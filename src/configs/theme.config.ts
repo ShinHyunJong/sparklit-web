@@ -1,5 +1,4 @@
 import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react';
-import { useLocale } from 'next-intl';
 
 export const colors = {
   gray: {
@@ -58,28 +57,14 @@ const fontMap = {
       value: 'var(--font-crimson-pro)',
     },
   },
-  ko: {
-    heading: {
-      value: 'var(--font-pretendard)',
-    },
-    body: {
-      value: 'var(--font-pretendard)',
-    },
-  },
 };
 
-const getFontsForLocale = (locale: 'en' | 'ko') =>
-  fontMap[locale] || fontMap.en;
-
-export function useCustomSystem() {
-  const locale = useLocale();
-  const fonts = getFontsForLocale(locale === 'ko' ? 'ko' : 'en');
-
+export function customSystem() {
   const customConfig = defineConfig({
     theme: {
       tokens: {
         colors,
-        fonts, // Dynamically inject only fonts
+        fonts: fontMap.en, // Dynamically inject only fonts
       },
       semanticTokens: {
         colors: {

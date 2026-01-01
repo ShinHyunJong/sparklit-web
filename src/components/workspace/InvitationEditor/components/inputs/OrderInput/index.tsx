@@ -30,7 +30,6 @@ function OrderInput({ layoutOrder }: { layoutOrder: string | null }) {
     const missingKeys = Object.keys(COMPONENT_MAP).filter(
       (key) => !existingIds.includes(key),
     );
-    console.log(missingKeys);
     const merged = [
       ...orderArray,
       ...missingKeys.map((key) => ({ id: key, visible: true })),

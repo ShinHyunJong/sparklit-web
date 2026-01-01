@@ -46,6 +46,7 @@ export type Invitation = {
   bridesMaids: string | null;
   layoutOrder: string | null;
   endingText: string | null;
+  ogImageKey: string | null;
   createdAt: Date;
   updatedAt: Date;
 };

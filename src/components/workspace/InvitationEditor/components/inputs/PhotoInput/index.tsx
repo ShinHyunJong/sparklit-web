@@ -2,7 +2,6 @@
 
 import { Accordion, Flex, Input, Text } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
-import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
@@ -15,7 +14,6 @@ import Thumb from './components/Thumb';
 
 function PhotoInput({ photoList }: { photoList: InvitationPhoto[] }) {
   const { processFileList, isPostingPending } = useUpload();
-  const t = useTranslations('workspace.invitationEditor.photo');
 
   const [isThumb, setIsThumb] = useState(false);
   const [renderingPhotoList, setRenderingPhotoList] = useAtom<
@@ -52,7 +50,7 @@ function PhotoInput({ photoList }: { photoList: InvitationPhoto[] }) {
       >
         <Accordion.ItemTrigger>
           <Flex borderRadius="sm" p={4} w="full">
-            <Text>{t('title')}</Text>
+            <Text>Gallery</Text>
           </Flex>
           <Accordion.ItemIndicator bg="white" mr={4} />
         </Accordion.ItemTrigger>

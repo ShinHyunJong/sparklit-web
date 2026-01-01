@@ -1,7 +1,6 @@
 import { Accordion, DataList, Flex, Input, Text } from '@chakra-ui/react';
 import { format, isValid, parse } from 'date-fns';
 import { useAtom } from 'jotai';
-import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { DayPicker } from 'react-day-picker';
 import { Controller, useForm } from 'react-hook-form';
@@ -15,7 +14,6 @@ type FormValues = {
 };
 
 function DateInput({ date }: { date?: Date | null }) {
-  const t = useTranslations('workspace.invitationEditor.date');
   const { onClickSave } = useSaveInvitation();
 
   const [selectedDate, setSelectedDate] = useAtom(
@@ -73,7 +71,7 @@ function DateInput({ date }: { date?: Date | null }) {
     >
       <Accordion.ItemTrigger borderBottomWidth={1}>
         <Flex borderRadius="sm" p={4} w="full">
-          <Text>{t(`title`)}</Text>
+          <Text>Date</Text>
         </Flex>
         <Accordion.ItemIndicator bg="white" mr={4} />
       </Accordion.ItemTrigger>
@@ -82,7 +80,7 @@ function DateInput({ date }: { date?: Date | null }) {
           <Flex p={4} flexDirection="column" gap={4}>
             <DataList.Root orientation="horizontal">
               <DataList.Item>
-                <DataList.ItemLabel>{t('date')}</DataList.ItemLabel>
+                <DataList.ItemLabel>Date</DataList.ItemLabel>
                 <DataList.ItemValue>
                   <Flex direction="column" gapY={4}>
                     <Flex p={4} bg="gray.100" borderRadius="sm">

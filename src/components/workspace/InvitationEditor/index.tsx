@@ -3,7 +3,6 @@
 import { Accordion, Box, Flex, Spinner, Stack, Text } from '@chakra-ui/react';
 import { useAtomValue } from 'jotai';
 import dynamic from 'next/dynamic';
-import { useTranslations } from 'next-intl';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
 import { layoutConstants } from '@/constants/layout';
@@ -44,7 +43,6 @@ const DynamicEndingInput = dynamic(
 );
 
 function InvitationEditor() {
-  const t = useTranslations('workspace.invitationEditor');
   const { invitationDetail } = useInvitationDetail();
   const bgColor = useAtomValue(invitationEditorAtom.selectedBgColor);
   const isSaving = useAtomValue(invitationEditorAtom.isSaving);

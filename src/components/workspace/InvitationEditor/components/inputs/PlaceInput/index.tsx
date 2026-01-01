@@ -8,7 +8,6 @@ import {
   Timeline,
 } from '@chakra-ui/react';
 import { useSetAtom } from 'jotai';
-import { useTranslations } from 'next-intl';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
 import { usePostInvitationPlace } from '@/hooks/invitation/place';
@@ -18,7 +17,6 @@ import PlaceItem from './components/PlaceItem';
 import PlaceSearch from './PlaceSearch';
 
 function PlaceInput({ placeList }: { placeList: InvitationPlace[] }) {
-  const t = useTranslations('workspace.invitationEditor.places');
   const { isPending, postPlace } = usePostInvitationPlace();
 
   const setInvitationPlaceDialogOpen = useSetAtom(
@@ -33,7 +31,7 @@ function PlaceInput({ placeList }: { placeList: InvitationPlace[] }) {
     >
       <Accordion.ItemTrigger borderBottomWidth={1}>
         <Flex borderRadius="sm" p={4} w="full">
-          <Text>{t(`title`)}</Text>
+          <Text>Location & Time</Text>
         </Flex>
         <Accordion.ItemIndicator bg="white" mr={4} />
       </Accordion.ItemTrigger>

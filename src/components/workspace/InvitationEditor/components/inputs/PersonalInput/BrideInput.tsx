@@ -9,7 +9,6 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
-import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
 import { Controller } from 'react-hook-form';
 
@@ -31,7 +30,6 @@ function BrideInput({
   momName,
   dadName,
 }: BrideInputProps) {
-  const t = useTranslations('workspace.invitationEditor.bride');
   const { onClickSave } = useSaveInvitation();
   const [brideLastName, setBrideLastName] = useAtom(
     invitationEditorAtom.brideLastName,
@@ -70,7 +68,7 @@ function BrideInput({
       <GridItem>
         <Flex h="full" alignItems="center">
           <Text color="gray.500" fontSize="sm">
-            {t('title')}
+            Title
           </Text>
         </Flex>
       </GridItem>
@@ -80,7 +78,7 @@ function BrideInput({
             control={control}
             name="brideLastName"
             rules={{
-              required: t('lastNameRequired'),
+              required: 'Last name is required',
             }}
             render={({ field }) => (
               <Input
@@ -92,7 +90,7 @@ function BrideInput({
                 onBlur={() => onClickSave()}
                 variant="subtle"
                 type="text"
-                placeholder={t('lastNamePlaceholder')}
+                placeholder="Last name"
               />
             )}
           ></Controller>
@@ -113,7 +111,7 @@ function BrideInput({
                 variant="subtle"
                 {...field}
                 type="text"
-                placeholder={t('middleNamePlaceholder')}
+                placeholder="Middle name"
                 onBlur={() => onClickSave()}
                 onChange={(e) => {
                   setBrideMiddleName(e.target.value);
@@ -130,14 +128,14 @@ function BrideInput({
             control={control}
             name="brideFirstName"
             rules={{
-              required: t('firstNameRequired'),
+              required: 'First name is required',
             }}
             render={({ field }) => (
               <Input
                 {...field}
                 type="text"
                 variant="subtle"
-                placeholder={t('firstNamePlaceholder')}
+                placeholder="First name"
                 onBlur={() => onClickSave()}
                 onChange={(e) => {
                   setBrideFirstName(e.target.value);
@@ -156,7 +154,7 @@ function BrideInput({
       <GridItem>
         <Flex h="full" alignItems="center">
           <Text color="gray.500" fontSize="sm">
-            {t('momLabel')}
+            Mom
           </Text>
         </Flex>
       </GridItem>
@@ -171,7 +169,7 @@ function BrideInput({
                 {...field}
                 type="text"
                 onBlur={() => onClickSave()}
-                placeholder={t('momNamePlaceholder')}
+                placeholder="Mom's name"
                 onChange={(e) => {
                   setBrideMomName(e.target.value);
                   field.onChange(e.target.value);
@@ -184,7 +182,7 @@ function BrideInput({
       <GridItem>
         <Flex h="full" alignItems="center">
           <Text color="gray.500" fontSize="sm">
-            {t('dadLabel')}
+            Dad
           </Text>
         </Flex>
       </GridItem>
@@ -198,7 +196,7 @@ function BrideInput({
                 variant="subtle"
                 {...field}
                 type="text"
-                placeholder={t('dadNamePlaceholder')}
+                placeholder="Dad's name"
                 onBlur={() => onClickSave()}
                 onChange={(e) => {
                   setBrideDadName(e.target.value);

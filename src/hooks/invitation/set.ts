@@ -13,6 +13,9 @@ export function useSetInvitation(invitation: Invitation | null | undefined) {
   const [selectedTemplateNo, setSelectedTemplateNo] = useAtom(
     invitationEditorAtom.selectedTemplateNo,
   );
+  const [mainTextColor, setMainTextColor] = useAtom(
+    invitationEditorAtom.selectedMainColor,
+  );
   const [layoutOrder, setLayoutOrder] = useAtom(
     invitationEditorAtom.layoutOrderAtom,
   );
@@ -87,6 +90,9 @@ export function useSetInvitation(invitation: Invitation | null | undefined) {
     }
     if (invitation.bgColor) {
       setBgColor(invitation.bgColor);
+    }
+    if (invitation.mainTextColor) {
+      setMainTextColor(parseColor(invitation.mainTextColor));
     }
     if (invitation.pointColor) {
       setSelectedPointColor(invitation.pointColor);

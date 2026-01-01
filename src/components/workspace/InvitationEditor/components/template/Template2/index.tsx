@@ -43,6 +43,7 @@ function Template2({
               fill
               priority
               style={{ objectFit: 'cover' }}
+              sizes="(max-width: 768px) 100vw, 420px"
               src={`${S3_BUCKET_URL}${mainPhoto.croppedKey}`}
               alt="Main Photo"
             />

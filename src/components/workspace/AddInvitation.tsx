@@ -1,6 +1,5 @@
 import { Box, Flex, GridItem, Spinner, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { FaPlus } from 'react-icons/fa6';
 
@@ -8,7 +7,6 @@ import { postInvitationApi } from '@/hooks/invitation/api';
 
 function AddInvitation() {
   const router = useRouter();
-  const t = useTranslations('workspace.invitation');
   const [postLoading, setPostLoading] = useState(false);
   const handleClick = async () => {
     try {
@@ -44,7 +42,7 @@ function AddInvitation() {
               <FaPlus></FaPlus>
             </Box>
             <Text fontSize="sm" color="gray.500">
-              {t('newInvitation')}
+              New Invitation
             </Text>
           </>
         )}

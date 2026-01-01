@@ -10,7 +10,6 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -23,7 +22,6 @@ type FormValues = {
 };
 
 function LoginPage() {
-  const t = useTranslations('login');
   const { register, handleSubmit } = useForm<FormValues>({
     defaultValues: {
       email: '',
@@ -63,20 +61,27 @@ function LoginPage() {
     >
       <Flex direction="column">
         <Heading as="h1" size="lg">
-          {t('title')}
+          Login to Sparklit
         </Heading>
-        <Text color="gray.500">{t('description')}</Text>
+        <Text color="gray.500">
+          Please enter your email and password to login.
+        </Text>
       </Flex>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Fieldset.Content>
           <Field.Root>
-            <Field.Label>{t('email')}</Field.Label>
+            <Field.Label>Email</Field.Label>
             <Input {...register('email')} name="email" type="email" />
           </Field.Root>
           <Field.Root>
-            <Field.Label>{t('password')}</Field.Label>
-            <Input {...register('password')} name="password" type="password" />
+            <Field.Label>Password</Field.Label>
+            <Input
+              {...register('password')}
+              autoComplete="current-password"
+              name="password"
+              type="password"
+            />
           </Field.Root>
         </Fieldset.Content>
 
@@ -87,7 +92,7 @@ function LoginPage() {
           type="submit"
           alignSelf="flex-start"
         >
-          {t('loginButton')}
+          Login
         </Button>
       </form>
     </Fieldset.Root>

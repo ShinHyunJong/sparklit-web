@@ -1,3 +1,4 @@
+'use client';
 import 'swiper/css';
 
 import { Container } from '@chakra-ui/react';
@@ -5,7 +6,7 @@ import { Container } from '@chakra-ui/react';
 import Header from '@/components/layout/header';
 import { layoutConstants } from '@/constants/layout';
 
-export default async function WorkspaceLayout({
+export default function WorkspaceLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

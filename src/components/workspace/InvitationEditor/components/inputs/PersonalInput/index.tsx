@@ -1,5 +1,4 @@
 import { Accordion, Flex, Separator, Text } from '@chakra-ui/react';
-import { useTranslations } from 'next-intl';
 
 import BrideInput from './BrideInput';
 import GroomInput from './GroomInput';
@@ -29,7 +28,6 @@ function PersonalInput({
   groomMomName,
   groomDadName,
 }: PersonalInputProps) {
-  const t = useTranslations('workspace.invitationEditor');
   return (
     <Accordion.Item
       borderBottomWidth={0}
@@ -39,7 +37,7 @@ function PersonalInput({
     >
       <Accordion.ItemTrigger borderBottomWidth={1}>
         <Flex borderRadius="sm" p={4} w="full">
-          <Text>{t(`base.title`)}</Text>
+          <Text>Personal Information</Text>
         </Flex>
         <Accordion.ItemIndicator bg="white" mr={4} />
       </Accordion.ItemTrigger>

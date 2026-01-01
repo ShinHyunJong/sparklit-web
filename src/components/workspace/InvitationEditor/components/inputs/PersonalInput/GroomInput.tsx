@@ -9,7 +9,6 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
-import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
 import { Controller } from 'react-hook-form';
 
@@ -32,7 +31,6 @@ function GroomInput({
   dadName,
 }: GroomInputProps) {
   const { onClickSave } = useSaveInvitation();
-  const t = useTranslations('workspace.invitationEditor.groom');
   const { control, formState, setValue } = useInvitationEditorForm();
 
   const [groomLastName, setGroomLastName] = useAtom(
@@ -70,7 +68,7 @@ function GroomInput({
       <GridItem>
         <Flex h="full" alignItems="center">
           <Text color="gray.500" fontSize="sm">
-            {t('title')}
+            Title
           </Text>
         </Flex>
       </GridItem>
@@ -80,14 +78,14 @@ function GroomInput({
             control={control}
             name="groomLastName"
             rules={{
-              required: t('lastNameRequired'),
+              required: 'Last name is required',
             }}
             render={({ field }) => (
               <Input
                 variant="subtle"
                 {...field}
                 type="text"
-                placeholder={t('lastNamePlaceholder')}
+                placeholder="Last name"
                 onChange={(e) => {
                   setGroomLastName(e.target.value);
                   field.onChange(e.target.value);
@@ -118,7 +116,7 @@ function GroomInput({
                 }}
                 type="text"
                 onBlur={() => onClickSave()}
-                placeholder={t('middleNamePlaceholder')}
+                placeholder="Middle name"
               />
             )}
           ></Controller>
@@ -130,7 +128,7 @@ function GroomInput({
             control={control}
             name="groomFirstName"
             rules={{
-              required: t('firstNameRequired'),
+              required: 'First name is required',
             }}
             render={({ field }) => (
               <Input
@@ -142,7 +140,7 @@ function GroomInput({
                 type="text"
                 variant="subtle"
                 onBlur={() => onClickSave()}
-                placeholder={t('firstNamePlaceholder')}
+                placeholder="First name"
               />
             )}
           ></Controller>
@@ -156,7 +154,7 @@ function GroomInput({
       <GridItem>
         <Flex h="full" alignItems="center">
           <Text color="gray.500" fontSize="sm">
-            {t('momLabel')}
+            Mom
           </Text>
         </Flex>
       </GridItem>
@@ -175,7 +173,7 @@ function GroomInput({
                 }}
                 onBlur={() => onClickSave()}
                 type="text"
-                placeholder={t('momNamePlaceholder')}
+                placeholder="Mom's name"
               />
             )}
           ></Controller>
@@ -184,7 +182,7 @@ function GroomInput({
       <GridItem>
         <Flex h="full" alignItems="center">
           <Text color="gray.500" fontSize="sm">
-            {t('dadLabel')}
+            Dad
           </Text>
         </Flex>
       </GridItem>
@@ -203,7 +201,7 @@ function GroomInput({
                 }}
                 type="text"
                 onBlur={() => onClickSave()}
-                placeholder={t('dadNamePlaceholder')}
+                placeholder="Dad's name"
               />
             )}
           ></Controller>

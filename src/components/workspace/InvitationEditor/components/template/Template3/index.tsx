@@ -57,7 +57,7 @@ function Template3({
             alt="Parallax image"
             fill
             priority
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw, 420px"
             style={{ objectFit: 'cover' }}
           />
 

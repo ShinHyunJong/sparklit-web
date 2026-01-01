@@ -68,7 +68,9 @@ function Gallery() {
                 >
                   <Image
                     fill
+                    unoptimized
                     style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 768px) 100vw, 420px"
                     alt={image.id.toString()}
                     src={`${S3_BUCKET_URL}${image.croppedKey}`}
                   ></Image>
@@ -89,6 +91,8 @@ function Gallery() {
           >
             <Image
               fill
+              unoptimized
+              sizes="(max-width: 768px) 100vw, 420px"
               src={`${S3_BUCKET_URL}${image.thumbKey}`}
               alt={`${image.id}`}
               style={{ objectFit: 'cover' }}

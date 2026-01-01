@@ -46,14 +46,13 @@ function Template4({
             position="relative"
           >
             <Box position="relative">
-              {/* sticky 이미지 */}
-              <Box position="sticky" top={0} w="full" h="full">
+              <Box position="absolute" top={0} w="full" h="full">
                 <Image
                   src={`${S3_BUCKET_URL}${mainPhoto.croppedKey}`}
                   alt="Parallax image"
                   fill
                   priority
-                  sizes="100vw"
+                  sizes="(max-width: 768px) 100vw, 420px"
                   style={{ objectFit: 'cover' }}
                 />
 
