@@ -30,7 +30,6 @@ function InvitationDetail({ invitation }: { invitation: Invitation }) {
         position="relative"
         w="full"
         direction="column"
-        pb={16}
       >
         <MainTemplate></MainTemplate>
         <Stack spaceY={20}>

@@ -161,7 +161,6 @@ function InvitationEditor() {
         top={`${layoutConstants.headerHeight + 32}px`}
         justifyContent="center"
         w="480px"
-        pb={16}
         h={`calc(100vh - ${layoutConstants.headerHeight + 64}px) `}
       >
         <Box borderRadius="sm" w="full">

@@ -16,7 +16,7 @@ function PreviewInvitation() {
   );
 
   return (
-    <Flex position="relative" w="full" direction="column" pb={16}>
+    <Flex position="relative" w="full" direction="column">
       <MainTemplate></MainTemplate>
       <Stack spaceY={20}>
         {/* [Step 1] DB 순서 및 가시성 설정에 따른 렌더링 */}
