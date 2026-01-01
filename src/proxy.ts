@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server';
 const publicPages = ['/', '/login', '/register'];
 const protectedPages = ['/workspace'];
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   const { pathname, origin } = req.nextUrl;
   const token = req.cookies.get('token')?.value;
 
