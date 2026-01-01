@@ -1,4 +1,3 @@
-// components/invitation/InvitationEditorHydrator.tsx
 'use client';
 
 import { useHydrateAtoms } from 'jotai/utils';
@@ -12,63 +11,75 @@ export default function InvitationEditorHydrator({
 }: {
   invitation: Invitation | null | undefined;
 }) {
-  if (!invitation) return null;
+  const atomsToHydrate = invitation
+    ? (() => {
+        const v = buildInvitationEditorInitialValues(invitation);
+        return [
+          [invitationEditorAtom.layoutOrderAtom, v.layoutOrder ?? undefined],
+          [
+            invitationEditorAtom.selectedTemplateNo,
+            v.selectedTemplateNo ?? undefined,
+          ],
+          [invitationEditorAtom.selectedDate, v.selectedDate ?? undefined],
 
-  const v = buildInvitationEditorInitialValues(invitation);
+          [invitationEditorAtom.greetingTitle, v.greetingTitle ?? undefined],
+          [
+            invitationEditorAtom.greetingContent,
+            v.greetingContent ?? undefined,
+          ],
 
-  useHydrateAtoms([
-    // layout / template / date
-    [invitationEditorAtom.layoutOrderAtom, v.layoutOrder ?? undefined],
-    [
-      invitationEditorAtom.selectedTemplateNo,
-      v.selectedTemplateNo ?? undefined,
-    ],
-    [invitationEditorAtom.selectedDate, v.selectedDate ?? undefined],
+          [
+            invitationEditorAtom.selectedBgColor,
+            v.selectedBgColor ?? undefined,
+          ],
+          [
+            invitationEditorAtom.selectedMainColor,
+            v.selectedMainColor ?? undefined,
+          ],
+          [
+            invitationEditorAtom.selectedPointColor,
+            v.selectedPointColor ?? undefined,
+          ],
 
-    // greeting
-    [invitationEditorAtom.greetingTitle, v.greetingTitle ?? undefined],
-    [invitationEditorAtom.greetingContent, v.greetingContent ?? undefined],
+          [invitationEditorAtom.brideFirstName, v.brideFirstName ?? undefined],
+          [invitationEditorAtom.groomFirstName, v.groomFirstName ?? undefined],
 
-    // colors
-    [invitationEditorAtom.selectedBgColor, v.selectedBgColor ?? undefined],
-    [invitationEditorAtom.selectedMainColor, v.selectedMainColor ?? undefined],
-    [
-      invitationEditorAtom.selectedPointColor,
-      v.selectedPointColor ?? undefined,
-    ],
+          [
+            invitationEditorAtom.dressCodeGentleman,
+            v.dressCodeGentleman ?? undefined,
+          ],
+          [invitationEditorAtom.dressCodeLady, v.dressCodeLady ?? undefined],
+          [
+            invitationEditorAtom.dressCodeMainColor,
+            v.dressCodeMainColor ?? undefined,
+          ],
+          [
+            invitationEditorAtom.dressCodeSubColor,
+            v.dressCodeSubColor ?? undefined,
+          ],
+          [
+            invitationEditorAtom.dressCodeThirdColor,
+            v.dressCodeThirdColor ?? undefined,
+          ],
 
-    // names
-    [invitationEditorAtom.brideFirstName, v.brideFirstName ?? undefined],
-    [invitationEditorAtom.groomFirstName, v.groomFirstName ?? undefined],
+          [invitationEditorAtom.primarySponsor, v.primarySponsor ?? undefined],
+          [
+            invitationEditorAtom.secondarySponsor,
+            v.secondarySponsor ?? undefined,
+          ],
+          [invitationEditorAtom.bestMan, v.bestMan ?? undefined],
+          [invitationEditorAtom.maidOfHonor, v.maidOfHonor ?? undefined],
+          [invitationEditorAtom.groomsMen, v.groomsMen ?? undefined],
+          [invitationEditorAtom.bridesMaids, v.bridesMaids ?? undefined],
 
-    // dress code
-    [
-      invitationEditorAtom.dressCodeGentleman,
-      v.dressCodeGentleman ?? undefined,
-    ],
-    [invitationEditorAtom.dressCodeLady, v.dressCodeLady ?? undefined],
-    [
-      invitationEditorAtom.dressCodeMainColor,
-      v.dressCodeMainColor ?? undefined,
-    ],
-    [invitationEditorAtom.dressCodeSubColor, v.dressCodeSubColor ?? undefined],
-    [
-      invitationEditorAtom.dressCodeThirdColor,
-      v.dressCodeThirdColor ?? undefined,
-    ],
+          [invitationEditorAtom.endingText, v.endingText ?? undefined],
+          [invitationEditorAtom.notice, v.notice ?? undefined],
+        ] as const;
+      })()
+    : ([] as const);
 
-    // roles
-    [invitationEditorAtom.primarySponsor, v.primarySponsor ?? undefined],
-    [invitationEditorAtom.secondarySponsor, v.secondarySponsor ?? undefined],
-    [invitationEditorAtom.bestMan, v.bestMan ?? undefined],
-    [invitationEditorAtom.maidOfHonor, v.maidOfHonor ?? undefined],
-    [invitationEditorAtom.groomsMen, v.groomsMen ?? undefined],
-    [invitationEditorAtom.bridesMaids, v.bridesMaids ?? undefined],
-
-    // misc
-    [invitationEditorAtom.endingText, v.endingText ?? undefined],
-    [invitationEditorAtom.notice, v.notice ?? undefined],
-  ]);
+  // ✅ 항상 호출
+  useHydrateAtoms(atomsToHydrate);
 
   return null;
 }

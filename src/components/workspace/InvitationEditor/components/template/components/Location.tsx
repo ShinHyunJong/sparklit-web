@@ -25,7 +25,7 @@ function Location() {
 
   const handleMap = (googlePlaceId?: string) => {
     if (!googlePlaceId) return;
-    const url = `https://www.google.com/maps/dir/?api=1&destination_place_id=${googlePlaceId}`;
+    const url = `https://www.google.com/maps/search/?api=1&query=Google&query_place_id=${googlePlaceId}`;
     window.open(url, '_blank');
   };
 
