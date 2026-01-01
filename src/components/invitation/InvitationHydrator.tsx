@@ -14,72 +14,49 @@ export default function InvitationEditorHydrator({
   const atomsToHydrate = invitation
     ? (() => {
         const v = buildInvitationEditorInitialValues(invitation);
+
         return [
-          [invitationEditorAtom.layoutOrderAtom, v.layoutOrder ?? undefined],
-          [
-            invitationEditorAtom.selectedTemplateNo,
-            v.selectedTemplateNo ?? undefined,
-          ],
-          [invitationEditorAtom.selectedDate, v.selectedDate ?? undefined],
+          // ✅ object/array류는 undefined 금지: 없으면 null/[]로
+          [invitationEditorAtom.layoutOrderAtom, v.layoutOrder ?? []],
 
-          [invitationEditorAtom.greetingTitle, v.greetingTitle ?? undefined],
-          [
-            invitationEditorAtom.greetingContent,
-            v.greetingContent ?? undefined,
-          ],
+          // ✅ number류: 없으면 0 또는 기본 템플릿 번호
+          [invitationEditorAtom.selectedTemplateNo, v.selectedTemplateNo ?? 0],
 
-          [
-            invitationEditorAtom.selectedBgColor,
-            v.selectedBgColor ?? undefined,
-          ],
-          [
-            invitationEditorAtom.selectedMainColor,
-            v.selectedMainColor ?? undefined,
-          ],
-          [
-            invitationEditorAtom.selectedPointColor,
-            v.selectedPointColor ?? undefined,
-          ],
+          // ✅ string류: 없으면 빈 문자열
+          [invitationEditorAtom.selectedDate, v.selectedDate ?? ''],
 
-          [invitationEditorAtom.brideFirstName, v.brideFirstName ?? undefined],
-          [invitationEditorAtom.groomFirstName, v.groomFirstName ?? undefined],
+          [invitationEditorAtom.greetingTitle, v.greetingTitle ?? ''],
+          [invitationEditorAtom.greetingContent, v.greetingContent ?? ''],
 
-          [
-            invitationEditorAtom.dressCodeGentleman,
-            v.dressCodeGentleman ?? undefined,
-          ],
-          [invitationEditorAtom.dressCodeLady, v.dressCodeLady ?? undefined],
-          [
-            invitationEditorAtom.dressCodeMainColor,
-            v.dressCodeMainColor ?? undefined,
-          ],
-          [
-            invitationEditorAtom.dressCodeSubColor,
-            v.dressCodeSubColor ?? undefined,
-          ],
+          [invitationEditorAtom.selectedBgColor, v.selectedBgColor ?? ''],
+          [invitationEditorAtom.selectedMainColor, v.selectedMainColor ?? ''],
+          [invitationEditorAtom.selectedPointColor, v.selectedPointColor ?? ''],
+
+          [invitationEditorAtom.brideFirstName, v.brideFirstName ?? ''],
+          [invitationEditorAtom.groomFirstName, v.groomFirstName ?? ''],
+
+          [invitationEditorAtom.dressCodeGentleman, v.dressCodeGentleman ?? ''],
+          [invitationEditorAtom.dressCodeLady, v.dressCodeLady ?? ''],
+          [invitationEditorAtom.dressCodeMainColor, v.dressCodeMainColor ?? ''],
+          [invitationEditorAtom.dressCodeSubColor, v.dressCodeSubColor ?? ''],
           [
             invitationEditorAtom.dressCodeThirdColor,
-            v.dressCodeThirdColor ?? undefined,
+            v.dressCodeThirdColor ?? '',
           ],
 
-          [invitationEditorAtom.primarySponsor, v.primarySponsor ?? undefined],
-          [
-            invitationEditorAtom.secondarySponsor,
-            v.secondarySponsor ?? undefined,
-          ],
-          [invitationEditorAtom.bestMan, v.bestMan ?? undefined],
-          [invitationEditorAtom.maidOfHonor, v.maidOfHonor ?? undefined],
-          [invitationEditorAtom.groomsMen, v.groomsMen ?? undefined],
-          [invitationEditorAtom.bridesMaids, v.bridesMaids ?? undefined],
+          [invitationEditorAtom.primarySponsor, v.primarySponsor ?? ''],
+          [invitationEditorAtom.secondarySponsor, v.secondarySponsor ?? ''],
+          [invitationEditorAtom.bestMan, v.bestMan ?? ''],
+          [invitationEditorAtom.maidOfHonor, v.maidOfHonor ?? ''],
+          [invitationEditorAtom.groomsMen, v.groomsMen ?? []],
+          [invitationEditorAtom.bridesMaids, v.bridesMaids ?? []],
 
-          [invitationEditorAtom.endingText, v.endingText ?? undefined],
-          [invitationEditorAtom.notice, v.notice ?? undefined],
+          [invitationEditorAtom.endingText, v.endingText ?? ''],
+          [invitationEditorAtom.notice, v.notice ?? ''],
         ] as const;
       })()
     : ([] as const);
 
-  // ✅ 항상 호출
   useHydrateAtoms(atomsToHydrate);
-
   return null;
 }

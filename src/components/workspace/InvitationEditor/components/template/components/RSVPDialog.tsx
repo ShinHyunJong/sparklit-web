@@ -11,7 +11,7 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
-import { useSearchParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
@@ -30,6 +30,8 @@ const items = [
 
 function RSVPDialog() {
   const uniqueId = useSearchParams().get('uid') || '';
+  const { invitationUid } = useParams();
+  const uidToUse = uniqueId || invitationUid?.toString();
   const [open, setOpen] = useState(false);
   const [attending, setAttending] = useState('true');
   const [loading, setLoading] = useState(false);
@@ -43,11 +45,11 @@ function RSVPDialog() {
   });
 
   const onSubmit = async (data: FormValues) => {
-    if (!uniqueId) return;
+    if (!uidToUse) return;
     console.log('Form Data:', { ...data, attending });
     try {
       setLoading(true);
-      await postRSVPApi(uniqueId, data.name, data.phone, data.email, attending);
+      await postRSVPApi(uidToUse, data.name, data.phone, data.email, attending);
       setLoading(false);
       setOpen(false);
     } catch (error) {
