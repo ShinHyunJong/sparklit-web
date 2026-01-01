@@ -72,6 +72,7 @@ export function useSetInvitation(invitation: Invitation | null | undefined) {
 
   useEffect(() => {
     if (!invitation) return;
+    console.log(invitation);
     if (invitation.layoutOrder) {
       setLayoutOrder(JSON.parse(invitation.layoutOrder));
     }

@@ -56,9 +56,9 @@ export function useInvitationDetailSSR(initialData: Invitation) {
 export function useInvitationDetail(initialData?: Invitation) {
   const searchParams = useSearchParams();
   const uid = searchParams.get('uid');
-  const { invitaionUid } = useParams();
+  const { invitationUid } = useParams();
 
-  const uidToUse = uid || invitaionUid;
+  const uidToUse = uid || invitationUid;
 
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['invitationDetail', uidToUse],

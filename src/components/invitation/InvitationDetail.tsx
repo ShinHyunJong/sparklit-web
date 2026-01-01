@@ -15,13 +15,12 @@ import InvitationEditorHydrator from './InvitationHydrator';
 
 function InvitationDetail({ invitation }: { invitation: Invitation }) {
   const { invitationDetail } = useInvitationDetail(invitation);
-  useSetInvitation(invitationDetail);
-
   const layoutSettings = useAtomValue(invitationEditorAtom.layoutOrderAtom);
   const existingIds = layoutSettings.map((item) => item.id);
   const missingKeys = Object.keys(COMPONENT_MAP).filter(
     (key) => !existingIds.includes(key),
   );
+  useSetInvitation(invitationDetail);
 
   return (
     <>
