@@ -21,7 +21,7 @@ async function InvitationDetailPage({
   const invitation = await res.json();
 
   return (
-    <Container maxW="lg">
+    <Container maxW="lg" px={0}>
       <InvitationDetail invitation={invitation}></InvitationDetail>
     </Container>
   );
@@ -41,7 +41,7 @@ export async function generateMetadata(
   const groomName = invitation.groomFirstName || 'Groom';
   const brideName = invitation.brideFirstName || 'Bride';
 
-  const title = 'Welcome to' + groomName + ' & ' + brideName + "'s Wedding";
+  const title = 'Welcome to ' + groomName + ' & ' + brideName + "'s Wedding";
   const description = 'You are invited!';
   const url = `https://sparklit.co/invitation/${invitationUid}`;
   const ogImageUrl = invitation.ogImageKey
