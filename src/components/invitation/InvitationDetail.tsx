@@ -4,6 +4,7 @@ import { Box, Flex, Stack } from '@chakra-ui/react';
 import { useAtomValue } from 'jotai';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
+import { S3_BUCKET_URL } from '@/configs/domain.config';
 import { COMPONENT_MAP } from '@/configs/LayoutComponent';
 import { useInvitationDetail } from '@/hooks/invitation';
 import { useSetInvitation } from '@/hooks/invitation/set';
@@ -11,6 +12,7 @@ import type { Invitation } from '@/types/model';
 
 import Ending from '../workspace/InvitationEditor/components/template/components/Ending';
 import MainTemplate from '../workspace/InvitationEditor/components/template/components/MainTemplate';
+import BackgroundMusic from './BackgroundMusic';
 import InvitationEditorHydrator from './InvitationHydrator';
 
 function InvitationDetail({ invitation }: { invitation: Invitation }) {
@@ -25,6 +27,9 @@ function InvitationDetail({ invitation }: { invitation: Invitation }) {
   return (
     <>
       <InvitationEditorHydrator invitation={invitation} />
+      <BackgroundMusic
+        url={`${S3_BUCKET_URL}${invitationDetail?.musicKey}`}
+      ></BackgroundMusic>
       <Flex
         bg={invitationDetail?.bgColor || ''}
         position="relative"

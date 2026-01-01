@@ -17,7 +17,7 @@ function Sponsor() {
         <Box p={4}>
           <Center mb={4}>
             <Text letterSpacing="wider" fontFamily="crimsonPro" fontSize="lg">
-              PRIMARY SPONSOR
+              PRINCIPAL SPONSOR
             </Text>
           </Center>
           <Center>

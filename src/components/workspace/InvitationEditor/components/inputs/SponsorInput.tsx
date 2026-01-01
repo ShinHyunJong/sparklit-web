@@ -71,7 +71,7 @@ function SponsorInput({
           <Flex w="full" mb={4} direction="column" gap={4}>
             <DataList.Root orientation="horizontal">
               <DataList.Item>
-                <DataList.ItemLabel>Primary</DataList.ItemLabel>
+                <DataList.ItemLabel>Principal</DataList.ItemLabel>
                 <DataList.ItemValue>
                   <Textarea
                     {...register('primary')}
