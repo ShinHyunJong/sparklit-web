@@ -67,14 +67,11 @@ export function useUpdatePhotoClient() {
     queryClient.setQueryData<{ invitationDetail: Invitation }>(
       ['invitationDetail', uid],
       (oldData) => {
-        console.log(oldData);
         if (!oldData) return oldData;
-        console.log(newList);
         const newData = {
           ...oldData,
           photoList: newList,
         };
-        console.log(newData);
         return newData;
       },
     );

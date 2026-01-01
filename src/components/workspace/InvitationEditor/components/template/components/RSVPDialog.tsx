@@ -46,7 +46,6 @@ function RSVPDialog() {
 
   const onSubmit = async (data: FormValues) => {
     if (!uidToUse) return;
-    console.log('Form Data:', { ...data, attending });
     try {
       setLoading(true);
       await postRSVPApi(uidToUse, data.name, data.phone, data.email, attending);
@@ -57,10 +56,7 @@ function RSVPDialog() {
     }
   };
 
-  const isDisabled =
-    !!formState.errors.name ||
-    !!formState.errors.phone ||
-    !!formState.errors.email;
+  const isDisabled = !formState.isValid;
 
   return (
     <Dialog.Root

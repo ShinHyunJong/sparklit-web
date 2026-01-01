@@ -40,7 +40,7 @@ function Location() {
         <SubHeader title="location"></SubHeader>
       </Center>
       <Box px={4}>
-        <Timeline.Root maxW="400px">
+        <Timeline.Root w="full">
           {placeList.map((p) => {
             return (
               <Timeline.Item key={`place-${p.id}`}>
@@ -51,7 +51,7 @@ function Location() {
                   </Timeline.Indicator>
                 </Timeline.Connector>
                 <Timeline.Content>
-                  <Flex justifyContent="space-between">
+                  <Flex w="full" justifyContent="space-between">
                     <Flex direction="column">
                       <Flex direction="column">
                         <Timeline.Title>{p.place?.name}</Timeline.Title>
