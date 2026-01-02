@@ -19,7 +19,7 @@ export function Provider(props: { children: React.ReactNode }) {
             inset={0}
             w="100vw"
             h="100vh"
-            overflow="auto"
+            overflowY="auto"
             bg="gray.100"
           >
             {props.children}
