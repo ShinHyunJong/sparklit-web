@@ -22,6 +22,7 @@
     "dayjs": "^1.11.13",
     "heic-to": "^1.2.1",
     "heic2any": "^0.0.4",
+    "html-react-parser": "^5.2.11",
     "i18next": "^25.3.2",
     "jotai": "^2.12.5",
     "lottie-react": "^2.4.1",

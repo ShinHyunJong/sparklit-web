@@ -1,6 +1,7 @@
 import { AspectRatio, Box } from '@chakra-ui/react';
 import { useAtomValue } from 'jotai';
 import Image from 'next/image';
+import { Fade } from 'react-awesome-reveal';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
 import { S3_BUCKET_URL } from '@/configs/domain.config';
@@ -17,7 +18,7 @@ function Ending() {
   const endingText = useAtomValue(invitationEditorAtom.endingText);
 
   return (
-    <>
+    <Fade triggerOnce>
       {endPhoto ? (
         <AspectRatio
           ratio={endPhoto.width / endPhoto.height}
@@ -44,7 +45,7 @@ function Ending() {
       ) : (
         <PhotoPlaceholder />
       )}
-    </>
+    </Fade>
   );
 }
 

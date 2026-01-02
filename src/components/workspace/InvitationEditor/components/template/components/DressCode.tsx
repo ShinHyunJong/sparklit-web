@@ -1,5 +1,6 @@
 import { Box, Center, Circle, Flex, Stack, Text } from '@chakra-ui/react';
 import { useAtomValue } from 'jotai';
+import { Slide } from 'react-awesome-reveal';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
 
@@ -15,52 +16,54 @@ function DressCode() {
   const lady = useAtomValue(invitationEditorAtom.dressCodeLady);
 
   return (
-    <Box>
-      <Center>
-        <SubHeader title="Dress Code"></SubHeader>
-      </Center>
-      <Center>
-        <Flex gap={1}>
-          <Circle
-            w={`${circleSize}px`}
-            h={`${circleSize}px`}
-            bg={mainColor && mainColor.toString('hex')}
-          ></Circle>
-          <Circle
-            w={`${circleSize}px`}
-            h={`${circleSize}px`}
-            bg={subColor && subColor.toString('hex')}
-          ></Circle>
-          <Circle
-            w={`${circleSize}px`}
-            h={`${circleSize}px`}
-            bg={thirdColor && thirdColor.toString('hex')}
-          ></Circle>
-        </Flex>
-      </Center>
-      <Stack mt={8} spaceY={4}>
-        <Box p={4}>
-          <Center mb={4}>
-            <Text fontFamily="crimsonPro" fontSize="lg">
-              GENTLEMAN
-            </Text>
-          </Center>
-          <Center>
-            <Text whiteSpace="pre-line">{gentleman}</Text>
-          </Center>
-        </Box>
-        <Box p={4}>
-          <Center mb={4}>
-            <Text fontFamily="crimsonPro" fontSize="lg">
-              LADY
-            </Text>
-          </Center>
-          <Center>
-            <Text whiteSpace="pre-line">{lady}</Text>
-          </Center>
-        </Box>
-      </Stack>
-    </Box>
+    <Slide triggerOnce direction="up" duration={500} cascade damping={0.8}>
+      <Box>
+        <Center>
+          <SubHeader title="Dress Code"></SubHeader>
+        </Center>
+        <Center>
+          <Flex gap={1}>
+            <Circle
+              w={`${circleSize}px`}
+              h={`${circleSize}px`}
+              bg={mainColor && mainColor.toString('hex')}
+            ></Circle>
+            <Circle
+              w={`${circleSize}px`}
+              h={`${circleSize}px`}
+              bg={subColor && subColor.toString('hex')}
+            ></Circle>
+            <Circle
+              w={`${circleSize}px`}
+              h={`${circleSize}px`}
+              bg={thirdColor && thirdColor.toString('hex')}
+            ></Circle>
+          </Flex>
+        </Center>
+        <Stack mt={8} spaceY={4}>
+          <Box p={4}>
+            <Center mb={4}>
+              <Text fontFamily="crimsonPro" fontSize="lg">
+                GENTLEMAN
+              </Text>
+            </Center>
+            <Center>
+              <Text whiteSpace="pre-line">{gentleman}</Text>
+            </Center>
+          </Box>
+          <Box p={4}>
+            <Center mb={4}>
+              <Text fontFamily="crimsonPro" fontSize="lg">
+                LADY
+              </Text>
+            </Center>
+            <Center>
+              <Text whiteSpace="pre-line">{lady}</Text>
+            </Center>
+          </Box>
+        </Stack>
+      </Box>
+    </Slide>
   );
 }
 

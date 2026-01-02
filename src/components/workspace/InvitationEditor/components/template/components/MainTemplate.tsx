@@ -1,4 +1,5 @@
 import { useAtom, useAtomValue } from 'jotai';
+import { Fade } from 'react-awesome-reveal';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
 import { useInvitationDetail } from '@/hooks/invitation';
@@ -64,7 +65,7 @@ function MainTemplate() {
     }
   };
 
-  return <>{renderTemplate()}</>;
+  return <Fade triggerOnce>{renderTemplate()}</Fade>;
 }
 
 export default MainTemplate;

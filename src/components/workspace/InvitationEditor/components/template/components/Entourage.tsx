@@ -1,5 +1,6 @@
 import { Box, Center, SimpleGrid, Text } from '@chakra-ui/react';
 import { useAtomValue } from 'jotai';
+import { Slide } from 'react-awesome-reveal';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
 
@@ -20,39 +21,41 @@ function Entourage() {
   ];
 
   return (
-    <Box>
-      <Center>
-        <SubHeader title="Entourage" />
-      </Center>
-      <Box mt={8} px={4}>
-        {/* SimpleGrid를 사용하여 2열 구조를 만듭니다. */}
-        <SimpleGrid columns={2} gap={10}>
-          {groups.map((item) => (
-            <Box key={item.label}>
-              <Center mb={4}>
-                <Text
-                  fontFamily="crimsonPro"
-                  fontSize="md"
-                  textAlign="center"
-                  letterSpacing="wider"
-                >
-                  {item.label}
-                </Text>
-              </Center>
-              <Center>
-                <Text
-                  whiteSpace="pre-line"
-                  textAlign="center"
-                  lineHeight="tall"
-                >
-                  {item.value || '-'}
-                </Text>
-              </Center>
-            </Box>
-          ))}
-        </SimpleGrid>
+    <Slide triggerOnce direction="up" duration={500} cascade damping={0.8}>
+      <Box>
+        <Center>
+          <SubHeader title="Entourage" />
+        </Center>
+        <Box mt={8} px={4}>
+          {/* SimpleGrid를 사용하여 2열 구조를 만듭니다. */}
+          <SimpleGrid columns={2} gap={10}>
+            {groups.map((item) => (
+              <Box key={item.label}>
+                <Center mb={4}>
+                  <Text
+                    fontFamily="crimsonPro"
+                    fontSize="md"
+                    textAlign="center"
+                    letterSpacing="wider"
+                  >
+                    {item.label}
+                  </Text>
+                </Center>
+                <Center>
+                  <Text
+                    whiteSpace="pre-line"
+                    textAlign="center"
+                    lineHeight="tall"
+                  >
+                    {item.value || '-'}
+                  </Text>
+                </Center>
+              </Box>
+            ))}
+          </SimpleGrid>
+        </Box>
       </Box>
-    </Box>
+    </Slide>
   );
 }
 
