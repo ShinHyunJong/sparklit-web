@@ -15,6 +15,7 @@ function Thumb({
   photoList,
   setIsThumb,
   isPostingPending,
+  isProcessing,
   setRenderingPhotoList,
 }: {
   photoList: InvitationPhoto[];
@@ -96,7 +97,7 @@ function Thumb({
                     direction="column"
                     borderRadius="sm"
                   >
-                    {isPostingPending ? (
+                    {isProcessing || isPostingPending ? (
                       <Spinner />
                     ) : (
                       <>

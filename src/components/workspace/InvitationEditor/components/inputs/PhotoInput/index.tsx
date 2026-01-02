@@ -1,10 +1,11 @@
 'use client';
 
 import { Accordion, Flex, Input, Text } from '@chakra-ui/react';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
+import uploadAtom from '@/atoms/upload';
 import PhotoEditor from '@/components/workspace/PhotoEditor';
 import { useUpload } from '@/hooks/upload';
 import type { InvitationPhoto } from '@/types/model';
@@ -19,7 +20,7 @@ function PhotoInput({ photoList }: { photoList: InvitationPhoto[] }) {
   const [renderingPhotoList, setRenderingPhotoList] = useAtom<
     InvitationPhoto[]
   >(invitationEditorAtom.renderingPhotoList);
-
+  const isProcessing = useAtomValue(uploadAtom.isProcessing);
   useEffect(() => {
     setRenderingPhotoList(photoList);
   }, [photoList]);
@@ -64,6 +65,7 @@ function PhotoInput({ photoList }: { photoList: InvitationPhoto[] }) {
               />
             </Flex>
             <Thumb
+              isProcessing={isProcessing}
               photoList={renderingPhotoList}
               setIsThumb={setIsThumb}
               isPostingPending={isPostingPending}
