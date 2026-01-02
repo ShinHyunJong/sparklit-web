@@ -14,7 +14,7 @@ async function InvitationDetailPage({
 }) {
   const { invitationUid } = await params;
   const res = await fetch(`${API_ENDPOINT}/invitation/${invitationUid}`, {
-    cache: 'no-store',
+    next: { revalidate: 60 },
   });
   if (res.status === 404) return notFound();
   if (!res.ok) throw new Error('Failed to fetch invitation');
