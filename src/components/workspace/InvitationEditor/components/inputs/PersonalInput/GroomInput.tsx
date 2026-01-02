@@ -68,7 +68,7 @@ function GroomInput({
       <GridItem>
         <Flex h="full" alignItems="center">
           <Text color="gray.500" fontSize="sm">
-            Title
+            Groom
           </Text>
         </Flex>
       </GridItem>

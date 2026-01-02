@@ -4,16 +4,19 @@ import {
   Center,
   Circle,
   GridItem,
+  Icon,
   SimpleGrid,
   Text,
 } from '@chakra-ui/react';
 import dayjs from 'dayjs';
 import { useAtom, useAtomValue } from 'jotai';
 import { Fade } from 'react-awesome-reveal';
+import { LuCalendar } from 'react-icons/lu';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
 import { useInvitationDetail } from '@/hooks/invitation';
 
+import SubHeader from '../template/components/SubHeader';
 import CustomTimer from './CustomTimer';
 
 const generateCalendarDays = (year: number, month: number) => {
@@ -63,60 +66,68 @@ function CustomCalendar() {
     .set('minute', dayjs(firstTime.time).minute())
     .toDate();
   return (
-    <Fade triggerOnce>
-      <Box px={8}>
-        <Center flexDir="column" mb={6}>
-          <Text letterSpacing={4} mb={2} fontSize="2xl">
-            {dayjs(d).format('YYYY.MM.DD')}
-          </Text>
-          <Text fontSize="lg" color="gray.600">
-            {dayjs(d).format('ddd')}{' '}
-            {firstTime ? dayjs(firstTime.time).format('A HH:mm') : ''}
-          </Text>
-        </Center>
-        <SimpleGrid
-          columns={7}
-          gap={3}
-          borderTopWidth={1}
-          borderBottomWidth={1}
-          py={6}
-          mb={12}
-        >
-          {weekdays.map((day, i) => (
-            <GridItem mb={2} key={day} style={{ textAlign: 'center' }}>
-              <Text color={i === 0 ? pointColor : 'gray.800'}>{day}</Text>
-            </GridItem>
-          ))}
-          {calendarDays.map((day, index) => {
-            const isTargetDate = d.getDate() === day.dayOfMonth;
-            const isSunday = day.date ? day.date.getDay() === 0 : false;
-            return (
-              <GridItem key={index}>
-                <Circle
-                  bg={isTargetDate ? pointColor : ''}
-                  w="30px"
-                  h="30px"
-                  mx="auto"
-                >
-                  <Text
-                    color={
-                      isTargetDate
-                        ? 'white'
-                        : isSunday
-                          ? pointColor
-                          : 'gray.700'
-                    }
-                  >
-                    {day.date ? day.dayOfMonth : ''}
-                  </Text>
-                </Circle>
+    <>
+      <Center flexDirection="column">
+        <SubHeader title="calendar"></SubHeader>
+        <Icon fontSize={24} color={pointColor} mb={6}>
+          <LuCalendar />
+        </Icon>
+      </Center>
+      <Fade triggerOnce>
+        <Box px={8}>
+          <Center flexDir="column" mb={6}>
+            <Text letterSpacing={4} mb={2} fontSize="2xl">
+              {dayjs(d).format('YYYY.MM.DD')}
+            </Text>
+            <Text fontSize="lg" color="gray.600">
+              {dayjs(d).format('ddd')}{' '}
+              {firstTime ? dayjs(firstTime.time).format('A HH:mm') : ''}
+            </Text>
+          </Center>
+          <SimpleGrid
+            columns={7}
+            gap={3}
+            borderTopWidth={1}
+            borderBottomWidth={1}
+            py={6}
+            mb={12}
+          >
+            {weekdays.map((day, i) => (
+              <GridItem mb={2} key={day} style={{ textAlign: 'center' }}>
+                <Text color={i === 0 ? pointColor : 'gray.800'}>{day}</Text>
               </GridItem>
-            );
-          })}
-        </SimpleGrid>
-        <CustomTimer date={timeAddedDate}></CustomTimer>
-      </Box>
-    </Fade>
+            ))}
+            {calendarDays.map((day, index) => {
+              const isTargetDate = d.getDate() === day.dayOfMonth;
+              const isSunday = day.date ? day.date.getDay() === 0 : false;
+              return (
+                <GridItem key={index}>
+                  <Circle
+                    bg={isTargetDate ? pointColor : ''}
+                    w="30px"
+                    h="30px"
+                    mx="auto"
+                  >
+                    <Text
+                      color={
+                        isTargetDate
+                          ? 'white'
+                          : isSunday
+                            ? pointColor
+                            : 'gray.700'
+                      }
+                    >
+                      {day.date ? day.dayOfMonth : ''}
+                    </Text>
+                  </Circle>
+                </GridItem>
+              );
+            })}
+          </SimpleGrid>
+          <CustomTimer date={timeAddedDate}></CustomTimer>
+        </Box>
+      </Fade>
+    </>
   );
 }
 

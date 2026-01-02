@@ -106,6 +106,16 @@ export type InvitationPlaceTime = {
   description: string | null;
 };
 
+export type InivitationRSVP = {
+  id: number;
+  invitationId: number;
+  name: string;
+  phone: string;
+  email: string;
+  attending: boolean;
+  createdAt: Date;
+};
+
 export type Place = {
   id: number;
   googlePlaceId: string;

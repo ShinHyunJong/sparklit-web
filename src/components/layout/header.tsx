@@ -12,7 +12,6 @@ import {
 import { layoutConstants } from '@/constants/layout';
 import { useAuth } from '@/hooks/auth';
 
-import LocaleSwitcher from '../landing/LocaleSwitcher';
 function Header() {
   const { user } = useAuth();
   return (
@@ -47,7 +46,7 @@ function Header() {
             </Heading> */}
           </Flex>
           <Flex gap={4}>
-            <LocaleSwitcher />
+            {/* <LocaleSwitcher /> */}
             {user && (
               <AvatarGroup>
                 <Avatar.Root>

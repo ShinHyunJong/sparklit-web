@@ -1,7 +1,15 @@
-import { Box, Flex, GridItem, SimpleGrid } from '@chakra-ui/react';
-import { useAtom } from 'jotai';
+import {
+  Box,
+  Center,
+  Flex,
+  GridItem,
+  Icon,
+  SimpleGrid,
+} from '@chakra-ui/react';
+import { useAtom, useAtomValue } from 'jotai';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import { LuImage } from 'react-icons/lu';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper/types';
 
@@ -14,6 +22,7 @@ import SubHeader from './SubHeader';
 function Gallery() {
   const { invitationDetail } = useInvitationDetail();
   const photoList = invitationDetail?.photoList || [];
+  const pointColor = useAtomValue(invitationEditorAtom.selectedPointColor);
 
   const [selectedPhoto, setSelectedPhoto] = useState(photoList[0]);
   const [renderingPhotoList, setRenderingPhotoList] = useAtom(
@@ -36,7 +45,13 @@ function Gallery() {
 
   return (
     <Flex direction="column">
-      <SubHeader title="GALLERY"></SubHeader>
+      <Center flexDirection="column">
+        <SubHeader title="GALLERY"></SubHeader>
+        <Icon fontSize={24} color={pointColor} mb={6}>
+          <LuImage />
+        </Icon>
+      </Center>
+
       {/* <Box
         position="relative"
         aspectRatio={selectedPhoto.width / selectedPhoto.height}

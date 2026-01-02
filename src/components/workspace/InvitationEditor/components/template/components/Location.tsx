@@ -2,6 +2,7 @@ import {
   Box,
   Center,
   Flex,
+  Icon,
   IconButton,
   Separator,
   Text,
@@ -37,18 +38,15 @@ function Location() {
 
   return (
     <Box>
-      <Center>
+      <Center flexDirection="column">
         <SubHeader title="location"></SubHeader>
+        <Icon mb={6}>
+          <LuMapPin size={24} color={pointColor} />
+        </Icon>
       </Center>
-      <Box px={4}>
-        <Timeline.Root w="full" gapY={4}>
-          <Slide
-            triggerOnce
-            direction="up"
-            duration={500}
-            cascade
-            damping={0.5}
-          >
+      <Slide triggerOnce direction="up" duration={500} cascade damping={0.8}>
+        <Box mt={8} px={4}>
+          <Timeline.Root w="full">
             {placeList.map((p) => {
               return (
                 <Timeline.Item key={`place-${p.id}`}>
@@ -114,9 +112,9 @@ function Location() {
                 </Timeline.Item>
               );
             })}
-          </Slide>
-        </Timeline.Root>
-      </Box>
+          </Timeline.Root>
+        </Box>
+      </Slide>
     </Box>
   );
 }

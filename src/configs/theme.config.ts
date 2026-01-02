@@ -2,16 +2,16 @@ import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react';
 
 export const colors = {
   gray: {
-    50: { value: '#f7fafc' },
-    100: { value: '#edf2f7' },
-    200: { value: '#e2e8f0' },
-    300: { value: '#cbd5e0' },
-    400: { value: '#a0aec0' },
-    500: { value: '#718096' },
-    600: { value: '#4a5568' },
-    700: { value: '#2d3748' },
-    800: { value: '#1a202c' },
-    900: { value: '#171923' },
+    50: { value: '#fdfcfb' }, // 더 밝은 미색 (거의 화이트에 가까운 배경용)
+    100: { value: '#f7f5f2' }, // 확실히 구분되는 연한 베이지 배경
+    200: { value: '#eaddd3' }, // 요소 구분용 (보더, 비활성 버튼)
+    300: { value: '#d1c2b4' }, // 대비가 시작되는 지점
+    400: { value: '#a39281' }, // 중간 톤
+    500: { value: '#7d6e5d' }, // 메인 그레이 (가장 중립적인 따뜻함)
+    600: { value: '#635649' }, // 텍스트 가독성 시작
+    700: { value: '#4a4036' }, // 본문 텍스트용 (깊은 브라운 그레이)
+    800: { value: '#2e2823' }, // 매우 어두운 텍스트
+    900: { value: '#1a1714' }, // 거의 검은색에 가까운 강조색
   },
   brand: {
     50: { value: '#f4f8fc' },

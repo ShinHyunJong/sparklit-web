@@ -1,6 +1,7 @@
-import { Box, Center, Circle, Flex, Stack, Text } from '@chakra-ui/react';
+import { Box, Center, Circle, Flex, Icon, Stack, Text } from '@chakra-ui/react';
 import { useAtomValue } from 'jotai';
 import { Slide } from 'react-awesome-reveal';
+import { LuShirt } from 'react-icons/lu';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
 
@@ -9,6 +10,7 @@ import SubHeader from './SubHeader';
 const circleSize = 36;
 
 function DressCode() {
+  const pointColor = useAtomValue(invitationEditorAtom.selectedPointColor);
   const mainColor = useAtomValue(invitationEditorAtom.dressCodeMainColor);
   const subColor = useAtomValue(invitationEditorAtom.dressCodeSubColor);
   const thirdColor = useAtomValue(invitationEditorAtom.dressCodeThirdColor);
@@ -18,8 +20,11 @@ function DressCode() {
   return (
     <Slide triggerOnce direction="up" duration={500} cascade damping={0.8}>
       <Box>
-        <Center>
+        <Center flexDirection="column">
           <SubHeader title="Dress Code"></SubHeader>
+          <Icon color={pointColor} fontSize={24} mb={6}>
+            <LuShirt></LuShirt>
+          </Icon>
         </Center>
         <Center>
           <Flex gap={1}>

@@ -1,9 +1,14 @@
 import { Box } from '@chakra-ui/react';
 import parse from 'html-react-parser';
 import React from 'react';
-import { Slide } from 'react-awesome-reveal';
 
-function TextEditorViewer({ content }: { content: string }) {
+function TextEditorViewer({
+  content,
+  verticalCenter,
+}: {
+  content: string;
+  verticalCenter?: boolean;
+}) {
   const parsedContent = parse(content);
 
   // 1. 파싱된 결과가 단일 요소일 경우 배열로 정규화
@@ -19,6 +24,9 @@ function TextEditorViewer({ content }: { content: string }) {
     <Box
       className="ql-editor"
       lineHeight={1.8}
+      display={verticalCenter ? 'flex' : 'block'}
+      flexDirection="column"
+      justifyContent={verticalCenter ? 'center' : 'initial'}
       css={{
         '& h1': {
           fontSize: '3xl',
@@ -39,17 +47,16 @@ function TextEditorViewer({ content }: { content: string }) {
       }}
     >
       {chunkedElements.map((group, index) => (
-        <Slide
+        <Box
           key={`slide-group-${index}`}
-          triggerOnce
-          direction="up"
-          duration={500}
-          cascade
-          damping={0.3} // 그룹 내 3개 요소 사이의 시차
+          // triggerOnce
+          // direction="up"
+          // duration={500}
+          // cascade
+          // damping={0.3} // 그룹 내 3개 요소 사이의 시차
         >
-          {/* 3개씩 묶인 요소들을 렌더링 */}
           {group}
-        </Slide>
+        </Box>
       ))}
     </Box>
   );

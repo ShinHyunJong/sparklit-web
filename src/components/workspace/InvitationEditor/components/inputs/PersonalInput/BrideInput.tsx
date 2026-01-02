@@ -68,7 +68,7 @@ function BrideInput({
       <GridItem>
         <Flex h="full" alignItems="center">
           <Text color="gray.500" fontSize="sm">
-            Title
+            Bride
           </Text>
         </Flex>
       </GridItem>

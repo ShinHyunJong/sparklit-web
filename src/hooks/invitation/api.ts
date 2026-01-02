@@ -4,6 +4,7 @@ import { S3_BUCKET_URL } from '@/configs/domain.config';
 import { api } from '@/requests';
 import type { PlaceTimeBody } from '@/types/client.model';
 import type {
+  InivitationRSVP,
   Invitation,
   InvitationPhoto,
   InvitationPlaceTime,
@@ -266,6 +267,11 @@ export async function updateLayoutOrderApi(uid: string, layoutOrder: string) {
   const { data } = await api.put(`/invitation/layoutOrder/${uid}`, {
     layoutOrder,
   });
+  return data;
+}
+
+export async function getRSVPlistApi(uid: string): Promise<InivitationRSVP[]> {
+  const { data } = await api.get(`/invitation/rsvp/${uid}`);
   return data;
 }
 

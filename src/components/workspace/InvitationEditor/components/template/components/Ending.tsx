@@ -24,21 +24,19 @@ function Ending() {
           ratio={endPhoto.width / endPhoto.height}
           position="relative"
         >
-          <Box position="relative">
-            <Box position="absolute" top={0} w="full" h="full">
-              <Image
-                unoptimized
-                src={`${S3_BUCKET_URL}${endPhoto.croppedKey}`}
-                alt="Parallax image"
-                fill
-                sizes="(max-width: 768px) 100vw, 420px"
-                style={{ objectFit: 'cover' }}
-              />
+          <Box position="absolute" top={0} w="full" h="full">
+            <Image
+              unoptimized
+              src={`${S3_BUCKET_URL}${endPhoto.croppedKey}`}
+              alt="Parallax image"
+              fill
+              sizes="(max-width: 768px) 100vw, 420px"
+              style={{ objectFit: 'cover' }}
+            />
 
-              <Box position="absolute" inset={0} bg="blackAlpha.400" />
-              <Box position="absolute" inset={0} p={8} color="white">
-                <TextEditorViewer content={endingText} />
-              </Box>
+            <Box position="absolute" inset={0} bg="blackAlpha.400" />
+            <Box position="absolute" inset={0} p={4} color="white">
+              <TextEditorViewer verticalCenter content={endingText} />
             </Box>
           </Box>
         </AspectRatio>

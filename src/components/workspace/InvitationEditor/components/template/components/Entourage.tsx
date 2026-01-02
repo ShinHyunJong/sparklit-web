@@ -1,6 +1,7 @@
-import { Box, Center, SimpleGrid, Text } from '@chakra-ui/react';
+import { Box, Center, Icon, SimpleGrid, Text } from '@chakra-ui/react';
 import { useAtomValue } from 'jotai';
 import { Slide } from 'react-awesome-reveal';
+import { LuUsers } from 'react-icons/lu';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
 
@@ -11,7 +12,7 @@ function Entourage() {
   const maidOfHonor = useAtomValue(invitationEditorAtom.maidOfHonor);
   const groomsMen = useAtomValue(invitationEditorAtom.groomsMen);
   const bridesMaids = useAtomValue(invitationEditorAtom.bridesMaids);
-
+  const pointColor = useAtomValue(invitationEditorAtom.selectedPointColor);
   // 2개씩 짝지어 출력하기 위해 데이터를 구성합니다.
   const groups = [
     { label: 'BEST MAN', value: bestMan },
@@ -21,11 +22,15 @@ function Entourage() {
   ];
 
   return (
-    <Slide triggerOnce direction="up" duration={500} cascade damping={0.8}>
+    <Slide triggerOnce direction="up" duration={800} cascade damping={0.6}>
       <Box>
-        <Center>
-          <SubHeader title="Entourage" />
+        <Center flexDirection="column">
+          <SubHeader title="Entourage"></SubHeader>
+          <Icon fontSize={24} color={pointColor} mb={6}>
+            <LuUsers />
+          </Icon>
         </Center>
+
         <Box mt={8} px={4}>
           {/* SimpleGrid를 사용하여 2열 구조를 만듭니다. */}
           <SimpleGrid columns={2} gap={10}>

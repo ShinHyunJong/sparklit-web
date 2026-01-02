@@ -1,6 +1,14 @@
 'use client';
 
-import { Accordion, Box, Flex, Spinner, Stack, Text } from '@chakra-ui/react';
+import {
+  Accordion,
+  Box,
+  Center,
+  Flex,
+  Spinner,
+  Stack,
+  Text,
+} from '@chakra-ui/react';
 import { useAtomValue } from 'jotai';
 import dynamic from 'next/dynamic';
 
@@ -43,10 +51,15 @@ const DynamicEndingInput = dynamic(
 );
 
 function InvitationEditor() {
-  const { invitationDetail } = useInvitationDetail();
+  const { invitationDetail, isLoading } = useInvitationDetail();
   const bgColor = useAtomValue(invitationEditorAtom.selectedBgColor);
   const isSaving = useAtomValue(invitationEditorAtom.isSaving);
-  if (!invitationDetail) return null;
+  if (isLoading || !invitationDetail)
+    return (
+      <Center h="80vh">
+        <Spinner></Spinner>
+      </Center>
+    );
   return (
     <Flex gapX={[4, 8]} mt={8} h="full">
       {isSaving && (

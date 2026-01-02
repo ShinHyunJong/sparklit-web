@@ -1,6 +1,7 @@
 // components/invitation/sections/Greeting/GreetingView.tsx
-import { Center, Flex, Heading, Separator, Text } from '@chakra-ui/react';
+import { Center, Flex, Heading, Icon, Separator, Text } from '@chakra-ui/react';
 import { Fade } from 'react-awesome-reveal';
+import { LuMailOpen } from 'react-icons/lu';
 
 import TextEditorViewer from '../workspace/InvitationEditor/components/inputs/TextEditor/viewer';
 import SubHeader from '../workspace/InvitationEditor/components/template/components/SubHeader';
@@ -26,11 +27,13 @@ export default function GreetingView({
         <Center>
           <Flex direction="column" justifyContent="center" alignItems="center">
             <SubHeader title="INVITATION" />
+            <Icon mb={6}>
+              <LuMailOpen size={24} color={pointColor} />
+            </Icon>
             <Heading color={pointColor}>{title}</Heading>
           </Flex>
         </Center>
         <TextEditorViewer content={content} />
-
         <Center>
           <Separator w={12} borderWidth={1} my={4} />
         </Center>

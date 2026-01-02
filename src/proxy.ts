@@ -2,7 +2,7 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
-const publicPages = ['/', '/login', '/register'];
+const publicPages = ['/', '/login', '/register', '/rsvp'];
 const protectedPages = ['/workspace'];
 
 export function proxy(req: NextRequest) {
