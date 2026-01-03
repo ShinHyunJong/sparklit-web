@@ -100,6 +100,7 @@ function InvitationEditor() {
             'entourage',
             'order',
             'notice',
+            'ending',
           ]}
         >
           <Stack spaceY={4}>

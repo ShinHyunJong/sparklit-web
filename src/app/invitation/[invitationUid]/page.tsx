@@ -56,6 +56,7 @@ export async function generateMetadata(
       title,
       description,
       url,
+      type: 'website',
       images: [
         {
           url: ogImageUrl,

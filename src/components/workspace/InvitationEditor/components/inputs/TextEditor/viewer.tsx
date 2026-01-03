@@ -26,6 +26,7 @@ function TextEditorViewer({
       lineHeight={1.8}
       display={verticalCenter ? 'flex' : 'block'}
       flexDirection="column"
+      overflowY="hidden"
       justifyContent={verticalCenter ? 'center' : 'initial'}
       css={{
         '& h1': {

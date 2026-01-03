@@ -65,7 +65,7 @@ function Gallery() {
       </Box> */}
       {renderingPhotoList.length > 0 && (
         <Swiper
-          style={{ width: '100%' }}
+          style={{ width: '100%', overflowX: 'hidden' }}
           autoHeight={true}
           onSwiper={(swiper) => setSwiperInstance(swiper)}
           slidesPerView={1}

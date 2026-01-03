@@ -25,7 +25,7 @@ type FormValues = {
 
 const items = [
   { value: 'true', title: 'Attend' },
-  { value: 'false', title: 'Not Attend' },
+  { value: 'false', title: 'Unable to attend' },
 ];
 
 function RSVPDialog() {

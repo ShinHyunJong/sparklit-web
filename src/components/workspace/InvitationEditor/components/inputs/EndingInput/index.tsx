@@ -93,7 +93,7 @@ function EndingInput({
     >
       <Accordion.ItemTrigger>
         <Flex borderRadius="sm" p={4} w="full">
-          <Text>Ending</Text>
+          <Text>Closing Photo</Text>
         </Flex>
         <Accordion.ItemIndicator bg="white" mr={4} />
       </Accordion.ItemTrigger>

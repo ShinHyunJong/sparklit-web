@@ -49,20 +49,20 @@ function DressCode() {
           <Box p={4}>
             <Center mb={4}>
               <Text fontFamily="crimsonPro" fontSize="lg">
-                GENTLEMAN
+                GENTLEMEN
               </Text>
             </Center>
-            <Center>
+            <Center textAlign="center">
               <Text whiteSpace="pre-line">{gentleman}</Text>
             </Center>
           </Box>
           <Box p={4}>
             <Center mb={4}>
               <Text fontFamily="crimsonPro" fontSize="lg">
-                LADY
+                LADIES
               </Text>
             </Center>
-            <Center>
+            <Center textAlign="center">
               <Text whiteSpace="pre-line">{lady}</Text>
             </Center>
           </Box>

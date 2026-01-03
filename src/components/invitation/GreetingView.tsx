@@ -40,7 +40,7 @@ export default function GreetingView({
 
         <Center>
           <Text fontSize="sm" color="gray.500">
-            From. {groomFirstName} & {brideFirstName}
+            From {groomFirstName} & {brideFirstName}
           </Text>
         </Center>
       </Flex>

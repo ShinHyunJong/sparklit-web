@@ -210,6 +210,7 @@ function TimeInput({
             placeholder="Reception, Cocktail"
             {...register('name')}
             variant="subtle"
+            color="gray.900"
             onBlur={() => onNameBlur(getValues('name'))}
           ></Input>
         </DataList.Item>

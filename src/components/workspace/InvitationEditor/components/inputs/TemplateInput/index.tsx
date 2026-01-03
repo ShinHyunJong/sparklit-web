@@ -91,7 +91,7 @@ function TemplateInput({
     >
       <Accordion.ItemTrigger>
         <Flex borderRadius="sm" p={4} w="full">
-          <Text>Main</Text>
+          <Text>Main Photo & Template</Text>
         </Flex>
         <Accordion.ItemIndicator bg="white" mr={4} />
       </Accordion.ItemTrigger>
@@ -186,7 +186,7 @@ function TemplateInput({
                     onValueChangeEnd={(e) => onColorChangeEnd(e.value)}
                   >
                     <ColorPicker.HiddenInput />
-                    <ColorPicker.Label>Header Color</ColorPicker.Label>
+                    <ColorPicker.Label>Font Color</ColorPicker.Label>
                     <ColorPicker.Control>
                       <ColorPicker.Input />
                       <ColorPicker.Trigger />

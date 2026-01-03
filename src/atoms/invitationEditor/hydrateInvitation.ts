@@ -59,7 +59,9 @@ export function buildInvitationEditorInitialValues(invitation: Invitation) {
     groomsMen: invitation.groomsMen ?? null,
     bridesMaids: invitation.bridesMaids ?? null,
 
-    endingText: invitation.endingText ?? null,
+    endingText:
+      invitation.endingText ??
+      'The best thing to hold onto in life is each other.',
     notice: invitation.notice ?? null,
   };
 }

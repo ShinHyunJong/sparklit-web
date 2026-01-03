@@ -73,56 +73,6 @@ function BrideInput({
         </Flex>
       </GridItem>
       <GridItem>
-        <Field.Root invalid={!!formState.errors.brideLastName}>
-          <Controller
-            control={control}
-            name="brideLastName"
-            rules={{
-              required: 'Last name is required',
-            }}
-            render={({ field }) => (
-              <Input
-                {...field}
-                onChange={(e) => {
-                  setBrideLastName(e.target.value);
-                  field.onChange(e.target.value);
-                }}
-                onBlur={() => onClickSave()}
-                variant="subtle"
-                type="text"
-                placeholder="Last name"
-              />
-            )}
-          ></Controller>
-          {formState.errors.brideLastName && (
-            <Field.ErrorText>
-              {formState.errors.brideLastName.message}
-            </Field.ErrorText>
-          )}
-        </Field.Root>
-      </GridItem>
-      <GridItem>
-        <Field.Root>
-          <Controller
-            control={control}
-            name="brideMiddleName"
-            render={({ field }) => (
-              <Input
-                variant="subtle"
-                {...field}
-                type="text"
-                placeholder="Middle name"
-                onBlur={() => onClickSave()}
-                onChange={(e) => {
-                  setBrideMiddleName(e.target.value);
-                  field.onChange(e.target.value);
-                }}
-              />
-            )}
-          ></Controller>
-        </Field.Root>
-      </GridItem>
-      <GridItem>
         <Field.Root invalid={!!formState.errors.brideFirstName}>
           <Controller
             control={control}
@@ -151,6 +101,58 @@ function BrideInput({
           )}
         </Field.Root>
       </GridItem>
+
+      <GridItem>
+        <Field.Root>
+          <Controller
+            control={control}
+            name="brideMiddleName"
+            render={({ field }) => (
+              <Input
+                variant="subtle"
+                {...field}
+                type="text"
+                placeholder="Middle name"
+                onBlur={() => onClickSave()}
+                onChange={(e) => {
+                  setBrideMiddleName(e.target.value);
+                  field.onChange(e.target.value);
+                }}
+              />
+            )}
+          ></Controller>
+        </Field.Root>
+      </GridItem>
+      <GridItem>
+        <Field.Root invalid={!!formState.errors.brideLastName}>
+          <Controller
+            control={control}
+            name="brideLastName"
+            rules={{
+              required: 'Last name is required',
+            }}
+            render={({ field }) => (
+              <Input
+                {...field}
+                onChange={(e) => {
+                  setBrideLastName(e.target.value);
+                  field.onChange(e.target.value);
+                }}
+                onBlur={() => onClickSave()}
+                variant="subtle"
+                type="text"
+                placeholder="Last name"
+              />
+            )}
+          ></Controller>
+          {formState.errors.brideLastName && (
+            <Field.ErrorText>
+              {formState.errors.brideLastName.message}
+            </Field.ErrorText>
+          )}
+        </Field.Root>
+      </GridItem>
+
       <GridItem>
         <Flex h="full" alignItems="center">
           <Text color="gray.500" fontSize="sm">

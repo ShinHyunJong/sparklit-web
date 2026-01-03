@@ -1,4 +1,4 @@
-import { Box, Image, Text } from '@chakra-ui/react';
+import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import { useSetAtom } from 'jotai';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -35,14 +35,15 @@ function MainPhoto({
           {photoList.map((image) => {
             return (
               <SwiperSlide className="swiper-slide" key={`slide-${image.id}`}>
-                <Box
+                <Flex
                   cursor="pointer"
                   position="relative"
                   w="full"
+                  justifyContent="center"
                   onClick={() => handleImageSelect(image)}
                 >
                   <Image
-                    w="full"
+                    w="40%"
                     objectFit="cover"
                     alt="firstUploadingImage"
                     src={`${S3_BUCKET_URL}${image.croppedKey}`}
@@ -61,7 +62,7 @@ function MainPhoto({
                       Edit Main
                     </Text>
                   </Box>
-                </Box>
+                </Flex>
               </SwiperSlide>
             );
           })}

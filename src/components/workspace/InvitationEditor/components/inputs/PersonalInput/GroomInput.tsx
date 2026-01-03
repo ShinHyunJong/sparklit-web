@@ -73,56 +73,6 @@ function GroomInput({
         </Flex>
       </GridItem>
       <GridItem>
-        <Field.Root invalid={!!formState.errors.groomLastName}>
-          <Controller
-            control={control}
-            name="groomLastName"
-            rules={{
-              required: 'Last name is required',
-            }}
-            render={({ field }) => (
-              <Input
-                variant="subtle"
-                {...field}
-                type="text"
-                placeholder="Last name"
-                onChange={(e) => {
-                  setGroomLastName(e.target.value);
-                  field.onChange(e.target.value);
-                }}
-                onBlur={() => onClickSave()}
-              />
-            )}
-          ></Controller>
-          {formState.errors.groomLastName && (
-            <Field.ErrorText>
-              {formState.errors.groomLastName.message}
-            </Field.ErrorText>
-          )}
-        </Field.Root>
-      </GridItem>
-      <GridItem>
-        <Field.Root>
-          <Controller
-            control={control}
-            name="groomMiddleName"
-            render={({ field }) => (
-              <Input
-                {...field}
-                variant="subtle"
-                onChange={(e) => {
-                  setGroomMiddleName(e.target.value);
-                  field.onChange(e.target.value);
-                }}
-                type="text"
-                onBlur={() => onClickSave()}
-                placeholder="Middle name"
-              />
-            )}
-          ></Controller>
-        </Field.Root>
-      </GridItem>
-      <GridItem>
         <Field.Root invalid={!!formState.errors.groomFirstName}>
           <Controller
             control={control}
@@ -151,6 +101,57 @@ function GroomInput({
           )}
         </Field.Root>
       </GridItem>
+      <GridItem>
+        <Field.Root>
+          <Controller
+            control={control}
+            name="groomMiddleName"
+            render={({ field }) => (
+              <Input
+                {...field}
+                variant="subtle"
+                onChange={(e) => {
+                  setGroomMiddleName(e.target.value);
+                  field.onChange(e.target.value);
+                }}
+                type="text"
+                onBlur={() => onClickSave()}
+                placeholder="Middle name"
+              />
+            )}
+          ></Controller>
+        </Field.Root>
+      </GridItem>
+      <GridItem>
+        <Field.Root invalid={!!formState.errors.groomLastName}>
+          <Controller
+            control={control}
+            name="groomLastName"
+            rules={{
+              required: 'Last name is required',
+            }}
+            render={({ field }) => (
+              <Input
+                variant="subtle"
+                {...field}
+                type="text"
+                placeholder="Last name"
+                onChange={(e) => {
+                  setGroomLastName(e.target.value);
+                  field.onChange(e.target.value);
+                }}
+                onBlur={() => onClickSave()}
+              />
+            )}
+          ></Controller>
+          {formState.errors.groomLastName && (
+            <Field.ErrorText>
+              {formState.errors.groomLastName.message}
+            </Field.ErrorText>
+          )}
+        </Field.Root>
+      </GridItem>
+
       <GridItem>
         <Flex h="full" alignItems="center">
           <Text color="gray.500" fontSize="sm">

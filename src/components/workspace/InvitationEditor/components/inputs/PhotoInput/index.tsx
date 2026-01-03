@@ -58,6 +58,15 @@ function PhotoInput({ photoList }: { photoList: InvitationPhoto[] }) {
 
         <Accordion.ItemContent>
           <Accordion.ItemBody p={4}>
+            <Text
+              display={{ base: 'block' }}
+              fontSize="sm"
+              color="gray.400"
+              mb={4}
+              textAlign="center"
+            >
+              ← Swipe left or right to edit next →
+            </Text>
             <Flex w="full" mb={4}>
               <MainPhoto
                 photoList={renderingPhotoList}
