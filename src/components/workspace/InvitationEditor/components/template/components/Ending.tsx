@@ -41,7 +41,7 @@ function Ending() {
           </Box>
         </AspectRatio>
       ) : (
-        <PhotoPlaceholder />
+        <PhotoPlaceholder placeholder={endingText} />
       )}
     </Fade>
   );

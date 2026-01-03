@@ -56,6 +56,9 @@ const fontMap = {
     crimsonPro: {
       value: 'var(--font-crimson-pro)',
     },
+    barriecito: {
+      value: 'var(--font-barriecito)',
+    },
   },
 };
 

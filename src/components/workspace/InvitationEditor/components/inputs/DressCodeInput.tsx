@@ -209,7 +209,7 @@ function DressCodeInput() {
             </SimpleGrid>
             <DataList.Root orientation="horizontal">
               <DataList.Item>
-                <DataList.ItemLabel>Gentleman</DataList.ItemLabel>
+                <DataList.ItemLabel>Gentlemen</DataList.ItemLabel>
                 <DataList.ItemValue>
                   <Textarea
                     {...register('gentleman')}
@@ -224,7 +224,7 @@ function DressCodeInput() {
             </DataList.Root>
             <DataList.Root orientation="horizontal">
               <DataList.Item>
-                <DataList.ItemLabel>Lady</DataList.ItemLabel>
+                <DataList.ItemLabel>Ladies</DataList.ItemLabel>
                 <DataList.ItemValue>
                   <Textarea
                     {...register('lady')}

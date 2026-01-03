@@ -7,13 +7,15 @@ import {
   Container,
   Flex,
   Heading,
+  Menu,
+  Portal,
 } from '@chakra-ui/react';
 
 import { layoutConstants } from '@/constants/layout';
 import { useAuth } from '@/hooks/auth';
 
 function Header() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   return (
     <Box
       as="header"
@@ -30,7 +32,9 @@ function Header() {
       <Container maxW="7xl">
         <Flex justifyContent="space-between" alignItems="center">
           <Flex alignItems="center" gap={4}>
-            <Heading>Sparklit</Heading>
+            <Heading fontSize="2xl" fontFamily="barriecito">
+              Sparklit
+            </Heading>
             {/* <Box w={[120, 200]} h={[40, 66]} position="relative">
               <Text>Sparklit</Text>
               <Image
@@ -46,14 +50,30 @@ function Header() {
             </Heading> */}
           </Flex>
           <Flex gap={4}>
-            {/* <LocaleSwitcher /> */}
             {user && (
-              <AvatarGroup>
-                <Avatar.Root>
-                  <Avatar.Fallback />
-                  <Avatar.Image />
-                </Avatar.Root>
-              </AvatarGroup>
+              <Menu.Root>
+                <Menu.Trigger asChild>
+                  <AvatarGroup cursor="pointer">
+                    <Avatar.Root>
+                      <Avatar.Fallback />
+                      <Avatar.Image />
+                    </Avatar.Root>
+                  </AvatarGroup>
+                </Menu.Trigger>
+                <Portal>
+                  <Menu.Positioner>
+                    <Menu.Content>
+                      <Menu.Item
+                        onClick={logout}
+                        cursor="pointer"
+                        value="signOut"
+                      >
+                        Logout
+                      </Menu.Item>
+                    </Menu.Content>
+                  </Menu.Positioner>
+                </Portal>
+              </Menu.Root>
             )}
             {/* <InquiryDialog
               colorPalette="gray"

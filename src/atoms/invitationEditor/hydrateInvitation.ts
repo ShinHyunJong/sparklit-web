@@ -61,7 +61,7 @@ export function buildInvitationEditorInitialValues(invitation: Invitation) {
 
     endingText:
       invitation.endingText ??
-      'The best thing to hold onto in life is each other.',
+      '<p>The best thing to hold onto in life is each other.</p><br/><p>– Audrey Hepburn</p>',
     notice: invitation.notice ?? null,
   };
 }

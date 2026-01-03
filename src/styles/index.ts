@@ -1,4 +1,4 @@
-import { Crimson_Pro, Figtree, Tangerine } from 'next/font/google';
+import { Barriecito, Crimson_Pro, Figtree, Tangerine } from 'next/font/google';
 import localFont from 'next/font/local';
 
 export const figtree = Figtree({
@@ -23,4 +23,10 @@ export const crimsonPro = Crimson_Pro({
   subsets: ['latin'],
   weight: ['400', '700'],
   variable: '--font-crimson-pro',
+});
+
+export const barriecito = Barriecito({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-barriecito',
 });

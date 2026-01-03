@@ -6,7 +6,7 @@ import 'swiper/css/autoplay';
 import 'react-day-picker/style.css';
 
 import { Provider } from '@/components/ui/provider';
-import { crimsonPro, figtree, tangerine } from '@/styles';
+import { barriecito, crimsonPro, figtree, tangerine } from '@/styles';
 
 // dayjs.extend(advancedFormat);
 import Head from './head';
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: any) {
           url: '/ogImage.jpg',
           width: 1200,
           height: 630,
-          alt: 'Rovers OgImage',
+          alt: 'SparklitOgImage',
         },
       ],
     },
@@ -37,7 +37,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const classNames = `${figtree.variable} ${tangerine.variable} ${crimsonPro.variable}`;
+  const classNames = `${figtree.variable} ${tangerine.variable} ${crimsonPro.variable} ${barriecito.variable}`;
   return (
     <html lang="en" className={classNames} suppressHydrationWarning>
       <Head></Head>
