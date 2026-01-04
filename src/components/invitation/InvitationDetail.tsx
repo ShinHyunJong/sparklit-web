@@ -18,6 +18,9 @@ import InvitationEditorHydrator from './InvitationHydrator';
 function InvitationDetail({ invitation }: { invitation: Invitation }) {
   const { invitationDetail } = useInvitationDetail(invitation);
   const layoutSettings = useAtomValue(invitationEditorAtom.layoutOrderAtom);
+  const selectedFontFamily = useAtomValue(
+    invitationEditorAtom.selectedFontFamily,
+  );
   const existingIds = layoutSettings.map((item) => item.id);
   const missingKeys = Object.keys(COMPONENT_MAP).filter(
     (key) => !existingIds.includes(key),
@@ -33,6 +36,7 @@ function InvitationDetail({ invitation }: { invitation: Invitation }) {
       <Flex
         bg={invitationDetail?.bgColor || ''}
         position="relative"
+        fontFamily={selectedFontFamily}
         w="full"
         direction="column"
       >

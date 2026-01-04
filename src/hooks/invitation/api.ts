@@ -275,6 +275,25 @@ export async function getRSVPlistApi(uid: string): Promise<InivitationRSVP[]> {
   return data;
 }
 
+export async function updateFontApi(id: string, font: string) {
+  const { data } = await api.put(`/invitation/font/${id}`, {
+    font,
+  });
+  return data;
+}
+
+export async function updateMonetaryGiftApi(
+  uid: string,
+  bankAccount: string,
+  wishlistUrl: string,
+) {
+  const { data } = await api.put(`/invitation/monetaryGift/${uid}`, {
+    bankAccount,
+    wishlistUrl,
+  });
+  return data;
+}
+
 export async function updateEndingTextApi(uid: string, endingText: string) {
   const { data } = await api.put(`/invitation/endingText/${uid}`, {
     endingText,

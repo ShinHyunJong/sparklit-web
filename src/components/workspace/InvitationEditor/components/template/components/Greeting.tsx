@@ -9,6 +9,9 @@ function Greeting() {
   const pointColor = useAtomValue(invitationEditorAtom.selectedPointColor);
   const groomFirstName = useAtomValue(invitationEditorAtom.groomFirstName);
   const brideFirstName = useAtomValue(invitationEditorAtom.brideFirstName);
+  const selectedFontFamily = useAtomValue(
+    invitationEditorAtom.selectedFontFamily,
+  );
   return (
     <GreetingView
       title={title}
@@ -16,6 +19,7 @@ function Greeting() {
       pointColor={pointColor}
       groomFirstName={groomFirstName}
       brideFirstName={brideFirstName}
+      fontFamily={selectedFontFamily}
     ></GreetingView>
   );
 }

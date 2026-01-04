@@ -138,7 +138,7 @@ function DressCodeInput() {
                   onValueChangeEnd={(e) => onMainColorChangeEnd(e.value)}
                 >
                   <ColorPicker.HiddenInput />
-                  <ColorPicker.Label>Main Color</ColorPicker.Label>
+                  <ColorPicker.Label>Color 1</ColorPicker.Label>
                   <ColorPicker.Control>
                     <ColorPicker.Input />
                     <ColorPicker.Trigger />
@@ -163,7 +163,7 @@ function DressCodeInput() {
                   onValueChangeEnd={(e) => onSubColorChangeEnd(e.value)}
                 >
                   <ColorPicker.HiddenInput />
-                  <ColorPicker.Label>Sub Color</ColorPicker.Label>
+                  <ColorPicker.Label>Color 2</ColorPicker.Label>
                   <ColorPicker.Control>
                     <ColorPicker.Input />
                     <ColorPicker.Trigger />
@@ -188,7 +188,7 @@ function DressCodeInput() {
                   onValueChangeEnd={(e) => onThirdColorChangeEnd(e.value)}
                 >
                   <ColorPicker.HiddenInput />
-                  <ColorPicker.Label>Third Color</ColorPicker.Label>
+                  <ColorPicker.Label>Color 3</ColorPicker.Label>
                   <ColorPicker.Control>
                     <ColorPicker.Input />
                     <ColorPicker.Trigger />

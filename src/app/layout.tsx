@@ -6,7 +6,20 @@ import 'swiper/css/autoplay';
 import 'react-day-picker/style.css';
 
 import { Provider } from '@/components/ui/provider';
-import { barriecito, crimsonPro, figtree, tangerine } from '@/styles';
+import {
+  arizonia,
+  barriecito,
+  cormorantGaramond,
+  crimsonPro,
+  delius,
+  figtree,
+  greatVibes,
+  josefinSans,
+  lora,
+  montserrat,
+  satisfy,
+  tangerine,
+} from '@/styles';
 
 // dayjs.extend(advancedFormat);
 import Head from './head';
@@ -37,7 +50,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const classNames = `${figtree.variable} ${tangerine.variable} ${crimsonPro.variable} ${barriecito.variable}`;
+  const classNames = `${figtree.variable} ${tangerine.variable} ${crimsonPro.variable} ${barriecito.variable} ${montserrat.variable} ${cormorantGaramond.variable} ${lora.variable} ${delius.variable} ${josefinSans.variable} ${greatVibes.variable} ${arizonia.variable} ${satisfy.variable}`;
   return (
     <html lang="en" className={classNames} suppressHydrationWarning>
       <Head></Head>

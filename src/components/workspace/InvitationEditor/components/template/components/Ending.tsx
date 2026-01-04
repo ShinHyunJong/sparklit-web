@@ -34,14 +34,18 @@ function Ending() {
               style={{ objectFit: 'cover' }}
             />
 
-            <Box position="absolute" inset={0} bg="blackAlpha.400" />
+            <Box position="absolute" inset={0} bg="blackAlpha.600" />
             <Box position="absolute" inset={0} p={4} color="white">
               <TextEditorViewer verticalCenter content={endingText} />
             </Box>
           </Box>
         </AspectRatio>
       ) : (
-        <PhotoPlaceholder placeholder={endingText} />
+        <PhotoPlaceholder
+          overlayComponent={
+            <TextEditorViewer verticalCenter content={endingText} />
+          }
+        />
       )}
     </Fade>
   );

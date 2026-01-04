@@ -1,5 +1,5 @@
 import { parseColor } from '@chakra-ui/react';
-import { useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
@@ -69,6 +69,11 @@ export function useSetInvitation(invitation: Invitation | null | undefined) {
   );
   const [endingText, setEndingText] = useAtom(invitationEditorAtom.endingText);
   const [notice, setNotice] = useAtom(invitationEditorAtom.notice);
+  const setWishlistUrl = useSetAtom(invitationEditorAtom.wishlistUrl);
+  const setBankAccount = useSetAtom(invitationEditorAtom.bankAccount);
+  const setSelectedFontFamily = useSetAtom(
+    invitationEditorAtom.selectedFontFamily,
+  );
 
   useEffect(() => {
     if (!invitation) return;
@@ -141,6 +146,15 @@ export function useSetInvitation(invitation: Invitation | null | undefined) {
     }
     if (invitation.notice) {
       setNotice(invitation.notice);
+    }
+    if (invitation.wishlistUrl) {
+      setWishlistUrl(invitation.wishlistUrl);
+    }
+    if (invitation.bankAccount) {
+      setBankAccount(invitation.bankAccount);
+    }
+    if (invitation.baseFont) {
+      setSelectedFontFamily(invitation.baseFont);
     }
   }, [invitation]);
 }

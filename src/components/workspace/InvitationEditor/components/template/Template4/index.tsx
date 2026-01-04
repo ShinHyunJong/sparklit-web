@@ -15,6 +15,47 @@ import GettingMarried from './GettingMarried';
 // 2. Day.js에 플러그인을 장착시킵니다.
 dayjs.extend(advancedFormat);
 
+const OverlayComponent = ({
+  mainTextColor,
+  date,
+}: {
+  mainTextColor: Color | null;
+  date: string;
+}) => {
+  return (
+    <>
+      <Box position="absolute" inset={0} bg="blackAlpha.300" />
+      <Box position="absolute" inset={0}>
+        <Flex w="full" h="full" alignItems="end" justifyContent="center">
+          <Flex
+            w="full"
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            px={4}
+            color={mainTextColor?.toString('hex')}
+          >
+            <GettingMarried></GettingMarried>
+            <Flex
+              px={4}
+              py={8}
+              w="full"
+              fontWeight="bold"
+              fontFamily="crimsonPro"
+              fontSize="2xl"
+              justifyContent="space-between"
+            >
+              <Text>{dayjs(date).format('Do')}</Text>
+              <Text>{dayjs(date).format('MMM')}</Text>
+              <Text>{dayjs(date).format('YYYY')}</Text>
+            </Flex>
+          </Flex>
+        </Flex>
+      </Box>
+    </>
+  );
+};
+
 function Template4({
   date,
   mainPhoto,
@@ -55,46 +96,17 @@ function Template4({
                   sizes="(max-width: 768px) 100vw, 420px"
                   style={{ objectFit: 'cover' }}
                 />
-
-                <Box position="absolute" inset={0} bg="blackAlpha.300" />
-                <Box position="absolute" inset={0}>
-                  <Flex
-                    w="full"
-                    h="full"
-                    alignItems="end"
-                    justifyContent="center"
-                  >
-                    <Flex
-                      w="full"
-                      direction="column"
-                      alignItems="center"
-                      justifyContent="center"
-                      px={4}
-                      color={mainTextColor?.toString('hex')}
-                    >
-                      <GettingMarried></GettingMarried>
-                      <Flex
-                        px={4}
-                        py={8}
-                        w="full"
-                        fontWeight="bold"
-                        fontFamily="crimsonPro"
-                        fontSize="2xl"
-                        justifyContent="space-between"
-                      >
-                        <Text>{dayjs(date).format('Do')}</Text>
-                        <Text>{dayjs(date).format('MMM')}</Text>
-                        <Text>{dayjs(date).format('YYYY')}</Text>
-                      </Flex>
-                    </Flex>
-                  </Flex>
-                </Box>
+                <OverlayComponent mainTextColor={mainTextColor} date={date} />
               </Box>
             </Box>
           </AspectRatio>
         </Box>
       ) : (
-        <PhotoPlaceholder />
+        <PhotoPlaceholder
+          overlayComponent={
+            <OverlayComponent mainTextColor={mainTextColor} date={date} />
+          }
+        />
       )}
     </Flex>
   );

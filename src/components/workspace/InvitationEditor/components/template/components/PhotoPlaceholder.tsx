@@ -1,12 +1,17 @@
-import { Flex } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 
-import TextEditorViewer from '../../inputs/TextEditor/viewer';
-
-function PhotoPlaceholder({ placeholder }: { placeholder?: string }) {
+function PhotoPlaceholder({
+  overlayComponent,
+}: {
+  placeholder?: string;
+  overlayComponent?: React.ReactNode;
+}) {
   return (
-    <Flex align="center" p={4} w="full" h="300px" bg="gray.300">
-      {placeholder && <TextEditorViewer verticalCenter content={placeholder} />}
-    </Flex>
+    <Box position="relative" aspectRatio="4/5" w="full  " bg="gray.200">
+      <Box position="absolute" top={0} w="full" h="full">
+        {overlayComponent}
+      </Box>
+    </Box>
   );
 }
 export default PhotoPlaceholder;

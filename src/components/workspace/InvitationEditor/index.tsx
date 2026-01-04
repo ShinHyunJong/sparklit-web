@@ -19,6 +19,7 @@ import { useInvitationDetail } from '@/hooks/invitation';
 import DateInput from './components/inputs/DateInput';
 import DressCodeInput from './components/inputs/DressCodeInput';
 import EntourageInput from './components/inputs/EntourageInput';
+import MonetaryInput from './components/inputs/MonetaryInput';
 import MusicInput from './components/inputs/MusicInput';
 import OrderInput from './components/inputs/OrderInput';
 import PersonalInput from './components/inputs/PersonalInput';
@@ -53,6 +54,9 @@ const DynamicEndingInput = dynamic(
 function InvitationEditor() {
   const { invitationDetail, isLoading } = useInvitationDetail();
   const bgColor = useAtomValue(invitationEditorAtom.selectedBgColor);
+  const selectedFontFamily = useAtomValue(
+    invitationEditorAtom.selectedFontFamily,
+  );
   const isSaving = useAtomValue(invitationEditorAtom.isSaving);
   if (isLoading || !invitationDetail)
     return (
@@ -108,6 +112,7 @@ function InvitationEditor() {
               invitationId={invitationDetail.uniqueId}
               bgColor={invitationDetail.bgColor}
               pointColor={invitationDetail.pointColor}
+              fontFamily={invitationDetail.baseFont}
             ></ThemeInput>
             <DateInput date={invitationDetail.date}></DateInput>
             <PlaceInput placeList={invitationDetail.placeList}></PlaceInput>
@@ -163,13 +168,17 @@ function InvitationEditor() {
                 (photo) => photo.type === 'end',
               )}
             ></DynamicEndingInput>
+            <MonetaryInput
+              initialBankAccount={invitationDetail.bankAccount || ''}
+              initialWishlistUrl={invitationDetail.wishlistUrl || ''}
+            ></MonetaryInput>
           </Stack>
         </Accordion.Root>
       </Flex>
       <Flex
         position="sticky"
         overflowY="auto"
-        bg={bgColor || ''}
+        backgroundColor={bgColor || ''}
         className="hideScrollbar"
         borderTopRadius="3xl"
         top={`${layoutConstants.headerHeight + 32}px`}
@@ -177,7 +186,7 @@ function InvitationEditor() {
         w="480px"
         h={`calc(100vh - ${layoutConstants.headerHeight + 64}px) `}
       >
-        <Box borderRadius="sm" w="full">
+        <Box fontFamily={selectedFontFamily} borderRadius="sm" w="full">
           <PreviewInvitation></PreviewInvitation>
         </Box>
       </Flex>

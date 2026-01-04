@@ -4,6 +4,7 @@ import Entourage from '@/components/workspace/InvitationEditor/components/templa
 import Gallery from '@/components/workspace/InvitationEditor/components/template/components/Gallery';
 import Greeting from '@/components/workspace/InvitationEditor/components/template/components/Greeting';
 import Location from '@/components/workspace/InvitationEditor/components/template/components/Location';
+import MonetaryGift from '@/components/workspace/InvitationEditor/components/template/components/MonetaryGift';
 import Notice from '@/components/workspace/InvitationEditor/components/template/components/Notice';
 import RSVP from '@/components/workspace/InvitationEditor/components/template/components/RSVP';
 import Sponsor from '@/components/workspace/InvitationEditor/components/template/components/Sponsor';
@@ -18,4 +19,5 @@ export const COMPONENT_MAP: Record<string, JSX.Element> = {
   Notice: <Notice />,
   Sponsor: <Sponsor />,
   Entourage: <Entourage />,
+  MonetaryGift: <MonetaryGift />,
 };

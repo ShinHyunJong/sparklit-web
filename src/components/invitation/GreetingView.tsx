@@ -12,6 +12,7 @@ export type GreetingViewProps = {
   pointColor?: string;
   groomFirstName?: string;
   brideFirstName?: string;
+  fontFamily: string;
 };
 
 export default function GreetingView({
@@ -20,6 +21,7 @@ export default function GreetingView({
   pointColor = 'black',
   groomFirstName = '',
   brideFirstName = '',
+  fontFamily = '',
 }: GreetingViewProps) {
   return (
     <Fade triggerOnce>
@@ -30,7 +32,9 @@ export default function GreetingView({
             <Icon mb={6}>
               <LuMailOpen size={24} color={pointColor} />
             </Icon>
-            <Heading color={pointColor}>{title}</Heading>
+            <Heading fontFamily={fontFamily} color={pointColor}>
+              {title}
+            </Heading>
           </Flex>
         </Center>
         <TextEditorViewer content={content} />

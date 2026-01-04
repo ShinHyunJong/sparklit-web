@@ -35,6 +35,7 @@ export const selectedMusicFileKey = atom<string | null>(null);
 export const selectedBgColor = atom<string>('');
 export const selectedPointColor = atom<string>('');
 export const selectedMainColor = atom<Color>(parseColor('#000000'));
+export const selectedFontFamily = atom<string>('montserrat');
 
 export const greetingTitle = atom<string>(defaultGreetingTitle);
 export const greetingContent = atom<string>(defaultSampleGreeting);
@@ -71,6 +72,9 @@ export const placeDialogOpen = atom<boolean>(false);
 export const manualPlaceDialogOpen = atom<boolean>(false);
 export const placeName = atom<string>('');
 export const placeAddress = atom<string>('');
+
+export const bankAccount = atom<string>('');
+export const wishlistUrl = atom<string>('');
 
 export const renderingPhotoList = atom<InvitationPhoto[]>([]);
 export const notice = atom<string>('');

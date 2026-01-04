@@ -136,7 +136,7 @@ function RSVPlistPage() {
           </Text>
         </Box>
         <Text fontSize="sm" fontWeight="medium" color="#7d6e5d">
-          Total: {table.getFilteredRowModel().rows.length} Guests
+          Total Responses: {table.getFilteredRowModel().rows.length}
         </Text>
       </Stack>
 
@@ -234,6 +234,40 @@ function RSVPlistPage() {
                 </Table.Row>
               )}
             </Table.Body>
+            <Table.Footer>
+              <Table.Row bg="#f7f5f2">
+                <Table.Cell
+                  colSpan={columns.length}
+                  textAlign="right"
+                  py={2}
+                  fontSize="xs"
+                  color="#7d6e5d"
+                >
+                  Attend :{' '}
+                  {
+                    table
+                      .getFilteredRowModel()
+                      .rows.filter((x) => !!x.original.attending).length
+                  }
+                </Table.Cell>
+              </Table.Row>
+              <Table.Row bg="#f7f5f2">
+                <Table.Cell
+                  colSpan={columns.length}
+                  textAlign="right"
+                  py={2}
+                  fontSize="xs"
+                  color="#7d6e5d"
+                >
+                  Absent :{' '}
+                  {
+                    table
+                      .getFilteredRowModel()
+                      .rows.filter((x) => !x.original.attending).length
+                  }
+                </Table.Cell>
+              </Table.Row>
+            </Table.Footer>
           </Table.Root>
         </Box>
       </Box>

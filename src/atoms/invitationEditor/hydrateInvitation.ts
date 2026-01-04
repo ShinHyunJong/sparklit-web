@@ -58,6 +58,9 @@ export function buildInvitationEditorInitialValues(invitation: Invitation) {
     maidOfHonor: invitation.maidOfHonor ?? null,
     groomsMen: invitation.groomsMen ?? null,
     bridesMaids: invitation.bridesMaids ?? null,
+    selectedFontFamily: invitation.baseFont ?? 'montserrat',
+    wishlistUrl: invitation.wishlistUrl ?? '',
+    bankAccount: invitation.bankAccount ?? '',
 
     endingText:
       invitation.endingText ??

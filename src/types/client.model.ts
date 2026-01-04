@@ -33,7 +33,7 @@ export type PlaceTimeBody = {
 
 export type Template = {
   id: number;
-  imageUrl?: string;
+  previewUrl?: string;
 };
 
 export type LayoutItem = {

@@ -39,8 +39,43 @@ export const colors = {
   },
 };
 
-export const bgColorConfig = ['#f7f7f7', '#f79e9e66', '#f2ece6', '#b2708533'];
-export const pointColorConfig = ['#000000', '#f79e9e', '#964b00', '#b27085'];
+export const bgColorConfig = [
+  {
+    viewColor: '#f7f7f7',
+    originalColor: '#f7f7f7cc', // 약 80% 투명도
+  },
+  {
+    viewColor: '#f79e9e66', // 이미 약 40% 투명도
+    originalColor: '#fef7f7', // 약 15% 투명도 (더 연하게)
+  },
+  {
+    viewColor: '#f2ece6',
+    originalColor: '#f2ece699', // 약 60% 투명도
+  },
+  {
+    viewColor: '#b2708533', // 이미 20% 투명도
+    originalColor: '#b2708512', // 약 7% 투명도 (매우 연하게)
+  },
+];
+
+export const pointColorConfig = [
+  {
+    viewColor: '#000000',
+    originalColor: '#000000',
+  },
+  {
+    viewColor: '#f79e9e',
+    originalColor: '#f79e9e',
+  },
+  {
+    viewColor: '#964b00',
+    originalColor: '#964b00',
+  },
+  {
+    viewColor: '#b27085',
+    originalColor: '#b27085',
+  },
+];
 
 const fontMap = {
   en: {
@@ -58,6 +93,30 @@ const fontMap = {
     },
     barriecito: {
       value: 'var(--font-barriecito)',
+    },
+    montserrat: {
+      value: 'var(--font-montserrat)',
+    },
+    cormorantGaramond: {
+      value: 'var(--font-cormorant-garamond)',
+    },
+    lora: {
+      value: 'var(--font-lora)',
+    },
+    delius: {
+      value: 'var(--font-delius)',
+    },
+    josefinSans: {
+      value: 'var(--font-josefin-sans)',
+    },
+    greatVibes: {
+      value: 'var(--font-great-vibes)',
+    },
+    arizonia: {
+      value: 'var(--font-arizonia)',
+    },
+    satisfy: {
+      value: 'var(--font-satisfy)',
     },
   },
 };

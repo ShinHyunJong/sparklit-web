@@ -10,6 +10,7 @@ export type Invitation = {
   title: string;
   uniqueId: string;
   date: Date | null;
+  baseFont: string | null;
   dressCodeGentleman: string;
   dressCodeLady: string;
   dressCodeMainColor: string;
@@ -46,6 +47,8 @@ export type Invitation = {
   bridesMaids: string | null;
   layoutOrder: string | null;
   endingText: string | null;
+  wishlistUrl: string | null;
+  bankAccount: string | null;
   ogImageKey: string | null;
   createdAt: Date;
   updatedAt: Date;

@@ -2,7 +2,6 @@ import type { Color } from '@chakra-ui/react';
 import {
   Accordion,
   Box,
-  Center,
   ColorPicker,
   Flex,
   HStack,
@@ -98,27 +97,37 @@ function TemplateInput({
       <Accordion.ItemContent>
         <Accordion.ItemBody p={4}>
           <Flex w="full" mb={4} direction="column" gap={4}>
-            <Flex gap={2} bg="gray.50">
+            <Flex gap={2} overflowX="auto" w="full">
               {templateConfig.map((t) => {
                 return (
-                  <Center
+                  <Box
+                    w="120px"
+                    borderWidth={1}
                     role="button"
                     cursor="pointer"
+                    borderRadius="md"
                     onClick={() => handleTemplateClick(t.id)}
-                    borderWidth={1}
                     borderColor={
                       t.id == selectedTemplateNo ? 'gray.800' : 'gray.100'
                     }
-                    key={t.id}
-                    w="120px"
-                    h="120px"
+                    key={`tempelete-preview-${t.id}`}
+                    aspectRatio={4 / 5}
                   >
-                    <Text>{t.id}</Text>
-                  </Center>
+                    <Image
+                      w="full"
+                      h="auto"
+                      borderRadius="md"
+                      src={t.previewUrl}
+                      alt={`Template ${t.id}`}
+                    />
+                  </Box>
                 );
               })}
             </Flex>
-            <Flex direction="column">
+            <Flex direction="column" mt={8}>
+              <Text fontSize="sm" mb={2} color="gray.600">
+                Main Photo
+              </Text>
               <Flex gap={8}>
                 {mainPhoto && (
                   <Box w="25%">
