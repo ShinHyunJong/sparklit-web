@@ -36,7 +36,11 @@ function Ending() {
 
             <Box position="absolute" inset={0} bg="blackAlpha.600" />
             <Box position="absolute" inset={0} p={4} color="white">
-              <TextEditorViewer verticalCenter content={endingText} />
+              <TextEditorViewer
+                isImageCover
+                verticalCenter
+                content={endingText}
+              />
             </Box>
           </Box>
         </AspectRatio>

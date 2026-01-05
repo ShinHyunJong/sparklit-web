@@ -59,7 +59,7 @@ function MonetaryGift() {
                 <Text
                   whiteSpace="pre-line"
                   fontSize="md"
-                  color="gray.700"
+                  color="gray.600"
                   lineHeight="tall"
                 >
                   {bankAccount}

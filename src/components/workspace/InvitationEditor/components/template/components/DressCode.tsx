@@ -53,7 +53,9 @@ function DressCode() {
               </Text>
             </Center>
             <Center textAlign="center">
-              <Text whiteSpace="pre-line">{gentleman}</Text>
+              <Text color="gray.600" whiteSpace="pre-line">
+                {gentleman}
+              </Text>
             </Center>
           </Box>
           <Box p={4}>
@@ -63,7 +65,9 @@ function DressCode() {
               </Text>
             </Center>
             <Center textAlign="center">
-              <Text whiteSpace="pre-line">{lady}</Text>
+              <Text color="gray.600" whiteSpace="pre-line">
+                {lady}
+              </Text>
             </Center>
           </Box>
         </Stack>

@@ -12,6 +12,14 @@ export type GreetingViewProps = {
   pointColor?: string;
   groomFirstName?: string;
   brideFirstName?: string;
+  groomMiddleName?: string;
+  brideMiddleName?: string;
+  brideLastName?: string;
+  groomLastName?: string;
+  groomDadName?: string;
+  groomMomName?: string;
+  brideMomName?: string;
+  brideDadName?: string;
   fontFamily: string;
 };
 
@@ -21,6 +29,14 @@ export default function GreetingView({
   pointColor = 'black',
   groomFirstName = '',
   brideFirstName = '',
+  groomMiddleName = '',
+  brideMiddleName = '',
+  brideLastName = '',
+  groomLastName = '',
+  groomDadName = '',
+  groomMomName = '',
+  brideMomName = '',
+  brideDadName = '',
   fontFamily = '',
 }: GreetingViewProps) {
   return (
@@ -32,19 +48,37 @@ export default function GreetingView({
             <Icon mb={6}>
               <LuMailOpen size={24} color={pointColor} />
             </Icon>
+
             <Heading fontFamily={fontFamily} color={pointColor}>
               {title}
             </Heading>
           </Flex>
         </Center>
+
         <TextEditorViewer content={content} />
         <Center>
           <Separator w={12} borderWidth={1} my={4} />
         </Center>
 
-        <Center>
-          <Text fontSize="sm" color="gray.500">
-            From {groomFirstName} & {brideFirstName}
+        <Flex justifyContent="center" gap={2}>
+          <Flex direction="column" justifyContent="center" alignItems="center">
+            <Text>Mr. {groomDadName}</Text>
+            <Text>Mrs. {groomMomName}</Text>
+          </Flex>
+          <Center>
+            <Text mx={2}>&amp;</Text>
+          </Center>
+          <Flex direction="column" justifyContent="center" alignItems="center">
+            <Text>Mr. {brideDadName}</Text>
+            <Text>Mrs. {brideMomName}</Text>
+          </Flex>
+        </Flex>
+        <Center fontSize="lg" flexDirection="column" gap={1} my={4}>
+          <Text>
+            {groomFirstName} {groomMiddleName} {groomLastName}
+          </Text>
+          <Text>
+            {brideFirstName} {brideMiddleName} {brideLastName}
           </Text>
         </Center>
       </Flex>

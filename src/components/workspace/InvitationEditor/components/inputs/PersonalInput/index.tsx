@@ -44,14 +44,6 @@ function PersonalInput({
       <Accordion.ItemContent>
         <Accordion.ItemBody>
           <Flex p={4} flexDirection="column" gap={4}>
-            <BrideInput
-              lastName={brideLastName}
-              firstName={brideFirstName}
-              middleName={brideMiddleName}
-              momName={brideMomName}
-              dadName={brideDadName}
-            ></BrideInput>
-            <Separator></Separator>
             <GroomInput
               lastName={groomLastName}
               firstName={groomFirstName}
@@ -59,6 +51,14 @@ function PersonalInput({
               momName={groomMomName}
               dadName={groomDadName}
             ></GroomInput>
+            <Separator></Separator>
+            <BrideInput
+              lastName={brideLastName}
+              firstName={brideFirstName}
+              middleName={brideMiddleName}
+              momName={brideMomName}
+              dadName={brideDadName}
+            ></BrideInput>
           </Flex>
         </Accordion.ItemBody>
       </Accordion.ItemContent>

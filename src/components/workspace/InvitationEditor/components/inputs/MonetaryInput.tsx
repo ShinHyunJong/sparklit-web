@@ -3,6 +3,7 @@ import {
   DataList,
   Flex,
   Input,
+  Switch,
   Text,
   Textarea,
 } from '@chakra-ui/react';
@@ -13,8 +14,10 @@ import { useForm } from 'react-hook-form';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
 import { saved } from '@/helpers/toaster.helper';
-import { updateMonetaryGiftApi } from '@/hooks/invitation/api';
-// 주의: API 함수 구조에 맞춰 수정이 필요할 수 있습니다.
+import {
+  updateLayoutOrderApi,
+  updateMonetaryGiftApi,
+} from '@/hooks/invitation/api';
 
 type GiftForm = {
   bankAccount: string;
@@ -31,13 +34,23 @@ function MonetaryInput({
   const searchParams = useSearchParams();
   const invitationId = searchParams.get('uid') || '';
 
-  // Jotai Atoms (해당 아톰들이 invitationEditorAtom 내에 정의되어 있다고 가정합니다)
+  // 1. 레이아웃 순서 및 가시성 상태 atom
+  const [layoutSettings, setLayoutSettings] = useAtom(
+    invitationEditorAtom.layoutOrderAtom,
+  );
+
   const [bankAccount, setBankAccount] = useAtom(
     invitationEditorAtom.bankAccount,
   );
   const [wishlistUrl, setWishlistUrl] = useAtom(
     invitationEditorAtom.wishlistUrl,
   );
+
+  // 2. 현재 'monetary' 항목의 가시성 상태 찾기 (ID 소문자 일치)
+  const monetaryLayout = layoutSettings.find(
+    (item) => item.id === 'MonetaryGift',
+  );
+  const isVisible = monetaryLayout?.visible ?? true;
 
   const { register, setValue } = useForm<GiftForm>({
     defaultValues: {
@@ -46,7 +59,6 @@ function MonetaryInput({
     },
   });
 
-  // 초기 데이터 로드 시 값 세팅
   useEffect(() => {
     if (initialBankAccount) {
       setBankAccount(initialBankAccount);
@@ -56,24 +68,55 @@ function MonetaryInput({
       setWishlistUrl(initialWishlistUrl);
       setValue('wishlistUrl', initialWishlistUrl);
     }
-    // ... 다른 필드들도 필요시 추가
-  }, [initialBankAccount, initialWishlistUrl]);
+  }, [
+    initialBankAccount,
+    initialWishlistUrl,
+    setBankAccount,
+    setWishlistUrl,
+    setValue,
+  ]);
 
-  // Blur 시 저장 로직 (API 구조에 따라 인자 값을 조정하세요)
+  // 가시성 토글 핸들러
+  const handleToggleVisible = (details: { checked: boolean }) => {
+    const nextLayout = layoutSettings.map((item) =>
+      item.id === 'MonetaryGift' ? { ...item, visible: details.checked } : item,
+    );
+
+    setLayoutSettings(nextLayout);
+    // 변경된 레이아웃 설정을 DB에 저장
+    saved(() => updateLayoutOrderApi(invitationId, JSON.stringify(nextLayout)));
+  };
+
   const handleSave = async () => {
     saved(() => updateMonetaryGiftApi(invitationId, bankAccount, wishlistUrl));
   };
 
   return (
     <Accordion.Item
-      value="monetaryGifts"
+      value="monetary"
       bg="white"
       borderRadius="sm"
       borderBottomWidth={0}
+      opacity={isVisible ? 1 : 0.6}
     >
       <Accordion.ItemTrigger>
-        <Flex borderRadius="sm" p={4} w="full">
-          <Text>Monetary & Gifts</Text>
+        <Flex borderRadius="sm" p={4} w="full" align="center" gap={3}>
+          {/* 가시성 토글 스위치 */}
+          <Switch.Root
+            colorScheme="teal"
+            checked={isVisible}
+            onCheckedChange={handleToggleVisible}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Switch.HiddenInput />
+            <Switch.Control>
+              <Switch.Thumb />
+            </Switch.Control>
+          </Switch.Root>
+
+          <Text fontWeight={isVisible ? 'bold' : 'normal'}>
+            Monetary & Gifts
+          </Text>
         </Flex>
         <Accordion.ItemIndicator bg="white" mr={4} />
       </Accordion.ItemTrigger>
@@ -81,7 +124,6 @@ function MonetaryInput({
       <Accordion.ItemContent>
         <Accordion.ItemBody p={4}>
           <Flex w="full" direction="column" gap={6}>
-            {/* 계좌 정보 (Textarea) */}
             <DataList.Root orientation="horizontal">
               <DataList.Item>
                 <DataList.ItemLabel pt={2}>Bank Account</DataList.ItemLabel>
@@ -99,10 +141,9 @@ function MonetaryInput({
               </DataList.Item>
             </DataList.Root>
 
-            {/* 신부 위시리스트 (Input) */}
             <DataList.Root orientation="horizontal">
               <DataList.Item>
-                <DataList.ItemLabel>Bride Wishlist</DataList.ItemLabel>
+                <DataList.ItemLabel>Wishlist</DataList.ItemLabel>
                 <DataList.ItemValue>
                   <Input
                     {...register('wishlistUrl')}

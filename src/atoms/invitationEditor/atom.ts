@@ -20,6 +20,7 @@ export const initialOrder: LayoutItem[] = [
   { id: 'Notice', visible: true },
   { id: 'Sponsor', visible: true },
   { id: 'Entourage', visible: true },
+  { id: 'MonetaryGift', visible: true },
 ];
 
 export const loginLoading = atom<boolean>(false);

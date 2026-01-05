@@ -1,4 +1,11 @@
-import { Accordion, DataList, Flex, Text, Textarea } from '@chakra-ui/react';
+import {
+  Accordion,
+  DataList,
+  Flex,
+  Switch,
+  Text,
+  Textarea,
+} from '@chakra-ui/react';
 import { useAtom } from 'jotai';
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
@@ -6,8 +13,10 @@ import { useForm } from 'react-hook-form';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
 import { saved } from '@/helpers/toaster.helper';
-// 주의: 해당 API 함수는 기존의 updateSponsorsApi와 유사한 형식으로 존재한다고 가정하거나 새로 만드셔야 합니다.
-import { updateEntourageApi } from '@/hooks/invitation/api';
+import {
+  updateEntourageApi,
+  updateLayoutOrderApi,
+} from '@/hooks/invitation/api';
 
 type EntourageForm = {
   bestMan: string;
@@ -30,11 +39,22 @@ function EntourageInput({
   const searchParams = useSearchParams();
   const invitationId = searchParams.get('uid') || '';
 
-  // Jotai Atoms (해당 atom들이 invitationEditorAtom 내에 정의되어 있어야 합니다)
+  // 1. 레이아웃 순서 및 가시성 상태 atom
+  const [layoutSettings, setLayoutSettings] = useAtom(
+    invitationEditorAtom.layoutOrderAtom,
+  );
+
+  // Jotai Atoms
   const [bm, setBm] = useAtom(invitationEditorAtom.bestMan);
   const [moh, setMoh] = useAtom(invitationEditorAtom.maidOfHonor);
   const [gm, setGm] = useAtom(invitationEditorAtom.groomsMen);
   const [bmDs, setBmDs] = useAtom(invitationEditorAtom.bridesMaids);
+
+  // 2. 현재 'entourage' 항목의 가시성 상태 찾기
+  const entourageLayout = layoutSettings.find(
+    (item) => item.id === 'Entourage',
+  );
+  const isVisible = entourageLayout?.visible ?? true;
 
   const { register, setValue } = useForm<EntourageForm>({
     defaultValues: {
@@ -45,7 +65,6 @@ function EntourageInput({
     },
   });
 
-  // 초기 props 데이터 동기화
   useEffect(() => {
     if (bestMan) {
       setBm(bestMan);
@@ -63,9 +82,28 @@ function EntourageInput({
       setBmDs(bridesMaids);
       setValue('bridesMaids', bridesMaids);
     }
-  }, [bestMan, maidOfHonor, groomsMen, bridesMaids]);
+  }, [
+    bestMan,
+    maidOfHonor,
+    groomsMen,
+    bridesMaids,
+    setBm,
+    setMoh,
+    setGm,
+    setBmDs,
+    setValue,
+  ]);
 
-  // Blur 이벤트 발생 시 API 호출 (현재 상태값들을 모아서 전송)
+  // 가시성 토글 핸들러
+  const handleToggleVisible = (details: { checked: boolean }) => {
+    const nextLayout = layoutSettings.map((item) =>
+      item.id === 'Entourage' ? { ...item, visible: details.checked } : item,
+    );
+
+    setLayoutSettings(nextLayout);
+    saved(() => updateLayoutOrderApi(invitationId, JSON.stringify(nextLayout)));
+  };
+
   const handleUpdate = async () => {
     saved(() => updateEntourageApi(invitationId, bm, moh, gm, bmDs));
   };
@@ -83,13 +121,28 @@ function EntourageInput({
       bg="white"
       borderRadius="sm"
       borderBottomWidth={0}
+      opacity={isVisible ? 1 : 0.6}
     >
       <Accordion.ItemTrigger>
-        <Flex borderRadius="sm" p={4} w="full">
-          <Text>Entourage</Text>
+        <Flex borderRadius="sm" p={4} w="full" align="center" gap={3}>
+          {/* 가시성 토글 스위치 */}
+          <Switch.Root
+            colorScheme="teal"
+            checked={isVisible}
+            onCheckedChange={handleToggleVisible}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Switch.HiddenInput />
+            <Switch.Control>
+              <Switch.Thumb />
+            </Switch.Control>
+          </Switch.Root>
+
+          <Text fontWeight={isVisible ? 'bold' : 'normal'}>Entourage</Text>
         </Flex>
         <Accordion.ItemIndicator bg="white" mr={4} />
       </Accordion.ItemTrigger>
+
       <Accordion.ItemContent>
         <Accordion.ItemBody p={4}>
           <Flex w="full" mb={4} direction="column" gap={4}>
@@ -99,7 +152,7 @@ function EntourageInput({
                   <DataList.ItemLabel>{field.label}</DataList.ItemLabel>
                   <DataList.ItemValue>
                     <Textarea
-                      {...register(field.reg)}
+                      {...register(field.reg as any)}
                       value={field.value}
                       variant="subtle"
                       onChange={(e) => field.setter(e.target.value)}

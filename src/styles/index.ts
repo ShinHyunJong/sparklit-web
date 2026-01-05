@@ -36,14 +36,6 @@ export const fontOptions = [
     value: 'josefinSans',
   },
   {
-    name: 'Great Vibes',
-    value: 'greatVibes',
-  },
-  {
-    name: 'Arizonia',
-    value: 'arizonia',
-  },
-  {
     name: 'Satisfy',
     value: 'satisfy',
   },

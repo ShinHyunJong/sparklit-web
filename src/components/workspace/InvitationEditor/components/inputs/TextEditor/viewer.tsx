@@ -5,9 +5,11 @@ import React from 'react';
 function TextEditorViewer({
   content,
   verticalCenter,
+  isImageCover,
 }: {
   content: string;
   verticalCenter?: boolean;
+  isImageCover?: boolean;
 }) {
   const parsedContent = parse(content);
 
@@ -28,6 +30,7 @@ function TextEditorViewer({
       flexDirection="column"
       overflowY="hidden"
       justifyContent={verticalCenter ? 'center' : 'initial'}
+      color={isImageCover ? 'white' : 'initial'}
       css={{
         '& h1': {
           fontSize: '3xl',

@@ -11,6 +11,7 @@ function Sponsor() {
   const pointColor = useAtomValue(invitationEditorAtom.selectedPointColor);
   const primarySponsor = useAtomValue(invitationEditorAtom.primarySponsor);
   const secondarySponsor = useAtomValue(invitationEditorAtom.secondarySponsor);
+
   return (
     <Box>
       <Center flexDirection="column">
@@ -28,7 +29,9 @@ function Sponsor() {
               </Text>
             </Center>
             <Center>
-              <Text whiteSpace="pre-line">{primarySponsor}</Text>
+              <Text color="gray.600" whiteSpace="pre-line">
+                {primarySponsor}
+              </Text>
             </Center>
           </Box>
           <Box p={4}>
@@ -38,7 +41,9 @@ function Sponsor() {
               </Text>
             </Center>
             <Center>
-              <Text whiteSpace="pre-line">{secondarySponsor}</Text>
+              <Text color="gray.600" whiteSpace="pre-line">
+                {secondarySponsor}
+              </Text>
             </Center>
           </Box>
         </Slide>

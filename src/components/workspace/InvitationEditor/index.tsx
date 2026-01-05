@@ -104,6 +104,7 @@ function InvitationEditor() {
             'entourage',
             'order',
             'notice',
+            'monetary',
             'ending',
           ]}
         >
@@ -153,25 +154,26 @@ function InvitationEditor() {
               groomsMen={invitationDetail.groomsMen}
               bridesMaids={invitationDetail.bridesMaids}
             ></EntourageInput>
-            <OrderInput layoutOrder={invitationDetail.layoutOrder}></OrderInput>
-            <MusicInput
-              musicKey={invitationDetail.musicKey}
-              musicFileKey={invitationDetail.musicFileKey}
-              musicFilename={invitationDetail.musicFilename}
-            ></MusicInput>
             <DynamicNoticeInput
               notice={invitationDetail.notice}
             ></DynamicNoticeInput>
+
+            <MonetaryInput
+              initialBankAccount={invitationDetail.bankAccount || ''}
+              initialWishlistUrl={invitationDetail.wishlistUrl || ''}
+            ></MonetaryInput>
+            <OrderInput layoutOrder={invitationDetail.layoutOrder}></OrderInput>
             <DynamicEndingInput
               text={invitationDetail?.endingText || ''}
               endPhoto={invitationDetail.invitationCoverPhotoList.find(
                 (photo) => photo.type === 'end',
               )}
             ></DynamicEndingInput>
-            <MonetaryInput
-              initialBankAccount={invitationDetail.bankAccount || ''}
-              initialWishlistUrl={invitationDetail.wishlistUrl || ''}
-            ></MonetaryInput>
+            <MusicInput
+              musicKey={invitationDetail.musicKey}
+              musicFileKey={invitationDetail.musicFileKey}
+              musicFilename={invitationDetail.musicFilename}
+            ></MusicInput>
           </Stack>
         </Accordion.Root>
       </Flex>

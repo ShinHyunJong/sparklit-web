@@ -11,7 +11,6 @@ function Notice() {
   const content = useAtomValue(invitationEditorAtom.notice);
   const pointColor = useAtomValue(invitationEditorAtom.selectedPointColor);
 
-  if (!content) return null;
   return (
     <Flex direction="column" gap={6} px={4}>
       <Center flexDirection="column">
