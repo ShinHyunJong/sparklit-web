@@ -9,6 +9,7 @@ export default function Head() {
         name="viewport"
         content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width"
       />
+      <meta property="fb:app_id" content="1654128312237206" />
       {/* <Script
         id="hotjar-init"
         strategy="afterInteractive" // Hydration 직후 실행. 더 빨리 필요하면 'beforeInteractive'
