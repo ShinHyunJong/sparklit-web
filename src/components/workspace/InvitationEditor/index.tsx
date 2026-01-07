@@ -5,10 +5,13 @@ import {
   Box,
   Button,
   Center,
+  CloseButton,
+  Dialog,
   Flex,
   HStack,
   Icon,
   IconButton,
+  Portal,
   Spinner,
   Stack,
   Text,
@@ -16,10 +19,12 @@ import {
 import { useAtomValue } from 'jotai';
 import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
-import { FaFacebook, FaFacebookMessenger } from 'react-icons/fa6';
-import { LuWifi } from 'react-icons/lu';
+import React, { useMemo, useState } from 'react';
+import { FaEye, FaFacebook, FaFacebookMessenger } from 'react-icons/fa6';
+import { LuLink, LuWifi } from 'react-icons/lu';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
+import { toaster } from '@/components/ui/toaster';
 import { layoutConstants } from '@/constants/layout';
 import { useInvitationDetail } from '@/hooks/invitation';
 
@@ -54,15 +59,38 @@ function InvitationEditor() {
   const { invitationDetail, isLoading } = useInvitationDetail();
   const searchParams = useSearchParams();
   const uid = searchParams.get('uid') || '';
-  const currentUrl = `https://sparklit.co/invitation/${uid}`;
+
+  const currentUrl = useMemo(
+    () => `https://sparklit.co/invitation/${uid}`,
+    [uid],
+  );
+
   const bgColor = useAtomValue(invitationEditorAtom.selectedBgColor);
   const selectedFontFamily = useAtomValue(
     invitationEditorAtom.selectedFontFamily,
   );
   const isSaving = useAtomValue(invitationEditorAtom.isSaving);
 
+  // ✅ 모바일 Fullscreen Preview Dialog open state
+  const [previewOpen, setPreviewOpen] = useState(false);
+
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(currentUrl);
+      toaster.create({ title: 'Link copied to clipboard.', type: 'success' });
+    } catch {
+      toaster.create({ title: 'Failed to copy link.', type: 'error' });
+    }
+  };
+
+  const handleOpenPreview = () => {
+    window.open(currentUrl, '_blank');
+  };
+
   const handleShareFacebook = () => {
-    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+      currentUrl,
+    )}`;
     window.open(
       facebookShareUrl,
       'facebook-share-dialog',
@@ -71,12 +99,14 @@ function InvitationEditor() {
   };
 
   const handleShareMessenger = () => {
-    // 앱 ID가 있다면 다이렉트 메시지 전송창을 띄울 수 있습니다.
-    // 단순히 공유 목적이라면 아래 URL을 사용합니다.
-    const messengerUrl = `https://www.facebook.com/dialog/send?app_id=1654128312237206&link=${encodeURIComponent(currentUrl)}&redirect_uri=${encodeURIComponent(currentUrl)}`;
-    console.log(currentUrl);
+    const messengerUrl = `https://www.facebook.com/dialog/send?app_id=1654128312237206&link=${encodeURIComponent(
+      currentUrl,
+    )}&redirect_uri=${encodeURIComponent('https://sparklit.co')}&v=${Date.now()}`;
+
     if (/iPhone|Android/i.test(navigator.userAgent)) {
-      window.location.href = `fb-messenger://share?link=${encodeURIComponent(currentUrl)}`;
+      window.location.href = `fb-messenger://share?link=${encodeURIComponent(
+        currentUrl,
+      )}`;
     } else {
       window.open(
         messengerUrl,
@@ -86,22 +116,25 @@ function InvitationEditor() {
     }
   };
 
-  if (isLoading || !invitationDetail)
+  if (isLoading || !invitationDetail) {
     return (
       <Center h="80vh">
         <Spinner />
       </Center>
     );
+  }
+
+  const previewBg = bgColor || 'white';
 
   return (
-    <Flex gapX={[4, 8]} mt={8} h="full">
+    <Flex gapX={[4, 8]} mt={8} h="full" position="relative">
       {/* 저장 중 표시 알림 */}
       {isSaving && (
         <Box
           position="fixed"
           bottom={4}
           right={4}
-          zIndex={20}
+          zIndex={50}
           bg="white"
           p={3}
           borderRadius="md"
@@ -116,10 +149,9 @@ function InvitationEditor() {
 
       {/* 왼쪽 입력 폼 영역 */}
       <Flex
-        display={{ base: 'none', md: 'flex' }}
-        w={`calc(100% - 480px)`}
+        w={{ base: '100%', md: `calc(100% - 480px)` }}
         h="full"
-        pb={32}
+        pb={{ base: 28, md: 32 }} // ✅ 모바일 하단 고정 버튼 높이만큼 여백
       >
         <Accordion.Root
           multiple
@@ -141,7 +173,7 @@ function InvitationEditor() {
             'ending',
           ]}
         >
-          <Stack spaceY={4}>
+          <Stack spaceY={4} w="full">
             <ThemeInput
               invitationId={invitationDetail.uniqueId}
               bgColor={invitationDetail.bgColor}
@@ -203,19 +235,19 @@ function InvitationEditor() {
         </Accordion.Root>
       </Flex>
 
-      {/* 오른쪽 프리뷰 영역 (고정 사이드바) */}
+      {/* ✅ 데스크탑 오른쪽 프리뷰 영역 */}
       <Flex
+        display={{ base: 'none', md: 'flex' }}
         position="sticky"
         top={`${layoutConstants.headerHeight + 32}px`}
         w="480px"
-        h={`calc(100vh - ${layoutConstants.headerHeight + 64}px) `}
+        h={`calc(100vh - ${layoutConstants.headerHeight + 64}px)`}
         flexDirection="column"
-        overflow="hidden" // 내부 개별 스크롤을 위해
-        backgroundColor={bgColor || 'white'}
+        overflow="hidden"
+        backgroundColor={previewBg}
         borderTopRadius="3xl"
         boxShadow="xl"
       >
-        {/* 상단 고정 버튼 바 */}
         <HStack
           position="sticky"
           top={0}
@@ -223,36 +255,61 @@ function InvitationEditor() {
           w="full"
           p={4}
           justifyContent="space-between"
-          bg={bgColor || 'white'}
+          bg={previewBg}
           borderTopRadius="3xl"
           borderBottom="1px solid"
           borderColor="gray.100"
         >
           <Icon>
-            <LuWifi></LuWifi>
+            <LuWifi />
           </Icon>
+
           <HStack gap={2}>
-            <Button size="sm" variant="outline" colorScheme="gray">
-              전체 미리보기
-            </Button>
             <IconButton
+              aria-label="Open preview in new tab"
+              onClick={handleOpenPreview}
+              size="sm"
+              variant="subtle"
+              rounded="full"
+              colorPalette="gray"
+            >
+              <FaEye />
+            </IconButton>
+
+            <IconButton
+              aria-label="Copy invitation link"
+              onClick={handleCopyLink}
+              size="sm"
+              variant="outline"
+              rounded="full"
+              colorPalette="gray"
+            >
+              <LuLink />
+            </IconButton>
+
+            <IconButton
+              aria-label="Share on Facebook"
               onClick={handleShareFacebook}
               size="sm"
-              colorScheme="blackAlpha"
+              colorPalette="blue"
+              rounded="full"
             >
-              <FaFacebook></FaFacebook>
+              <FaFacebook />
             </IconButton>
+
             <IconButton
+              aria-label="Share on Messenger"
               onClick={handleShareMessenger}
               size="sm"
-              colorScheme="blackAlpha"
+              variant="subtle"
+              rounded="full"
+              colorPalette="blue"
             >
-              <FaFacebookMessenger></FaFacebookMessenger>
+              <FaFacebookMessenger />
             </IconButton>
           </HStack>
         </HStack>
 
-        {/* 스크롤 가능한 프리뷰 내용 */}
         <Box
           flex={1}
           overflowY="auto"
@@ -264,6 +321,133 @@ function InvitationEditor() {
           <PreviewInvitation />
         </Box>
       </Flex>
+
+      {/* ✅ 모바일 하단 고정 미리보기 버튼 */}
+      <Box
+        display={{ base: 'block', md: 'none' }}
+        position="fixed"
+        left={0}
+        right={0}
+        bottom={0}
+        zIndex={60}
+        bg="white"
+        borderTop="1px solid"
+        borderColor="gray.200"
+        px={3}
+        py={1.5}
+        pb="max(6px, env(safe-area-inset-bottom))"
+      >
+        <HStack gap={3}>
+          <Button
+            w="full"
+            size="sm"
+            borderRadius="xl"
+            onClick={() => setPreviewOpen(true)}
+          >
+            Preview
+          </Button>
+        </HStack>
+      </Box>
+
+      {/* ✅ 모바일 Fullscreen Dialog */}
+      <Dialog.Root
+        lazyMount
+        open={previewOpen}
+        size="full"
+        onOpenChange={(e) => setPreviewOpen(e.open)}
+      >
+        <Portal>
+          <Dialog.Backdrop />
+          <Dialog.Positioner style={{ padding: 0 }}>
+            <Dialog.Content
+              w="100vw"
+              h="100vh"
+              maxW="100vw"
+              maxH="100vh"
+              borderRadius="0"
+              overflow="hidden"
+              bg={previewBg}
+            >
+              {/* ✅ CloseButton을 헤더 왼쪽에, 아이콘은 오른쪽 (space-between) */}
+              <Dialog.Header p={0}>
+                <HStack
+                  w="full"
+                  p={4}
+                  justifyContent="space-between"
+                  alignItems="center"
+                  bg={previewBg}
+                  borderBottom="1px solid"
+                  borderColor="gray.100"
+                >
+                  {/* 왼쪽: Close */}
+                  <CloseButton
+                    size="sm"
+                    onClick={() => setPreviewOpen(false)}
+                  />
+
+                  {/* 오른쪽: 액션 아이콘들 */}
+                  <HStack gap={2}>
+                    <IconButton
+                      aria-label="Open preview in new tab"
+                      onClick={handleOpenPreview}
+                      size="sm"
+                      variant="subtle"
+                      rounded="full"
+                      colorPalette="gray"
+                    >
+                      <FaEye />
+                    </IconButton>
+
+                    <IconButton
+                      aria-label="Copy invitation link"
+                      onClick={handleCopyLink}
+                      size="sm"
+                      variant="outline"
+                      rounded="full"
+                      colorPalette="gray"
+                    >
+                      <LuLink />
+                    </IconButton>
+
+                    <IconButton
+                      aria-label="Share on Facebook"
+                      onClick={handleShareFacebook}
+                      size="sm"
+                      colorPalette="blue"
+                      rounded="full"
+                    >
+                      <FaFacebook />
+                    </IconButton>
+
+                    <IconButton
+                      aria-label="Share on Messenger"
+                      onClick={handleShareMessenger}
+                      size="sm"
+                      variant="subtle"
+                      rounded="full"
+                      colorPalette="blue"
+                    >
+                      <FaFacebookMessenger />
+                    </IconButton>
+                  </HStack>
+                </HStack>
+              </Dialog.Header>
+
+              <Dialog.Body p={0}>
+                <Box
+                  h="calc(100vh - 72px)" // 헤더 높이 대략값
+                  overflowY="auto"
+                  className="hideScrollbar"
+                  fontFamily={selectedFontFamily}
+                  w="full"
+                >
+                  <PreviewInvitation />
+                </Box>
+              </Dialog.Body>
+            </Dialog.Content>
+          </Dialog.Positioner>
+        </Portal>
+      </Dialog.Root>
     </Flex>
   );
 }

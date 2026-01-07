@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createStore, Provider as JotaiProvider } from 'jotai';
 
 import { customSystem } from '@/configs/theme.config';
+import { Toaster } from './toaster';
 
 const client = new QueryClient();
 export const globalStore = createStore();
@@ -14,6 +15,7 @@ export function Provider(props: { children: React.ReactNode }) {
     <JotaiProvider store={globalStore}>
       <QueryClientProvider client={client}>
         <ChakraProvider value={system}>
+          <Toaster></Toaster>
           <Box
             position="fixed"
             inset={0}
