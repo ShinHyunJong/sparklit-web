@@ -1,6 +1,13 @@
 'use client';
 
-import { Box, Heading, SimpleGrid } from '@chakra-ui/react';
+import {
+  Box,
+  Card,
+  Heading,
+  SimpleGrid,
+  Skeleton,
+  SkeletonText,
+} from '@chakra-ui/react';
 
 import AddInvitation from '@/components/studio/AddInvitation';
 import InvitationItem from '@/components/studio/InvitationItem';
@@ -9,7 +16,7 @@ import { useInvitationList } from '@/hooks/invitation';
 
 function StudioPage() {
   const { user } = useAuth();
-  const { invitationList } = useInvitationList();
+  const { invitationList, isLoading } = useInvitationList();
 
   return (
     <Box
@@ -30,6 +37,15 @@ function StudioPage() {
         columns={{ base: 1, md: 2, lg: 3 }}
         gap={{ base: 3, md: 4 }}
       >
+        {isLoading &&
+          [0, 1].map((i) => (
+            <Card.Root key={`skeleton-${i}`} maxW="sm" overflow="hidden">
+              <Skeleton w="full" aspectRatio={4 / 3} />
+              <Card.Body gap="2">
+                <SkeletonText noOfLines={2} />
+              </Card.Body>
+            </Card.Root>
+          ))}
         {invitationList.map((invitation) => (
           <InvitationItem
             key={`invitation-${invitation.id}`}

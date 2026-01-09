@@ -26,6 +26,7 @@ import { LuArrowLeft, LuLink, LuWifi } from 'react-icons/lu';
 import invitationEditorAtom from '@/atoms/invitationEditor';
 import { toaster } from '@/components/ui/toaster';
 import { layoutConstants } from '@/constants/layout';
+import { triggerInvitationRevalidate } from '@/lib/revalidateInvitation';
 import { useInvitationDetail } from '@/hooks/invitation';
 
 import DateInput from './components/inputs/DateInput';
@@ -67,6 +68,7 @@ function InvitationEditor() {
     () => `https://sparklit.co/invitation/${uid}`,
     [uid],
   );
+  const revalidateInvite = () => triggerInvitationRevalidate(uid);
 
   const bgColor = useAtomValue(invitationEditorAtom.selectedBgColor);
   const selectedFontFamily = useAtomValue(
@@ -80,6 +82,7 @@ function InvitationEditor() {
   const handleCopyLink = async () => {
     try {
       await navigator.clipboard.writeText(currentUrl);
+      void revalidateInvite();
       toaster.create({ title: 'Link copied to clipboard.', type: 'success' });
     } catch {
       toaster.create({ title: 'Failed to copy link.', type: 'error' });
@@ -87,10 +90,12 @@ function InvitationEditor() {
   };
 
   const handleOpenPreview = () => {
+    void revalidateInvite();
     window.open(currentUrl, '_blank');
   };
 
   const handleShareFacebook = () => {
+    void revalidateInvite();
     const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
       currentUrl,
     )}`;
@@ -102,6 +107,7 @@ function InvitationEditor() {
   };
 
   const handleShareMessenger = () => {
+    void revalidateInvite();
     const messengerUrl = `https://www.facebook.com/dialog/send?app_id=1654128312237206&link=${encodeURIComponent(
       currentUrl,
     )}&redirect_uri=${encodeURIComponent('https://sparklit.co')}&v=${Date.now()}`;

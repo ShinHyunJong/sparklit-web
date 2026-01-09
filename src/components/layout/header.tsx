@@ -84,10 +84,13 @@ function Header() {
                       >
                         Studio
                       </Menu.Item>
+                      <Separator />
                       <Menu.Item
                         onClick={logout}
                         cursor="pointer"
                         value="signOut"
+                        color="red.300"
+                        fontSize="sm"
                       >
                         Logout
                       </Menu.Item>

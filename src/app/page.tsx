@@ -5,8 +5,8 @@ import AllFeatures from '@/components/landing/Feature';
 import Footer from '@/components/landing/Footer';
 import Hero from '@/components/landing/Hero';
 import Highlight from '@/components/landing/Highlight';
-import Header from '@/components/layout/header';
 import Review from '@/components/landing/Review';
+import Header from '@/components/layout/header';
 
 export const THEME = {
   pageBg: '#F7F3EF', // warm beige

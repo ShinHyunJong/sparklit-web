@@ -408,7 +408,7 @@ const Highlight = () => {
   ];
 
   return (
-    <Box>
+    <Box py={16}>
       {sections.map((s, idx) => (
         <HighlightSectionCard key={s.tag} item={s} index={idx} />
       ))}

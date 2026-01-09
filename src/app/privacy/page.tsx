@@ -1,10 +1,38 @@
-import { Box, Container, Heading, Stack, Text } from '@chakra-ui/react';
+'use client';
+
+import {
+  Box,
+  Container,
+  Flex,
+  Heading,
+  Icon,
+  IconButton,
+  Stack,
+  Text,
+} from '@chakra-ui/react';
+import { useRouter } from 'next/navigation';
+import { LuArrowLeft } from 'react-icons/lu';
 
 export default function PrivacyPage() {
+  const router = useRouter();
+
   return (
     <Box bg="#F7F3EF" color="#111827" minH="100vh" py={{ base: 10, md: 16 }}>
       <Container maxW="3xl">
         <Stack gap={{ base: 4, md: 6 }}>
+          <Flex>
+            <IconButton
+              aria-label="Go back"
+              onClick={() => router.back()}
+              variant="outline"
+              rounded="full"
+              size="sm"
+            >
+              <Icon>
+                <LuArrowLeft />
+              </Icon>
+            </IconButton>
+          </Flex>
           <Heading as="h1" size="lg">
             Privacy Policy
           </Heading>
