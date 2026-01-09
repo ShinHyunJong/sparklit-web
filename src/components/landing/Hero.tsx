@@ -9,23 +9,13 @@ import {
   Heading,
   HStack,
   Icon,
-  Image,
   Text,
   VStack,
 } from '@chakra-ui/react';
+import Image from 'next/image';
 import { LuArrowRight, LuCircleCheck } from 'react-icons/lu';
 
 const Hero = () => {
-  // ✅ External images (Unsplash)
-  // - w/auto=format&fit=crop keeps them stable
-  // - If your site has a strict CSP blocking remote images, you must allow https://images.unsplash.com
-  const IMG_MAIN =
-    'https://images.unsplash.com/photo-1573676048035-9c2a72b6a12a?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
-  const IMG_TOP =
-    'https://images.unsplash.com/photo-1529634897861-1aa546dc6a4a?auto=format&fit=crop&w=900&q=80';
-  const IMG_BOTTOM =
-    'https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=900&q=80';
-
   return (
     <Box
       as="section"
@@ -195,15 +185,16 @@ const Hero = () => {
             >
               {/* ✅ Use <img> instead of background-image */}
               <Image
-                src={IMG_MAIN}
-                alt="Invitation preview"
-                position="absolute"
-                inset={0}
-                w="100%"
-                h="100%"
-                objectFit="cover"
+                src="/mainBg.jpg"
+                alt="Main background"
+                fill
+                style={{
+                  position: 'absolute',
+                  objectFit: 'cover',
+                  width: '100%',
+                  height: '100%',
+                }}
               />
-
               {/* darken overlay for readability */}
               <Box
                 position="absolute"
