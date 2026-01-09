@@ -52,7 +52,7 @@ const Hero = () => {
       <Container maxW="6xl" px={{ base: 4, md: 6 }}>
         <Flex
           pt={{ base: 14, md: 20 }}
-          pb={{ base: 14, md: 22 }}
+          pb={{ base: 14, md: 20 }}
           direction={{ base: 'column', lg: 'row' }}
           align={{ base: 'stretch', lg: 'center' }}
           justify="space-between"

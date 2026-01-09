@@ -8,7 +8,7 @@ import type { Invitation } from '@/types/model';
 function InvitationItem({ invitation }: { invitation: Invitation }) {
   const router = useRouter();
   const handleClick = () => {
-    router.push(`/workspace/create?uid=${invitation.uniqueId}`);
+    router.push(`/studio/create?uid=${invitation.uniqueId}`);
   };
   const handleRSVPClick = () => {
     router.push(`/rsvp?uid=${invitation.uniqueId}`);

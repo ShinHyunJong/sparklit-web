@@ -1,4 +1,7 @@
+'use client';
+
 import { Box, Container, Flex, HStack, Text } from '@chakra-ui/react';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -15,10 +18,10 @@ const Footer = () => {
             © {new Date().getFullYear()} Sparklit. All rights reserved.
           </Text>
           <HStack gap={4}>
-            <Text as="a" href="#terms" cursor="pointer">
+            <Text as={Link} href="/terms" cursor="pointer">
               Terms
             </Text>
-            <Text as="a" href="#privacy" cursor="pointer">
+            <Text as={Link} href="/privacy" cursor="pointer">
               Privacy
             </Text>
           </HStack>

@@ -48,7 +48,7 @@ function Register() {
       } = await registerApi(data.email, data.password);
       document.cookie = `token=${accessToken}; Path=/; Secure; SameSite=Lax; Max-Age=${60 * 60 * 24}`;
       setInitialUser(user);
-      router.replace(`/workspace`);
+      router.replace(`/studio`);
       setRegisterLoading(false);
     } catch (error) {
       setRegisterLoading(false);

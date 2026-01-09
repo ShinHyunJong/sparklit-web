@@ -17,7 +17,9 @@ function MainTemplate() {
   const { invitationDetail } = useInvitationDetail();
 
   const mainPhoto = invitationDetail?.invitationCoverPhotoList
-    ? invitationDetail.invitationCoverPhotoList[0]
+    ? invitationDetail.invitationCoverPhotoList.filter(
+        (x) => x.type === 'main',
+      )[0]
     : null;
 
   const firstPlace = invitationDetail?.placeList

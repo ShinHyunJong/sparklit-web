@@ -6,7 +6,7 @@ import { Container } from '@chakra-ui/react';
 import Header from '@/components/layout/header';
 import { layoutConstants } from '@/constants/layout';
 
-export default function WorkspaceLayout({
+export default function StudioLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

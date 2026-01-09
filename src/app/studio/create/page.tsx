@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import InvitationEditor from '@/components/workspace/InvitationEditor';
+import InvitationEditor from '@/components/studio/InvitationEditor';
 
 function CreateInvitationPage() {
   return (

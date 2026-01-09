@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
 const publicPages = ['/', '/login', '/register', '/rsvp'];
-const protectedPages = ['/workspace'];
+const protectedPages = ['/studio'];
 
 export function proxy(req: NextRequest) {
   const { pathname, origin } = req.nextUrl;
@@ -11,7 +11,7 @@ export function proxy(req: NextRequest) {
 
   // 1) 인증된 사용자가 publicPages 접근 시
   if (token && publicPages.includes(pathname)) {
-    // return NextResponse.redirect(new URL('/workspace', origin));
+    // return NextResponse.redirect(new URL('/studio', origin));
   }
 
   // 2) 비인증 사용자가 protectedPages 접근 시

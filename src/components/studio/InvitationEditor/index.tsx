@@ -18,10 +18,10 @@ import {
 } from '@chakra-ui/react';
 import { useAtomValue } from 'jotai';
 import dynamic from 'next/dynamic';
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useMemo, useState } from 'react';
 import { FaEye, FaFacebook, FaFacebookMessenger } from 'react-icons/fa6';
-import { LuLink, LuWifi } from 'react-icons/lu';
+import { LuArrowLeft, LuLink, LuWifi } from 'react-icons/lu';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
 import { toaster } from '@/components/ui/toaster';
@@ -59,6 +59,9 @@ function InvitationEditor() {
   const { invitationDetail, isLoading } = useInvitationDetail();
   const searchParams = useSearchParams();
   const uid = searchParams.get('uid') || '';
+  const router = useRouter();
+  const pathname = usePathname();
+  const isCreatePage = pathname === '/studio/create';
 
   const currentUrl = useMemo(
     () => `https://sparklit.co/invitation/${uid}`,
@@ -174,6 +177,21 @@ function InvitationEditor() {
           ]}
         >
           <Stack spaceY={4} w="full">
+            {isCreatePage && (
+              <Flex>
+                <IconButton
+                  aria-label="Go back"
+                  onClick={() => router.push('/studio')}
+                  variant="outline"
+                  rounded="full"
+                  size="sm"
+                >
+                  <Icon>
+                    <LuArrowLeft />
+                  </Icon>
+                </IconButton>
+              </Flex>
+            )}
             <ThemeInput
               invitationId={invitationDetail.uniqueId}
               bgColor={invitationDetail.bgColor}

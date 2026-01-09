@@ -15,7 +15,7 @@ declare global {
   }
 }
 
-export default function WorkspaceLayout({
+export default function StudioLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

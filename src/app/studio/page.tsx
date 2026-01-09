@@ -2,12 +2,12 @@
 
 import { Box, Heading, SimpleGrid } from '@chakra-ui/react';
 
-import AddInvitation from '@/components/workspace/AddInvitation';
-import InvitationItem from '@/components/workspace/InvitationItem';
+import AddInvitation from '@/components/studio/AddInvitation';
+import InvitationItem from '@/components/studio/InvitationItem';
 import { useAuth } from '@/hooks/auth';
 import { useInvitationList } from '@/hooks/invitation';
 
-function WorkspacePage() {
+function StudioPage() {
   const { user } = useAuth();
   const { invitationList } = useInvitationList();
 
@@ -42,4 +42,4 @@ function WorkspacePage() {
   );
 }
 
-export default WorkspacePage;
+export default StudioPage;

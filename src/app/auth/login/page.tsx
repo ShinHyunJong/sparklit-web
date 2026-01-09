@@ -42,7 +42,7 @@ function LoginPage() {
       } = await loginApi(data.email, data.password);
       document.cookie = `token=${accessToken}; Path=/; Secure; SameSite=Lax; Max-Age=${60 * 60 * 24 * 7}`;
       setInitialUser(user);
-      router.replace(`/workspace`);
+      router.replace(`/studio`);
       setLoginLoading(false);
     } catch (error) {
       setLoginLoading(false);

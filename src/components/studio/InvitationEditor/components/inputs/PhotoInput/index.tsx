@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
 import uploadAtom from '@/atoms/upload';
-import PhotoEditor from '@/components/workspace/PhotoEditor';
+import PhotoEditor from '@/components/studio/PhotoEditor';
 import { useUpload } from '@/hooks/upload';
 import type { InvitationPhoto } from '@/types/model';
 

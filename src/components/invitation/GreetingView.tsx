@@ -3,8 +3,8 @@ import { Center, Flex, Heading, Icon, Separator, Text } from '@chakra-ui/react';
 import { Fade } from 'react-awesome-reveal';
 import { LuMailOpen } from 'react-icons/lu';
 
-import TextEditorViewer from '../workspace/InvitationEditor/components/inputs/TextEditor/viewer';
-import SubHeader from '../workspace/InvitationEditor/components/template/components/SubHeader';
+import TextEditorViewer from '../studio/InvitationEditor/components/inputs/TextEditor/viewer';
+import SubHeader from '../studio/InvitationEditor/components/template/components/SubHeader';
 
 export type GreetingViewProps = {
   title: string;

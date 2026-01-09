@@ -12,7 +12,7 @@ function AddInvitation() {
     try {
       setPostLoading(true);
       const invitation = await postInvitationApi();
-      router.push(`/workspace/create?uid=${invitation.uniqueId}`);
+      router.push(`/studio/create?uid=${invitation.uniqueId}`);
     } catch (error) {
       console.error('Error creating invitation:', error);
     } finally {

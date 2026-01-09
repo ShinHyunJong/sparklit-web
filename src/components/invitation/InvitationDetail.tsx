@@ -10,8 +10,8 @@ import { useInvitationDetail } from '@/hooks/invitation';
 import { useSetInvitation } from '@/hooks/invitation/set';
 import type { Invitation } from '@/types/model';
 
-import Ending from '../workspace/InvitationEditor/components/template/components/Ending';
-import MainTemplate from '../workspace/InvitationEditor/components/template/components/MainTemplate';
+import Ending from '../studio/InvitationEditor/components/template/components/Ending';
+import MainTemplate from '../studio/InvitationEditor/components/template/components/MainTemplate';
 import BackgroundMusic from './BackgroundMusic';
 import InvitationEditorHydrator from './InvitationHydrator';
 
