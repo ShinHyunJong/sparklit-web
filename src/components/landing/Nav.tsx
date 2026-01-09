@@ -6,11 +6,10 @@ import {
   Container,
   Drawer,
   Flex,
+  Heading,
   HStack,
   IconButton,
   Separator,
-  Stack,
-  Text,
   VStack,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
@@ -40,14 +39,13 @@ export const Nav = () => {
         <Flex align="center" justify="space-between">
           {/* Logo */}
           <HStack gap={2} minW="140px">
-            <Box w="32px" h="32px" borderRadius="full" borderWidth="1px" />
-            <Text fontWeight="bold" fontSize="lg">
+            <Heading fontSize="2xl" fontFamily="barriecito">
               Sparklit
-            </Text>
+            </Heading>
           </HStack>
 
           {/* Desktop nav */}
-          <HStack
+          {/* <HStack
             as="nav"
             gap={6}
             display={{ base: 'none', md: 'flex' }}
@@ -65,7 +63,7 @@ export const Nav = () => {
                 {item.label}
               </Text>
             ))}
-          </HStack>
+          </HStack> */}
 
           {/* Desktop CTA */}
           <HStack gap={3} display={{ base: 'none', md: 'flex' }}>
@@ -82,12 +80,12 @@ export const Nav = () => {
               color="white"
               _hover={{ bg: 'gray.900' }}
             >
-              Create a Free Draft
+              View Sample
             </Button>
           </HStack>
 
           {/* Mobile Drawer (Chakra v3 공식 패턴) */}
-          <Drawer.Root placement="right">
+          <Drawer.Root placement="end">
             <Drawer.Backdrop />
 
             {/* Trigger: 모바일에서만 보이게 */}
@@ -111,7 +109,7 @@ export const Nav = () => {
 
                 <Drawer.Body>
                   <VStack align="stretch" gap={3} pt={2}>
-                    <Stack gap={1}>
+                    {/* <Stack gap={1}>
                       {navItems.map((item) => (
                         <Drawer.CloseTrigger asChild key={item.href}>
                           <Button
@@ -124,7 +122,7 @@ export const Nav = () => {
                           </Button>
                         </Drawer.CloseTrigger>
                       ))}
-                    </Stack>
+                    </Stack> */}
 
                     <Separator />
 
