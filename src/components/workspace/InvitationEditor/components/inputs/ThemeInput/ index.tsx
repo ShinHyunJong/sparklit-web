@@ -1,5 +1,6 @@
 import {
   Accordion,
+  Box,
   Button,
   Circle,
   DataList,
@@ -85,19 +86,20 @@ function ThemeInput({
                 <DataList.ItemValue w="full">
                   <Flex gap={2} wrap="wrap">
                     {bgColorConfig.map((c) => (
-                      <Circle
-                        role="button"
+                      <Box
                         key={`bg-color-${c.viewColor}`}
-                        w="32px"
-                        h="32px"
-                        bg={c.viewColor}
-                        borderWidth={2}
+                        role="button"
                         cursor="pointer"
+                        borderWidth={2}
                         borderColor={
-                          c.originalColor === bColor ? 'black' : 'gray.100'
+                          c.originalColor === bColor ? 'gray.700' : 'gray.200'
                         }
+                        borderRadius="full"
+                        p="2px"
                         onClick={() => handleClickBgColor(c.originalColor)}
-                      />
+                      >
+                        <Circle w="28px" h="28px" bg={c.viewColor} />
+                      </Box>
                     ))}
                   </Flex>
                 </DataList.ItemValue>
@@ -111,19 +113,20 @@ function ThemeInput({
                 <DataList.ItemValue w="full">
                   <Flex gap={2} wrap="wrap">
                     {pointColorConfig.map((c) => (
-                      <Circle
+                      <Box
                         key={`accent-color-${c.viewColor}`}
-                        w="32px"
-                        h="32px"
                         role="button"
-                        bg={c.viewColor}
                         cursor="pointer"
                         borderWidth={2}
                         borderColor={
-                          c.originalColor === pColor ? 'black' : 'gray.100'
+                          c.originalColor === pColor ? 'gray.700' : 'gray.200'
                         }
+                        borderRadius="full"
+                        p="2px"
                         onClick={() => handleClickPointColor(c.originalColor)}
-                      />
+                      >
+                        <Circle w="28px" h="28px" bg={c.viewColor} />
+                      </Box>
                     ))}
                   </Flex>
                 </DataList.ItemValue>

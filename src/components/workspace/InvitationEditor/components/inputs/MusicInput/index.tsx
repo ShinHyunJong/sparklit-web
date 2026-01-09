@@ -141,18 +141,29 @@ function MusicInput({
                   role="button"
                   cursor="pointer"
                   p={2}
-                  borderWidth={1}
-                  borderColor={isActive ? 'brand.400' : 'gray.200'}
+                  borderWidth={2}
+                  borderColor={isActive ? 'gray.700' : 'gray.200'}
+                  borderRadius="md"
                   key={x.s3Key}
                   align="center"
                   gap={2}
                   onClick={() => handleSelectMusic(x.s3Key)}
                 >
                   <Circle
-                    w="12px"
-                    h="12px"
-                    bg={isActive ? 'brand.400' : 'gray.200'}
-                  ></Circle>
+                    w="14px"
+                    h="14px"
+                    bg={isActive ? 'gray.700' : 'gray.200'}
+                    p="2px"
+                  >
+                    <Box
+                      w="full"
+                      h="full"
+                      borderRadius="full"
+                      bg={isActive ? 'gray.700' : 'gray.200'}
+                      borderWidth={2}
+                      borderColor={isActive ? 'white' : 'transparent'}
+                    />
+                  </Circle>
                   <Text fontSize="sm" color="gray.800">
                     {x.name}
                   </Text>
@@ -183,17 +194,28 @@ function MusicInput({
                 p={2}
                 gap={2}
                 alignItems="center"
-                borderWidth={1}
+                borderWidth={2}
+                borderRadius="md"
                 cursor="pointer"
                 role="button"
                 onClick={() => handleSelectMusic(selectedMusicFileKey)}
-                borderColor={isCustomMusicSelected ? 'brand.400' : 'gray.200'}
+                borderColor={isCustomMusicSelected ? 'gray.700' : 'gray.200'}
               >
                 <Circle
-                  w="12px"
-                  h="12px"
-                  bg={isCustomMusicSelected ? 'brand.400' : 'gray.200'}
-                ></Circle>
+                  w="14px"
+                  h="14px"
+                  bg={isCustomMusicSelected ? 'gray.700' : 'gray.200'}
+                  p="2px"
+                >
+                  <Box
+                    w="full"
+                    h="full"
+                    borderRadius="full"
+                    bg={isCustomMusicSelected ? 'gray.700' : 'gray.200'}
+                    borderWidth={2}
+                    borderColor={isCustomMusicSelected ? 'white' : 'transparent'}
+                  />
+                </Circle>
                 <Text fontSize="sm" color="gray.800">
                   {selectedMusicFilename}
                 </Text>

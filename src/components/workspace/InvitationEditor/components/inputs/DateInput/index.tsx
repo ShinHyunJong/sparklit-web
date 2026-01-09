@@ -112,6 +112,30 @@ function DateInput({ date }: { date?: Date | null }) {
                         }
                         mode="single"
                         onSelect={handleDayPickerSelect}
+                        style={
+                          {
+                            '--rdp-accent-color':
+                              'var(--chakra-colors-gray-700)',
+                            '--rdp-accent-background-color':
+                              'var(--chakra-colors-gray-700)',
+                          } as React.CSSProperties
+                        }
+                        modifiersStyles={{
+                          selected: {
+                            backgroundColor: 'var(--chakra-colors-gray-700)',
+                            color: 'white',
+                            borderRadius: '999px',
+                          },
+                        }}
+                        styles={{
+                          day_today: {
+                            color: 'var(--chakra-colors-gray-700)',
+                            fontWeight: 600,
+                          },
+                          nav_button: {
+                            color: 'var(--chakra-colors-gray-700)',
+                          },
+                        }}
                       ></DayPicker>
                     </Flex>
                     <Controller

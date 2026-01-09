@@ -47,18 +47,15 @@ export const useCountdown = (targetDate: Date | null | undefined) => {
    * @param {number} distance - 목표 시간과 현재 시간의 차이 (밀리초)
    */
   const calculateTimeLeft = (distance) => {
-    // 시간이 0 이하이거나 유효하지 않은 targetDate인 경우
-    if (distance <= 0) {
-      return INITIAL_TIME;
-    }
+    const isTimeUp = distance <= 0;
+    const safeDistance = Math.abs(distance);
 
-    // 남은 시간 계산
-    const days = Math.floor(distance / DAY);
-    const hours = Math.floor((distance % DAY) / HOUR);
-    const minutes = Math.floor((distance % HOUR) / MINUTE);
-    const seconds = Math.floor((distance % MINUTE) / SECOND);
+    const days = Math.floor(safeDistance / DAY);
+    const hours = Math.floor((safeDistance % DAY) / HOUR);
+    const minutes = Math.floor((safeDistance % HOUR) / MINUTE);
+    const seconds = Math.floor((safeDistance % MINUTE) / SECOND);
 
-    return { days, hours, minutes, seconds, isTimeUp: false };
+    return { days, hours, minutes, seconds, isTimeUp };
   };
 
   // 초기 상태 설정: 유효한 targetDate가 없으면 즉시 {0, 0, 0, 0, true} 반환
@@ -84,10 +81,6 @@ export const useCountdown = (targetDate: Date | null | undefined) => {
       const newTimeLeft = calculateTimeLeft(distance);
       setTimeLeft(newTimeLeft);
 
-      // 시간이 만료되면 타이머를 정리(clear)
-      if (newTimeLeft.isTimeUp) {
-        clearInterval(interval);
-      }
     }, 1000); // 1000ms = 1초
 
     // 컴포넌트 언마운트 시 또는 targetDate가 변경될 때 타이머 정리

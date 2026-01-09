@@ -38,15 +38,6 @@ const CustomTimer = ({ date }: { date: Date | null | undefined }) => {
   const { days, hours, minutes, seconds, isTimeUp } = useCountdown(date);
   const pointColor = useAtomValue(invitationEditorAtom.selectedPointColor);
 
-  // 시간이 만료되었을 때 표시할 내용
-  if (isTimeUp) {
-    return (
-      <div style={{ color: 'red', fontSize: '24px', fontWeight: 'bold' }}>
-        카운트다운 종료!
-      </div>
-    );
-  }
-
   // 시간이 남아있을 때 표시할 내용
   return (
     <Center flexDir="column">
@@ -69,7 +60,7 @@ const CustomTimer = ({ date }: { date: Date | null | undefined }) => {
         <Text color={pointColor} as="strong">
           {days}
         </Text>{' '}
-        days away
+        days {isTimeUp ? 'ago' : 'away'}
       </Text>
     </Center>
   );

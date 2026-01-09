@@ -13,61 +13,68 @@ const BackgroundMusic = ({ url }: MusicPlayerProps) => {
   const hasStarted = useRef(false);
 
   // 음악 재생 로직
-  const playMusic = () => {
-    if (!audioRef.current || hasStarted.current) return;
+  const playMusic = async () => {
+    if (!audioRef.current || hasStarted.current) return false;
 
-    hasStarted.current = true;
     audioRef.current.volume = 0;
 
-    audioRef.current
-      .play()
-      .then(() => {
-        setIsPlaying(true);
-        // 부드러운 페이드인
-        let vol = 0;
-        const fadeIn = setInterval(() => {
-          if (vol < 0.4) {
-            vol += 0.05;
-            if (audioRef.current) audioRef.current.volume = vol;
-          } else {
-            clearInterval(fadeIn);
-          }
-        }, 200);
-      })
-      .catch((err) => {
-        console.log('Autoplay blocked', err);
-        hasStarted.current = false;
-      });
+    try {
+      await audioRef.current.play();
+      hasStarted.current = true;
+      setIsPlaying(true);
+      // 부드러운 페이드인
+      let vol = 0;
+      const fadeIn = setInterval(() => {
+        if (vol < 0.4) {
+          vol += 0.05;
+          if (audioRef.current) audioRef.current.volume = vol;
+        } else {
+          clearInterval(fadeIn);
+        }
+      }, 200);
+      return true;
+    } catch (err) {
+      console.log('Autoplay blocked', err);
+      return false;
+    }
   };
 
   useEffect(() => {
-    const handleFirstAction = () => {
-      console.log('User interacted, attempting to play music');
-      playMusic();
-      window.removeEventListener('scroll', handleFirstAction);
+    const handleFirstAction = async () => {
+      const started = await playMusic();
+      if (!started) return;
       window.removeEventListener('click', handleFirstAction);
       window.removeEventListener('touchstart', handleFirstAction);
+      window.removeEventListener('pointerdown', handleFirstAction);
+      window.removeEventListener('keydown', handleFirstAction);
     };
 
-    window.addEventListener('scroll', handleFirstAction, { once: true });
-    window.addEventListener('click', handleFirstAction, { once: true });
-    window.addEventListener('touchstart', handleFirstAction, { once: true });
+    window.addEventListener('click', handleFirstAction);
+    window.addEventListener('touchstart', handleFirstAction);
+    window.addEventListener('pointerdown', handleFirstAction);
+    window.addEventListener('keydown', handleFirstAction);
 
     return () => {
-      window.removeEventListener('scroll', handleFirstAction);
       window.removeEventListener('click', handleFirstAction);
       window.removeEventListener('touchstart', handleFirstAction);
+      window.removeEventListener('pointerdown', handleFirstAction);
+      window.removeEventListener('keydown', handleFirstAction);
     };
   }, []);
 
-  const toggleMusic = () => {
+  const toggleMusic = async () => {
     if (!audioRef.current) return;
     if (isPlaying) {
       audioRef.current.pause();
+      setIsPlaying(false);
     } else {
-      audioRef.current.play();
+      try {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      } catch (err) {
+        console.log('Play blocked', err);
+      }
     }
-    setIsPlaying(!isPlaying);
   };
 
   return (
