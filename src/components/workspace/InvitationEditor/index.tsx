@@ -357,7 +357,7 @@ function InvitationEditor() {
         onOpenChange={(e) => setPreviewOpen(e.open)}
       >
         <Portal>
-          <Dialog.Backdrop />
+          <Dialog.Backdrop bg="blackAlpha.600" />
           <Dialog.Positioner style={{ padding: 0 }}>
             <Dialog.Content
               w="100vw"
@@ -366,7 +366,7 @@ function InvitationEditor() {
               maxH="100vh"
               borderRadius="0"
               overflow="hidden"
-              bg={previewBg}
+              bg="white"
             >
               {/* ✅ CloseButton을 헤더 왼쪽에, 아이콘은 오른쪽 (space-between) */}
               <Dialog.Header p={0}>
@@ -432,7 +432,6 @@ function InvitationEditor() {
                   </HStack>
                 </HStack>
               </Dialog.Header>
-
               <Dialog.Body p={0}>
                 <Box
                   h="calc(100vh - 72px)" // 헤더 높이 대략값
@@ -440,6 +439,7 @@ function InvitationEditor() {
                   className="hideScrollbar"
                   fontFamily={selectedFontFamily}
                   w="full"
+                  bg={previewBg}
                 >
                   <PreviewInvitation />
                 </Box>
