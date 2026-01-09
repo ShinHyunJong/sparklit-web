@@ -24,35 +24,28 @@ const Hero = () => {
       bg="gray.900"
       color="gray.50"
     >
-      {/* warm-gray gradient overlays */}
+      {/* ✅ Strong gradient overlays (clearly visible) */}
       <Box
         position="absolute"
         inset={0}
-        bgGradient="linear(to-r, gray.900, gray.800 55%, gray.700)"
-        opacity={0.85}
         pointerEvents="none"
-      />
-      <Box
-        position="absolute"
-        inset={0}
-        bgGradient="radial(circle at 25% 35%, gray.700, transparent 55%)"
-        opacity={0.35}
-        pointerEvents="none"
-      />
-      <Box
-        position="absolute"
-        inset={0}
-        bgGradient="radial(circle at 75% 55%, gray.600, transparent 60%)"
-        opacity={0.22}
-        pointerEvents="none"
+        zIndex={0}
+        // Multi-layer background for strong gradient effect
+        backgroundImage={`
+          radial-gradient(circle at 18% 28%, rgba(253,252,251,0.14), rgba(0,0,0,0) 42%),
+          radial-gradient(circle at 80% 45%, rgba(234,221,211,0.18), rgba(0,0,0,0) 46%),
+          radial-gradient(circle at 55% 85%, rgba(209,194,180,0.14), rgba(0,0,0,0) 52%),
+          linear-gradient(90deg, rgba(26,23,20,0.98) 0%, rgba(46,40,35,0.92) 45%, rgba(74,64,54,0.78) 100%)
+        `}
       />
 
-      {/* subtle diagonal texture (kept) */}
+      {/* ✅ Subtle diagonal texture (kept light so gradients show) */}
       <Box
         position="absolute"
         inset={0}
-        opacity={0.18}
+        opacity={0.08}
         pointerEvents="none"
+        zIndex={0}
         backgroundImage="linear-gradient(135deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.02) 45%, rgba(255,255,255,0.00) 70%)"
       />
 
@@ -119,18 +112,20 @@ const Hero = () => {
               matters. Elegant by default, effortless for guests.
             </Text>
 
-            {/* ✅ Buttons (only one) */}
+            {/* ✅ Single CTA button */}
             <HStack gap={3} pt={2} flexWrap="wrap">
               <Button
                 size="lg"
                 bg="gray.50"
                 color="gray.900"
                 _hover={{ bg: 'gray.100' }}
+                rightIcon={
+                  <Icon>
+                    <LuArrowRight />
+                  </Icon>
+                }
               >
                 View Sample
-                <Icon>
-                  <LuArrowRight />
-                </Icon>
               </Button>
             </HStack>
 
@@ -162,13 +157,12 @@ const Hero = () => {
             </HStack>
           </VStack>
 
-          {/* RIGHT VISUAL: stacked invitation previews */}
+          {/* RIGHT VISUAL: main invitation preview */}
           <Box
             flex="1"
             position="relative"
             minH={{ base: '420px', md: '520px' }}
           >
-            {/* Main big preview card */}
             <Box
               position="absolute"
               top={{ base: 10, md: 14 }}
@@ -183,25 +177,49 @@ const Hero = () => {
               bg="gray.800"
               boxShadow="2xl"
             >
-              {/* ✅ Use <img> instead of background-image */}
               <Image
                 src="/mainBg.jpg"
                 alt="Main background"
                 fill
+                priority
                 style={{
-                  position: 'absolute',
                   objectFit: 'cover',
-                  width: '100%',
-                  height: '100%',
                 }}
               />
-              {/* darken overlay for readability */}
+
+              {/* Darken overlay so text/UI would be readable if added */}
               <Box
                 position="absolute"
                 inset={0}
                 bgGradient="linear(to-t, gray.900, transparent 55%)"
                 opacity={0.8}
               />
+
+              {/* Optional bottom pill */}
+              <Box position="absolute" bottom={6} left={6} right={6}>
+                <HStack
+                  bg="gray.800"
+                  borderWidth="1px"
+                  borderColor="gray.700"
+                  borderRadius="full"
+                  px={4}
+                  py={2}
+                  w="fit-content"
+                  gap={2}
+                  opacity={0.95}
+                >
+                  <Box
+                    w="10px"
+                    h="10px"
+                    borderRadius="full"
+                    bg="gray.50"
+                    opacity={0.9}
+                  />
+                  <Text fontSize="sm" fontWeight="semibold" color="gray.50">
+                    Live invitation preview
+                  </Text>
+                </HStack>
+              </Box>
             </Box>
           </Box>
         </Flex>

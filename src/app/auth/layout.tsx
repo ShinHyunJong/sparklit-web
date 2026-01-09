@@ -15,7 +15,9 @@ export default async function AuthLayout({
         justifyContent="center"
       >
         <Box mb={8}>
-          <Heading fontSize="3xl">Sparklit</Heading>
+          <Heading fontFamily="barriecito" fontSize="3xl">
+            Sparklit
+          </Heading>
         </Box>
         {children}
       </Flex>

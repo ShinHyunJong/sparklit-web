@@ -87,7 +87,6 @@ function LoginPage() {
 
         <Button
           loading={loginLoading}
-          colorPalette="brand"
           mt={8}
           type="submit"
           alignSelf="flex-start"
