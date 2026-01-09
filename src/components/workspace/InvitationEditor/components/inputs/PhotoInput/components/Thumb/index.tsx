@@ -57,8 +57,8 @@ function Thumb({
           <SimpleGrid
             ref={provided.innerRef}
             {...provided.droppableProps}
-            columns={5}
-            gap={2}
+            columns={{ base: 2, sm: 3, md: 5 }}
+            gap={{ base: 2, md: 3 }}
           >
             {photoList.map((image, index) => (
               <Draggable

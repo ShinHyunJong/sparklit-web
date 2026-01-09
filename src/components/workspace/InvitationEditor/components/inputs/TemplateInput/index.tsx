@@ -89,14 +89,14 @@ function TemplateInput({
       borderBottomWidth={0}
     >
       <Accordion.ItemTrigger>
-        <Flex borderRadius="sm" p={4} w="full">
+        <Flex borderRadius="sm" p={{ base: 3, md: 4 }} w="full">
           <Text>Main Photo & Template</Text>
         </Flex>
         <Accordion.ItemIndicator bg="white" mr={4} />
       </Accordion.ItemTrigger>
       <Accordion.ItemContent>
-        <Accordion.ItemBody p={4}>
-          <Flex w="full" mb={4} direction="column" gap={4}>
+        <Accordion.ItemBody p={{ base: 3, md: 4 }}>
+          <Flex w="full" mb={{ base: 3, md: 4 }} direction="column" gap={4}>
             <Flex gap={2} overflowX="auto" w="full">
               {templateConfig.map((t) => {
                 return (
@@ -124,13 +124,13 @@ function TemplateInput({
                 );
               })}
             </Flex>
-            <Flex direction="column" mt={8}>
+            <Flex direction="column" mt={{ base: 4, md: 8 }}>
               <Text fontSize="sm" mb={2} color="gray.600">
                 Main Photo
               </Text>
-              <Flex gap={8}>
+              <Flex gap={{ base: 4, md: 8 }} direction={{ base: 'column', md: 'row' }}>
                 {mainPhoto && (
-                  <Box w="25%">
+                  <Box w={{ base: 'full', md: '25%' }}>
                     <Image
                       alt="mainImage"
                       w="full"

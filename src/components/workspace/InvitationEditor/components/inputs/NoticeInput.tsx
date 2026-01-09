@@ -84,7 +84,13 @@ function NoticeInput({ notice }: { notice: string | null }) {
       opacity={isVisible ? 1 : 0.6}
     >
       <Accordion.ItemTrigger>
-        <Flex borderRadius="sm" p={4} w="full" align="center" gap={3}>
+        <Flex
+          borderRadius="sm"
+          p={{ base: 3, md: 4 }}
+          w="full"
+          align="center"
+          gap={3}
+        >
           {/* 가시성 토글 스위치 */}
           <Switch.Root
             colorScheme="teal"
@@ -103,8 +109,8 @@ function NoticeInput({ notice }: { notice: string | null }) {
       </Accordion.ItemTrigger>
 
       <Accordion.ItemContent>
-        <Accordion.ItemBody p={4}>
-          <Flex w="full" mb={4} direction="column" gap={4}>
+        <Accordion.ItemBody p={{ base: 3, md: 4 }}>
+          <Flex w="full" mb={{ base: 3, md: 4 }} direction="column" gap={4}>
             <ReactQuill
               value={noticeContent}
               onChange={(content) => setNotice(content)}

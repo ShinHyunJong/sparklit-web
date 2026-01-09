@@ -1,4 +1,12 @@
-import { Accordion, Box, DataList, Flex, Input, Text } from '@chakra-ui/react';
+import {
+  Accordion,
+  Box,
+  DataList,
+  Flex,
+  Input,
+  Text,
+  useBreakpointValue,
+} from '@chakra-ui/react';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -25,6 +33,8 @@ function GreetingInput() {
   const { register, setValue } = useForm<GreetingForm>({
     defaultValues: { title: greetingTitle },
   });
+  const dataListOrientation =
+    useBreakpointValue({ base: 'vertical', md: 'horizontal' }) ?? 'horizontal';
 
   useEffect(() => {
     if (invitationDetail?.greetingTitle) {
@@ -72,18 +82,18 @@ function GreetingInput() {
       borderBottomWidth={0}
     >
       <Accordion.ItemTrigger>
-        <Flex borderRadius="sm" p={4} w="full">
+        <Flex borderRadius="sm" p={{ base: 3, md: 4 }} w="full">
           <Text>Greeting</Text>
         </Flex>
         <Accordion.ItemIndicator bg="white" mr={4} />
       </Accordion.ItemTrigger>
       <Accordion.ItemContent>
-        <Accordion.ItemBody p={4}>
-          <Flex w="full" mb={4} direction="column" gap={4}>
-            <DataList.Root orientation="horizontal">
+        <Accordion.ItemBody p={{ base: 3, md: 4 }}>
+          <Flex w="full" mb={{ base: 3, md: 4 }} direction="column" gap={4}>
+            <DataList.Root orientation={dataListOrientation}>
               <DataList.Item>
                 <DataList.ItemLabel>Title</DataList.ItemLabel>
-                <DataList.ItemValue>
+                <DataList.ItemValue w="full">
                   <Input
                     {...register('title')}
                     value={greetingTitle}
@@ -91,15 +101,16 @@ function GreetingInput() {
                     onChange={(e) => setGreetingTitle(e.target.value)}
                     onBlur={updateGreeting}
                     size="sm"
+                    w="full"
                   ></Input>
                 </DataList.ItemValue>
               </DataList.Item>
             </DataList.Root>
-            <DataList.Root orientation="horizontal">
+            <DataList.Root orientation={dataListOrientation}>
               <DataList.Item>
                 <DataList.ItemLabel>Content</DataList.ItemLabel>
-                <DataList.ItemValue>
-                  <Box>
+                <DataList.ItemValue w="full">
+                  <Box w="full">
                     <ReactQuill
                       value={greetingContent}
                       onChange={onChange}

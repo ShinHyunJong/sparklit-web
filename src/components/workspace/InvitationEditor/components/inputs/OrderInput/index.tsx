@@ -54,13 +54,13 @@ function OrderInput({ layoutOrder }: { layoutOrder: string | null }) {
       borderBottomWidth={0}
     >
       <Accordion.ItemTrigger>
-        <Flex borderRadius="sm" p={4} w="full">
+        <Flex borderRadius="sm" p={{ base: 3, md: 4 }} w="full">
           <Text>Order</Text>
         </Flex>
         <Accordion.ItemIndicator bg="white" mr={4} />
       </Accordion.ItemTrigger>
       <Accordion.ItemContent>
-        <Accordion.ItemBody p={4}>
+        <Accordion.ItemBody p={{ base: 3, md: 4 }}>
           <Flex direction="column" gap={4}>
             <DragDropContext onDragEnd={handleDragEnd}>
               <Droppable droppableId="photo-list" direction="vertical">

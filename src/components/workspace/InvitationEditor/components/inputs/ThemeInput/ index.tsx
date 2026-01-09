@@ -7,6 +7,7 @@ import {
   Menu, // Menu 네임스페이스 사용
   Portal,
   Text,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
@@ -58,6 +59,8 @@ function ThemeInput({
 
   const currentFontLabel =
     fontOptions.find((f) => f.value === selectedFont)?.name || 'Select Font';
+  const dataListOrientation =
+    useBreakpointValue({ base: 'vertical', md: 'horizontal' }) ?? 'horizontal';
   return (
     <Accordion.Item
       value="theme"
@@ -66,21 +69,21 @@ function ThemeInput({
       borderBottomWidth={0}
     >
       <Accordion.ItemTrigger borderBottomWidth={1}>
-        <Flex borderRadius="sm" p={4} w="full">
+        <Flex borderRadius="sm" p={{ base: 3, md: 4 }} w="full">
           <Text>Theme</Text>
         </Flex>
         <Accordion.ItemIndicator bg="white" mr={4} />
       </Accordion.ItemTrigger>
 
       <Accordion.ItemContent>
-        <Accordion.ItemBody p={4}>
-          <Flex w="full" mb={4} direction="column" gap={6}>
+        <Accordion.ItemBody p={{ base: 3, md: 4 }}>
+          <Flex w="full" mb={{ base: 3, md: 4 }} direction="column" gap={6}>
             {/* 1. Background Color */}
-            <DataList.Root orientation="horizontal">
+            <DataList.Root orientation={dataListOrientation}>
               <DataList.Item>
                 <DataList.ItemLabel>Background</DataList.ItemLabel>
-                <DataList.ItemValue>
-                  <Flex gap={2}>
+                <DataList.ItemValue w="full">
+                  <Flex gap={2} wrap="wrap">
                     {bgColorConfig.map((c) => (
                       <Circle
                         role="button"
@@ -102,11 +105,11 @@ function ThemeInput({
             </DataList.Root>
 
             {/* 2. Accent Color */}
-            <DataList.Root orientation="horizontal">
+            <DataList.Root orientation={dataListOrientation}>
               <DataList.Item>
                 <DataList.ItemLabel>Accent</DataList.ItemLabel>
-                <DataList.ItemValue>
-                  <Flex gap={2}>
+                <DataList.ItemValue w="full">
+                  <Flex gap={2} wrap="wrap">
                     {pointColorConfig.map((c) => (
                       <Circle
                         key={`accent-color-${c.viewColor}`}
@@ -128,10 +131,10 @@ function ThemeInput({
             </DataList.Root>
 
             {/* 3. Font Selection - Portal 기반 구조 적용 */}
-            <DataList.Root orientation="horizontal">
+            <DataList.Root orientation={dataListOrientation}>
               <DataList.Item>
                 <DataList.ItemLabel>Font Style</DataList.ItemLabel>
-                <DataList.ItemValue>
+                <DataList.ItemValue w="full">
                   <Menu.Root>
                     <Menu.Trigger asChild>
                       <Button

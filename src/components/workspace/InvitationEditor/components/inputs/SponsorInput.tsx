@@ -5,6 +5,7 @@ import {
   Switch,
   Text,
   Textarea,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
 import { useSearchParams } from 'next/navigation';
@@ -52,6 +53,8 @@ function SponsorInput({
   const { register, setValue } = useForm<SponsorForm>({
     defaultValues: { primary: primarySponsor, secondary: secondarySponsor },
   });
+  const dataListOrientation =
+    useBreakpointValue({ base: 'vertical', md: 'horizontal' }) ?? 'horizontal';
 
   useEffect(() => {
     if (primary) {
@@ -92,7 +95,13 @@ function SponsorInput({
       opacity={isVisible ? 1 : 0.6} // 비활성화 시 흐리게 표시
     >
       <Accordion.ItemTrigger>
-        <Flex borderRadius="sm" p={4} w="full" align="center" gap={3}>
+        <Flex
+          borderRadius="sm"
+          p={{ base: 3, md: 4 }}
+          w="full"
+          align="center"
+          gap={3}
+        >
           {/* 가시성 토글 스위치 */}
           <Switch.Root
             colorScheme="teal"
@@ -113,12 +122,12 @@ function SponsorInput({
       </Accordion.ItemTrigger>
 
       <Accordion.ItemContent>
-        <Accordion.ItemBody p={4}>
-          <Flex w="full" mb={4} direction="column" gap={4}>
-            <DataList.Root orientation="horizontal">
+        <Accordion.ItemBody p={{ base: 3, md: 4 }}>
+          <Flex w="full" mb={{ base: 3, md: 4 }} direction="column" gap={4}>
+            <DataList.Root orientation={dataListOrientation}>
               <DataList.Item>
                 <DataList.ItemLabel>Principal</DataList.ItemLabel>
-                <DataList.ItemValue>
+                <DataList.ItemValue w="full">
                   <Textarea
                     {...register('primary')}
                     value={primarySponsor}
@@ -126,15 +135,16 @@ function SponsorInput({
                     onChange={(e) => setPrimarySponsor(e.target.value)}
                     onBlur={(e) => onBlurPrimary(e.target.value)}
                     size="sm"
+                    w="full"
                   />
                 </DataList.ItemValue>
               </DataList.Item>
             </DataList.Root>
 
-            <DataList.Root orientation="horizontal">
+            <DataList.Root orientation={dataListOrientation}>
               <DataList.Item>
                 <DataList.ItemLabel>Secondary</DataList.ItemLabel>
-                <DataList.ItemValue>
+                <DataList.ItemValue w="full">
                   <Textarea
                     {...register('secondary')}
                     value={secondarySponsor}
@@ -142,6 +152,7 @@ function SponsorInput({
                     onChange={(e) => setSecondarySponsor(e.target.value)}
                     onBlur={(e) => onBlurSecondary(e.target.value)}
                     size="sm"
+                    w="full"
                   />
                 </DataList.ItemValue>
               </DataList.Item>

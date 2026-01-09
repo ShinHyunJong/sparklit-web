@@ -50,24 +50,24 @@ function PhotoInput({ photoList }: { photoList: InvitationPhoto[] }) {
         borderBottomWidth={0}
       >
         <Accordion.ItemTrigger>
-          <Flex borderRadius="sm" p={4} w="full">
+          <Flex borderRadius="sm" p={{ base: 3, md: 4 }} w="full">
             <Text>Gallery</Text>
           </Flex>
           <Accordion.ItemIndicator bg="white" mr={4} />
         </Accordion.ItemTrigger>
 
         <Accordion.ItemContent>
-          <Accordion.ItemBody p={4}>
+          <Accordion.ItemBody p={{ base: 3, md: 4 }}>
             <Text
               display={{ base: 'block' }}
               fontSize="sm"
               color="gray.400"
-              mb={4}
+              mb={{ base: 3, md: 4 }}
               textAlign="center"
             >
               ← Swipe left or right to edit next →
             </Text>
-            <Flex w="full" mb={4}>
+            <Flex w="full" mb={{ base: 3, md: 4 }}>
               <MainPhoto
                 photoList={renderingPhotoList}
                 setIsThumb={setIsThumb}

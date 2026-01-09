@@ -36,14 +36,18 @@ function PersonalInput({
       bg="white"
     >
       <Accordion.ItemTrigger borderBottomWidth={1}>
-        <Flex borderRadius="sm" p={4} w="full">
+        <Flex borderRadius="sm" p={{ base: 3, md: 4 }} w="full">
           <Text>Personal Information</Text>
         </Flex>
         <Accordion.ItemIndicator bg="white" mr={4} />
       </Accordion.ItemTrigger>
       <Accordion.ItemContent>
         <Accordion.ItemBody>
-          <Flex p={4} flexDirection="column" gap={4}>
+          <Flex
+            p={{ base: 3, md: 4 }}
+            flexDirection="column"
+            gap={{ base: 3, md: 4 }}
+          >
             <GroomInput
               lastName={groomLastName}
               firstName={groomFirstName}

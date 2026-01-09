@@ -5,6 +5,7 @@ import {
   Switch,
   Text,
   Textarea,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
 import { useSearchParams } from 'next/navigation';
@@ -64,6 +65,8 @@ function EntourageInput({
       bridesMaids: bmDs,
     },
   });
+  const dataListOrientation =
+    useBreakpointValue({ base: 'vertical', md: 'horizontal' }) ?? 'horizontal';
 
   useEffect(() => {
     if (bestMan) {
@@ -124,7 +127,13 @@ function EntourageInput({
       opacity={isVisible ? 1 : 0.6}
     >
       <Accordion.ItemTrigger>
-        <Flex borderRadius="sm" p={4} w="full" align="center" gap={3}>
+        <Flex
+          borderRadius="sm"
+          p={{ base: 3, md: 4 }}
+          w="full"
+          align="center"
+          gap={3}
+        >
           {/* 가시성 토글 스위치 */}
           <Switch.Root
             colorScheme="teal"
@@ -144,13 +153,16 @@ function EntourageInput({
       </Accordion.ItemTrigger>
 
       <Accordion.ItemContent>
-        <Accordion.ItemBody p={4}>
-          <Flex w="full" mb={4} direction="column" gap={4}>
+        <Accordion.ItemBody p={{ base: 3, md: 4 }}>
+          <Flex w="full" mb={{ base: 3, md: 4 }} direction="column" gap={4}>
             {fields.map((field) => (
-              <DataList.Root orientation="horizontal" key={field.reg}>
+              <DataList.Root
+                orientation={dataListOrientation}
+                key={field.reg}
+              >
                 <DataList.Item>
                   <DataList.ItemLabel>{field.label}</DataList.ItemLabel>
-                  <DataList.ItemValue>
+                  <DataList.ItemValue w="full">
                     <Textarea
                       {...register(field.reg as any)}
                       value={field.value}
@@ -158,6 +170,7 @@ function EntourageInput({
                       onChange={(e) => field.setter(e.target.value)}
                       onBlur={handleUpdate}
                       size="sm"
+                      w="full"
                     />
                   </DataList.ItemValue>
                 </DataList.Item>

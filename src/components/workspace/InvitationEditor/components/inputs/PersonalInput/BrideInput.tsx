@@ -64,7 +64,11 @@ function BrideInput({
   }, [lastName, firstName, middleName, momName, dadName]);
 
   return (
-    <SimpleGrid columns={4} gap={4} gridTemplateColumns="0.5fr 2fr 2fr 2fr">
+    <SimpleGrid
+      columns={{ base: 1, md: 4 }}
+      gap={{ base: 3, md: 4 }}
+      gridTemplateColumns={{ base: '1fr', md: '0.5fr 2fr 2fr 2fr' }}
+    >
       <GridItem>
         <Flex h="full" alignItems="center">
           <Text color="gray.500" fontSize="sm">
@@ -160,7 +164,7 @@ function BrideInput({
           </Text>
         </Flex>
       </GridItem>
-      <GridItem colSpan={3}>
+      <GridItem colSpan={{ base: 1, md: 3 }}>
         <Field.Root>
           <Controller
             control={control}
@@ -188,7 +192,7 @@ function BrideInput({
           </Text>
         </Flex>
       </GridItem>
-      <GridItem colSpan={3}>
+      <GridItem colSpan={{ base: 1, md: 3 }}>
         <Field.Root>
           <Controller
             control={control}

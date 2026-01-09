@@ -11,6 +11,7 @@ import {
   SimpleGrid,
   Text,
   Textarea,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
 import { useSearchParams } from 'next/navigation';
@@ -54,6 +55,8 @@ function DressCodeInput() {
   const { register, handleSubmit, setValue } = useForm<DressCodeForm>({
     defaultValues: { gentleman: dressCodeGentleman, lady: dressCodeLady },
   });
+  const dataListOrientation =
+    useBreakpointValue({ base: 'vertical', md: 'horizontal' }) ?? 'horizontal';
 
   useEffect(() => {
     if (invitationDetail?.dressCodeGentleman) {
@@ -122,15 +125,15 @@ function DressCodeInput() {
       borderBottomWidth={0}
     >
       <Accordion.ItemTrigger>
-        <Flex borderRadius="sm" p={4} w="full">
+        <Flex borderRadius="sm" p={{ base: 3, md: 4 }} w="full">
           <Text>Dress Code</Text>
         </Flex>
         <Accordion.ItemIndicator bg="white" mr={4} />
       </Accordion.ItemTrigger>
       <Accordion.ItemContent>
-        <Accordion.ItemBody p={4}>
-          <Flex w="full" mb={4} direction="column" gap={4}>
-            <SimpleGrid columns={3} gap={4}>
+        <Accordion.ItemBody p={{ base: 3, md: 4 }}>
+          <Flex w="full" mb={{ base: 3, md: 4 }} direction="column" gap={4}>
+            <SimpleGrid columns={{ base: 1, md: 3 }} gap={4}>
               <GridItem>
                 <ColorPicker.Root
                   value={mainColor || ''}
@@ -207,10 +210,10 @@ function DressCodeInput() {
                 </ColorPicker.Root>
               </GridItem>
             </SimpleGrid>
-            <DataList.Root orientation="horizontal">
+            <DataList.Root orientation={dataListOrientation}>
               <DataList.Item>
                 <DataList.ItemLabel>Gentlemen</DataList.ItemLabel>
-                <DataList.ItemValue>
+                <DataList.ItemValue w="full">
                   <Textarea
                     {...register('gentleman')}
                     value={dressCodeGentleman}
@@ -218,14 +221,15 @@ function DressCodeInput() {
                     onChange={(e) => setDressCodeGentleman(e.target.value)}
                     onBlur={(e) => onBlurGentleman(e.target.value)}
                     size="sm"
+                    w="full"
                   ></Textarea>
                 </DataList.ItemValue>
               </DataList.Item>
             </DataList.Root>
-            <DataList.Root orientation="horizontal">
+            <DataList.Root orientation={dataListOrientation}>
               <DataList.Item>
                 <DataList.ItemLabel>Ladies</DataList.ItemLabel>
-                <DataList.ItemValue>
+                <DataList.ItemValue w="full">
                   <Textarea
                     {...register('lady')}
                     value={dressCodeLady}
@@ -233,6 +237,7 @@ function DressCodeInput() {
                     onChange={(e) => setDressCodeLady(e.target.value)}
                     onBlur={(e) => onBlurLady(e.target.value)}
                     size="sm"
+                    w="full"
                   ></Textarea>
                 </DataList.ItemValue>
               </DataList.Item>

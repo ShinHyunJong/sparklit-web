@@ -112,13 +112,13 @@ function MusicInput({
       borderBottomWidth={0}
     >
       <Accordion.ItemTrigger>
-        <Flex borderRadius="sm" p={4} w="full">
+        <Flex borderRadius="sm" p={{ base: 3, md: 4 }} w="full">
           <Text>Music</Text>
         </Flex>
         <Accordion.ItemIndicator bg="white" mr={4} />
       </Accordion.ItemTrigger>
       <Accordion.ItemContent>
-        <Accordion.ItemBody p={4}>
+        <Accordion.ItemBody p={{ base: 3, md: 4 }}>
           <audio
             controls
             style={{ display: 'none' }}

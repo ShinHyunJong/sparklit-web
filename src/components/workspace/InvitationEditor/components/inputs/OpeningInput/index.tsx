@@ -11,13 +11,13 @@ function OpeningInput() {
       borderBottomWidth={0}
     >
       <Accordion.ItemTrigger>
-        <Flex borderRadius="sm" p={4} w="full">
+        <Flex borderRadius="sm" p={{ base: 3, md: 4 }} w="full">
           Opening Video
         </Flex>
         <Accordion.ItemIndicator bg="white" mr={4} />
       </Accordion.ItemTrigger>
       <Accordion.ItemContent>
-        <Accordion.ItemBody>
+        <Accordion.ItemBody p={{ base: 3, md: 4 }}>
           <Input
             id="photo-upload"
             multiple

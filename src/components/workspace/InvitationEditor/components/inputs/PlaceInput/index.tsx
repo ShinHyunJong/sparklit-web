@@ -30,26 +30,29 @@ function PlaceInput({ placeList }: { placeList: InvitationPlace[] }) {
       bg="white"
     >
       <Accordion.ItemTrigger borderBottomWidth={1}>
-        <Flex borderRadius="sm" p={4} w="full">
+        <Flex borderRadius="sm" p={{ base: 3, md: 4 }} w="full">
           <Text>Location & Time</Text>
         </Flex>
         <Accordion.ItemIndicator bg="white" mr={4} />
       </Accordion.ItemTrigger>
       <Accordion.ItemContent>
-        <Accordion.ItemBody p={4}>
-          <PlaceSearch postPlace={postPlace} />
-          <Timeline.Root>
-            {placeList.map((p, i) => {
-              return <PlaceItem p={p} i={i} key={`place-${p.id}`}></PlaceItem>;
-            })}
-          </Timeline.Root>
-          {isPending && (
-            <Flex>
-              <Spinner></Spinner>
-            </Flex>
-          )}
+        <Accordion.ItemBody p={{ base: 3, md: 4 }}>
+          <Flex direction="column" gap={{ base: 3, md: 4 }}>
+            <PlaceSearch postPlace={postPlace} />
+            <Timeline.Root>
+              {placeList.map((p, i) => {
+                return (
+                  <PlaceItem p={p} i={i} key={`place-${p.id}`}></PlaceItem>
+                );
+              })}
+            </Timeline.Root>
+            {isPending && (
+              <Flex justifyContent="center">
+                <Spinner></Spinner>
+              </Flex>
+            )}
 
-          {/* <SimpleGrid columns={2} templateColumns="1fr 3fr" gap={4}>
+            {/* <SimpleGrid columns={2} templateColumns="1fr 3fr" gap={4}>
             <GridItem>
               <Flex h="full" alignItems="center">
                 <Text fontSize="sm" color="gray.500">
@@ -67,11 +70,12 @@ function PlaceInput({ placeList }: { placeList: InvitationPlace[] }) {
               </Flex>
             </GridItem>
           </SimpleGrid> */}
-          <Separator my={4}></Separator>
-          <Flex justifyContent="center">
-            <Button onClick={() => setInvitationPlaceDialogOpen(true)}>
-              Add Place
-            </Button>
+            <Separator my={{ base: 3, md: 4 }}></Separator>
+            <Flex justifyContent="center">
+              <Button onClick={() => setInvitationPlaceDialogOpen(true)}>
+                Add Place
+              </Button>
+            </Flex>
           </Flex>
         </Accordion.ItemBody>
       </Accordion.ItemContent>

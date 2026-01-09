@@ -43,7 +43,7 @@ function MainPhoto({
                   onClick={() => handleImageSelect(image)}
                 >
                   <Image
-                    w="40%"
+                    w={{ base: '70%', md: '40%' }}
                     objectFit="cover"
                     alt="firstUploadingImage"
                     src={`${S3_BUCKET_URL}${image.croppedKey}`}

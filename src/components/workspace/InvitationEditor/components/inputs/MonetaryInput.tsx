@@ -6,6 +6,7 @@ import {
   Switch,
   Text,
   Textarea,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
 import { useSearchParams } from 'next/navigation';
@@ -58,6 +59,8 @@ function MonetaryInput({
       wishlistUrl: initialWishlistUrl || '',
     },
   });
+  const dataListOrientation =
+    useBreakpointValue({ base: 'vertical', md: 'horizontal' }) ?? 'horizontal';
 
   useEffect(() => {
     if (initialBankAccount) {
@@ -100,7 +103,13 @@ function MonetaryInput({
       opacity={isVisible ? 1 : 0.6}
     >
       <Accordion.ItemTrigger>
-        <Flex borderRadius="sm" p={4} w="full" align="center" gap={3}>
+        <Flex
+          borderRadius="sm"
+          p={{ base: 3, md: 4 }}
+          w="full"
+          align="center"
+          gap={3}
+        >
           {/* 가시성 토글 스위치 */}
           <Switch.Root
             colorScheme="teal"
@@ -122,12 +131,12 @@ function MonetaryInput({
       </Accordion.ItemTrigger>
 
       <Accordion.ItemContent>
-        <Accordion.ItemBody p={4}>
-          <Flex w="full" direction="column" gap={6}>
-            <DataList.Root orientation="horizontal">
+        <Accordion.ItemBody p={{ base: 3, md: 4 }}>
+          <Flex w="full" direction="column" gap={{ base: 4, md: 6 }}>
+            <DataList.Root orientation={dataListOrientation}>
               <DataList.Item>
                 <DataList.ItemLabel pt={2}>Bank Account</DataList.ItemLabel>
-                <DataList.ItemValue>
+                <DataList.ItemValue w="full">
                   <Textarea
                     {...register('bankAccount')}
                     value={bankAccount}
@@ -136,15 +145,16 @@ function MonetaryInput({
                     onChange={(e) => setBankAccount(e.target.value)}
                     onBlur={handleSave}
                     size="sm"
+                    w="full"
                   />
                 </DataList.ItemValue>
               </DataList.Item>
             </DataList.Root>
 
-            <DataList.Root orientation="horizontal">
+            <DataList.Root orientation={dataListOrientation}>
               <DataList.Item>
                 <DataList.ItemLabel>Wishlist</DataList.ItemLabel>
-                <DataList.ItemValue>
+                <DataList.ItemValue w="full">
                   <Input
                     {...register('wishlistUrl')}
                     value={wishlistUrl}
@@ -153,6 +163,7 @@ function MonetaryInput({
                     onChange={(e) => setWishlistUrl(e.target.value)}
                     onBlur={handleSave}
                     size="sm"
+                    w="full"
                   />
                 </DataList.ItemValue>
               </DataList.Item>

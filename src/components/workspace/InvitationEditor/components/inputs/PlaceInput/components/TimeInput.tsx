@@ -120,16 +120,27 @@ function TimeInput({
   };
 
   return (
-    <Flex gap={3}>
-      <DataList.Root>
+    <Flex
+      gap={{ base: 3, md: 4 }}
+      direction={{ base: 'column', md: 'row' }}
+      align={{ base: 'stretch', md: 'center' }}
+      w="full"
+    >
+      <DataList.Root orientation="vertical">
         <DataList.Item>
-          <DataList.ItemLabel>Time</DataList.ItemLabel>
-          <DataList.ItemValue>
-            <Flex gap={1} alignItems="center">
+          <DataList.ItemLabel
+            w="max-content"
+            minW="max-content"
+            flexShrink={0}
+          >
+            Time
+          </DataList.ItemLabel>
+          <DataList.ItemValue w="full">
+            <Flex gap={1} alignItems="center" flexWrap="wrap">
               <Menu.Root>
                 <Menu.Trigger asChild>
                   <Button variant="subtle" size="sm">
-                    {selectedHour || t('hour')}
+                    {selectedHour}
                   </Button>
                 </Menu.Trigger>
                 <Portal>
@@ -203,7 +214,7 @@ function TimeInput({
           </DataList.ItemValue>
         </DataList.Item>
       </DataList.Root>
-      <DataList.Root>
+      <DataList.Root orientation="vertical" flex="1" minW={0}>
         <DataList.Item>
           <DataList.ItemLabel>Event Name</DataList.ItemLabel>
           <Input
@@ -212,10 +223,11 @@ function TimeInput({
             variant="subtle"
             color="gray.900"
             onBlur={() => onNameBlur(getValues('name'))}
+            w="full"
           ></Input>
         </DataList.Item>
       </DataList.Root>
-      <DataList.Root>
+      <DataList.Root orientation="vertical" flex="1" minW={0}>
         <DataList.Item>
           <DataList.ItemLabel>Description</DataList.ItemLabel>
           <Input
@@ -223,10 +235,14 @@ function TimeInput({
             {...register('description')}
             variant="subtle"
             onBlur={() => onDescriptionBlur(getValues('description'))}
+            w="full"
           ></Input>
         </DataList.Item>
       </DataList.Root>
-      <Flex alignItems="center">
+      <Flex
+        alignItems="center"
+        justifyContent={{ base: 'flex-end', md: 'center' }}
+      >
         {isDeleting ? (
           <Spinner></Spinner>
         ) : (

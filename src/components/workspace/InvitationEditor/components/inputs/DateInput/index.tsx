@@ -1,4 +1,11 @@
-import { Accordion, DataList, Flex, Input, Text } from '@chakra-ui/react';
+import {
+  Accordion,
+  DataList,
+  Flex,
+  Input,
+  Text,
+  useBreakpointValue,
+} from '@chakra-ui/react';
 import { format, isValid, parse } from 'date-fns';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
@@ -15,6 +22,8 @@ type FormValues = {
 
 function DateInput({ date }: { date?: Date | null }) {
   const { onClickSave } = useSaveInvitation();
+  const dataListOrientation =
+    useBreakpointValue({ base: 'vertical', md: 'horizontal' }) ?? 'horizontal';
 
   const [selectedDate, setSelectedDate] = useAtom(
     invitationEditorAtom.selectedDate,
@@ -70,20 +79,31 @@ function DateInput({ date }: { date?: Date | null }) {
       bg="white"
     >
       <Accordion.ItemTrigger borderBottomWidth={1}>
-        <Flex borderRadius="sm" p={4} w="full">
+        <Flex borderRadius="sm" p={{ base: 3, md: 4 }} w="full">
           <Text>Date</Text>
         </Flex>
         <Accordion.ItemIndicator bg="white" mr={4} />
       </Accordion.ItemTrigger>
       <Accordion.ItemContent>
         <Accordion.ItemBody>
-          <Flex p={4} flexDirection="column" gap={4}>
-            <DataList.Root orientation="horizontal">
+          <Flex
+            p={{ base: 3, md: 4 }}
+            flexDirection="column"
+            gap={{ base: 3, md: 4 }}
+          >
+            <DataList.Root orientation={dataListOrientation}>
               <DataList.Item>
                 <DataList.ItemLabel>Date</DataList.ItemLabel>
-                <DataList.ItemValue>
-                  <Flex direction="column" gapY={4}>
-                    <Flex p={4} bg="gray.100" borderRadius="sm">
+                <DataList.ItemValue w="full">
+                  <Flex direction="column" gapY={{ base: 3, md: 4 }}>
+                    <Flex
+                      p={{ base: 3, md: 4 }}
+                      bg="gray.100"
+                      borderRadius="sm"
+                      w="full"
+                      overflowX="auto"
+                      justifyContent={{ base: 'center', md: 'flex-start' }}
+                    >
                       <DayPicker
                         month={month}
                         onMonthChange={setMonth}

@@ -92,18 +92,18 @@ function EndingInput({
       borderBottomWidth={0}
     >
       <Accordion.ItemTrigger>
-        <Flex borderRadius="sm" p={4} w="full">
+        <Flex borderRadius="sm" p={{ base: 3, md: 4 }} w="full">
           <Text>Closing Photo</Text>
         </Flex>
         <Accordion.ItemIndicator bg="white" mr={4} />
       </Accordion.ItemTrigger>
       <Accordion.ItemContent>
-        <Accordion.ItemBody p={4}>
-          <Flex w="full" mb={4} direction="column" gap={4}>
+        <Accordion.ItemBody p={{ base: 3, md: 4 }}>
+          <Flex w="full" mb={{ base: 3, md: 4 }} direction="column" gap={4}>
             <Flex direction="column">
-              <Flex gap={8}>
+              <Flex gap={{ base: 4, md: 8 }} direction={{ base: 'column', md: 'row' }}>
                 {endPhoto && (
-                  <Box w="25%">
+                  <Box w={{ base: 'full', md: '25%' }}>
                     <Image
                       alt="endImage"
                       w="full"
@@ -161,7 +161,7 @@ function EndingInput({
                 </label>
               </Flex>
             </Flex>
-            <Flex w="full" mb={4} direction="column" gap={4}>
+            <Flex w="full" mb={{ base: 3, md: 4 }} direction="column" gap={4}>
               <ReactQuill
                 value={endingText}
                 onChange={onChange}
