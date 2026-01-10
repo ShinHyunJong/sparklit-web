@@ -26,8 +26,8 @@ import { LuArrowLeft, LuLink, LuWifi } from 'react-icons/lu';
 import invitationEditorAtom from '@/atoms/invitationEditor';
 import { toaster } from '@/components/ui/toaster';
 import { layoutConstants } from '@/constants/layout';
-import { triggerInvitationRevalidate } from '@/lib/revalidateInvitation';
 import { useInvitationDetail } from '@/hooks/invitation';
+import { triggerInvitationRevalidate } from '@/lib/revalidateInvitation';
 
 import DateInput from './components/inputs/DateInput';
 import DressCodeInput from './components/inputs/DressCodeInput';
@@ -205,6 +205,11 @@ function InvitationEditor() {
               fontFamily={invitationDetail.baseFont}
             />
             <DateInput date={invitationDetail.date} />
+            <MusicInput
+              musicKey={invitationDetail.musicKey}
+              musicFileKey={invitationDetail.musicFileKey}
+              musicFilename={invitationDetail.musicFilename}
+            />
             <PlaceInput placeList={invitationDetail.placeList} />
             <PersonalInput
               brideLastName={invitationDetail.brideLastName}
@@ -249,11 +254,6 @@ function InvitationEditor() {
               endPhoto={invitationDetail.invitationCoverPhotoList?.find(
                 (photo) => photo.type === 'end',
               )}
-            />
-            <MusicInput
-              musicKey={invitationDetail.musicKey}
-              musicFileKey={invitationDetail.musicFileKey}
-              musicFilename={invitationDetail.musicFilename}
             />
           </Stack>
         </Accordion.Root>

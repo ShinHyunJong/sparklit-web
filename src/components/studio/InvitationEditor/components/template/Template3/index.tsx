@@ -28,17 +28,25 @@ function Template3({
   pointColor: string | null;
 }) {
   const brideFirstName = useAtomValue(invitationEditorAtom.brideFirstName);
+  const brideMiddleName = useAtomValue(invitationEditorAtom.brideMiddleName);
+  const brideLastName = useAtomValue(invitationEditorAtom.brideLastName);
   const groomFirstName = useAtomValue(invitationEditorAtom.groomFirstName);
+  const groomMiddleName = useAtomValue(invitationEditorAtom.groomMiddleName);
+  const groomLastName = useAtomValue(invitationEditorAtom.groomLastName);
   return (
     <Flex w="full" h="full" direction="column" pt={16} pb={32}>
       <Center mb={8}>
         <Flex direction="column" alignItems="center" gap={4}>
           <Flex alignItems="center" gap={3}>
-            <Heading>{groomFirstName}</Heading>
+            <Heading>
+              {groomFirstName} {groomMiddleName} {groomLastName}
+            </Heading>
             <Heading color={pointColor} fontSize="md">
               <FaHeart></FaHeart>
             </Heading>
-            <Heading>{brideFirstName}</Heading>
+            <Heading>
+              {brideFirstName} {brideMiddleName} {brideLastName}
+            </Heading>
           </Flex>
           <Flex>
             <Text color="gray.800">

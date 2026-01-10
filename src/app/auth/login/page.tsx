@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { toaster } from '@/components/ui/toaster';
 import { useUpdateUser } from '@/hooks/auth';
 import { loginApi } from '@/hooks/auth/api';
 
@@ -47,6 +48,10 @@ function LoginPage() {
     } catch (error) {
       setLoginLoading(false);
       console.error('Login failed:', error);
+      toaster.create({
+        title: 'Login failed. Please check your email, password and try again.',
+        type: 'error',
+      });
     }
   };
 

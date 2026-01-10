@@ -19,7 +19,11 @@ function Template2({
   firstTime: InvitationPlaceTime | null;
 }) {
   const brideFirstName = useAtomValue(invitationEditorAtom.brideFirstName);
+  const brideMiddleName = useAtomValue(invitationEditorAtom.brideMiddleName);
+  const brideLastName = useAtomValue(invitationEditorAtom.brideLastName);
   const groomFirstName = useAtomValue(invitationEditorAtom.groomFirstName);
+  const groomMiddleName = useAtomValue(invitationEditorAtom.groomMiddleName);
+  const groomLastName = useAtomValue(invitationEditorAtom.groomLastName);
 
   return (
     <Flex w="full" h="full" direction="column" pt={16} pb={32}>
@@ -27,7 +31,8 @@ function Template2({
         <Flex direction="column" alignItems="center" gap={4}>
           <Text fontFamily="crimsonPro">THE NEW BEGINNING</Text>
           <Heading>
-            {groomFirstName} & {brideFirstName}
+            {groomFirstName} {groomMiddleName} {groomLastName} &{' '}
+            {brideFirstName} {brideMiddleName} {brideLastName}
           </Heading>
         </Flex>
       </Center>

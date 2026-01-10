@@ -159,7 +159,7 @@ function GroomInput({
       <GridItem>
         <Flex h="full" alignItems="center">
           <Text color="gray.500" fontSize="sm">
-            Mom
+            Mother
           </Text>
         </Flex>
       </GridItem>
@@ -182,12 +182,15 @@ function GroomInput({
               />
             )}
           ></Controller>
+          <Field.HelperText color="gray.400" fontSize="xs">
+            Leave this blank if you prefer not to mention it.
+          </Field.HelperText>
         </Field.Root>
       </GridItem>
       <GridItem>
         <Flex h="full" alignItems="center">
           <Text color="gray.500" fontSize="sm">
-            Dad
+            Father
           </Text>
         </Flex>
       </GridItem>
@@ -210,6 +213,9 @@ function GroomInput({
               />
             )}
           ></Controller>
+          <Field.HelperText color="gray.400" fontSize="xs">
+            Leave this blank if you prefer not to mention it.
+          </Field.HelperText>
         </Field.Root>
       </GridItem>
     </SimpleGrid>

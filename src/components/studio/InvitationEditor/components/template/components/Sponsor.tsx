@@ -29,7 +29,7 @@ function Sponsor() {
               </Text>
             </Center>
             <Center>
-              <Text color="gray.600" whiteSpace="pre-line">
+              <Text textAlign="center" color="gray.600" whiteSpace="pre-line">
                 {primarySponsor}
               </Text>
             </Center>
@@ -41,7 +41,7 @@ function Sponsor() {
               </Text>
             </Center>
             <Center>
-              <Text color="gray.600" whiteSpace="pre-line">
+              <Text textAlign="center" color="gray.600" whiteSpace="pre-line">
                 {secondarySponsor}
               </Text>
             </Center>

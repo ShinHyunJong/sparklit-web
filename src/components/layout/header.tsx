@@ -14,11 +14,11 @@ import {
   Menu,
   Portal,
   Separator,
-  Spinner,
   VStack,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { LuMenu } from 'react-icons/lu';
 
 import { layoutConstants } from '@/constants/layout';
@@ -27,9 +27,23 @@ import { useAuth } from '@/hooks/auth';
 function Header() {
   const router = useRouter();
   const pathname = usePathname();
-  const { user, isLoading, logout } = useAuth();
-  const isAuthed = !!user;
+  const { logout } = useAuth();
+  const [hasToken, setHasToken] = useState(false);
+  const [hasCheckedToken, setHasCheckedToken] = useState(false);
+  const isAuthed = hasToken;
   const isLanding = pathname === '/';
+
+  useEffect(() => {
+    const hasCookieToken = document.cookie
+      .split(';')
+      .some((cookie) => cookie.trim().startsWith('token='));
+    setHasToken(hasCookieToken);
+    setHasCheckedToken(true);
+  }, [pathname]);
+
+  if (!hasCheckedToken) {
+    return null;
+  }
 
   return (
     <Box
@@ -61,9 +75,7 @@ function Header() {
             </Heading>
           </HStack>
 
-          {isLoading ? (
-            <Spinner size="sm" />
-          ) : isAuthed ? (
+          {isAuthed ? (
             <Flex gap={4}>
               <Menu.Root>
                 <Menu.Trigger asChild>

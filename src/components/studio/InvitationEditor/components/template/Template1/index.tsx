@@ -12,7 +12,11 @@ import PhotoPlaceholder from '../components/PhotoPlaceholder';
 function Template1() {
   const [selectedDate] = useAtom(invitationEditorAtom.selectedDate);
   const groomFirstName = useAtomValue(invitationEditorAtom.groomFirstName);
+  const groomMiddleName = useAtomValue(invitationEditorAtom.groomMiddleName);
+  const groomLastName = useAtomValue(invitationEditorAtom.groomLastName);
   const brideFirstName = useAtomValue(invitationEditorAtom.brideFirstName);
+  const brideMiddleName = useAtomValue(invitationEditorAtom.brideMiddleName);
+  const brideLastName = useAtomValue(invitationEditorAtom.brideLastName);
   const date = new Date(selectedDate);
   const { invitationDetail } = useInvitationDetail();
 
@@ -59,9 +63,13 @@ function Template1() {
         <Stack>
           <Center>
             <Flex gap={4}>
-              <Heading fontSize="md">{groomFirstName}</Heading>
+              <Heading fontSize="md">
+                {groomFirstName} {groomMiddleName} {groomLastName}
+              </Heading>
               <Heading fontSize="md">·</Heading>
-              <Heading fontSize="md">{brideFirstName}</Heading>
+              <Heading fontSize="md">
+                {brideFirstName} {brideMiddleName} {brideLastName}
+              </Heading>
             </Flex>
           </Center>
           <Center>

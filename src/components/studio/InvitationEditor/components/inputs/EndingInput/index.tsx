@@ -101,7 +101,13 @@ function EndingInput({
         <Accordion.ItemBody p={{ base: 3, md: 4 }}>
           <Flex w="full" mb={{ base: 3, md: 4 }} direction="column" gap={4}>
             <Flex direction="column">
-              <Flex gap={{ base: 4, md: 8 }} direction={{ base: 'column', md: 'row' }}>
+              <Text mb={2} fontSize="sm" color="gray.600">
+                Landscape photo is recommended.
+              </Text>
+              <Flex
+                gap={{ base: 4, md: 8 }}
+                direction={{ base: 'column', md: 'row' }}
+              >
                 {endPhoto && (
                   <Box w={{ base: 'full', md: '25%' }}>
                     <Image

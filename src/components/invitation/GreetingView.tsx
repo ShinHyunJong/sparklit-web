@@ -39,6 +39,9 @@ export default function GreetingView({
   brideDadName = '',
   fontFamily = '',
 }: GreetingViewProps) {
+  const hasGroomParent = !!groomDadName || !!groomMomName;
+  const hasBrideParent = !!brideDadName || !!brideMomName;
+
   return (
     <Fade triggerOnce>
       <Flex direction="column" gap={6} px={4}>
@@ -60,19 +63,35 @@ export default function GreetingView({
           <Separator w={12} borderWidth={1} my={4} />
         </Center>
 
-        <Flex justifyContent="center" gap={2}>
-          <Flex direction="column" justifyContent="center" alignItems="center">
-            <Text>Mr. {groomDadName}</Text>
-            <Text>Mrs. {groomMomName}</Text>
+        {(hasGroomParent || hasBrideParent) && (
+          <Flex justifyContent="center" gap={2}>
+            {hasGroomParent && (
+              <Flex
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+              >
+                {groomDadName && <Text>Mr. {groomDadName}</Text>}
+                {groomMomName && <Text>Mrs. {groomMomName}</Text>}
+              </Flex>
+            )}
+            {hasGroomParent && hasBrideParent && (
+              <Center>
+                <Text mx={2}>&amp;</Text>
+              </Center>
+            )}
+            {hasBrideParent && (
+              <Flex
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+              >
+                {brideDadName && <Text>Mr. {brideDadName}</Text>}
+                {brideMomName && <Text>Mrs. {brideMomName}</Text>}
+              </Flex>
+            )}
           </Flex>
-          <Center>
-            <Text mx={2}>&amp;</Text>
-          </Center>
-          <Flex direction="column" justifyContent="center" alignItems="center">
-            <Text>Mr. {brideDadName}</Text>
-            <Text>Mrs. {brideMomName}</Text>
-          </Flex>
-        </Flex>
+        )}
         <Center fontSize="lg" flexDirection="column" gap={1} my={4}>
           <Text>
             {groomFirstName} {groomMiddleName} {groomLastName}

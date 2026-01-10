@@ -50,7 +50,6 @@ function MonetaryGift() {
               </Center>
               <Box
                 p={6}
-                bg="gray.50"
                 borderRadius="lg"
                 borderWidth="1px"
                 borderColor="gray.100"
