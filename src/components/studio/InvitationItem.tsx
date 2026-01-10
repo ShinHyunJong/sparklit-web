@@ -8,10 +8,12 @@ import {
   Image,
   Menu,
   Portal,
+  SkeletonText,
   Text,
 } from '@chakra-ui/react';
 import dayjs from 'dayjs';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { FaEye, FaFacebook, FaFacebookMessenger } from 'react-icons/fa6';
 import { LuLink, LuShare2 } from 'react-icons/lu';
 
@@ -22,6 +24,7 @@ import type { Invitation } from '@/types/model';
 
 function InvitationItem({ invitation }: { invitation: Invitation }) {
   const router = useRouter();
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
   const handleClick = () => {
     router.push(`/studio/create?uid=${invitation.uniqueId}`);
   };
@@ -162,10 +165,21 @@ function InvitationItem({ invitation }: { invitation: Invitation }) {
           </Portal>
         </Menu.Root>
       </Box>
-      <Image
-        src={S3_BUCKET_URL + imageUrl}
-        alt={`${invitation.uniqueId} cover photo`}
-      />
+      <Box position="relative" w="full" aspectRatio={4 / 3}>
+        {!isImageLoaded && (
+          <Box position="absolute" inset={0} zIndex={1}>
+            <SkeletonText noOfLines={1} skeletonHeight="100%" />
+          </Box>
+        )}
+        <Image
+          src={S3_BUCKET_URL + imageUrl}
+          alt={`${invitation.uniqueId} cover photo`}
+          w="full"
+          h="full"
+          objectFit="cover"
+          onLoad={() => setIsImageLoaded(true)}
+        />
+      </Box>
       <Card.Body gap="2">
         <Card.Title>{title}</Card.Title>
         <Card.Description>
