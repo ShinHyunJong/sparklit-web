@@ -22,6 +22,7 @@ function MonetaryGift() {
   // 아톰에서 업데이트된 필드값 가져오기
   const bankAccount = useAtomValue(invitationEditorAtom.bankAccount);
   const wishlistUrl = useAtomValue(invitationEditorAtom.wishlistUrl);
+  const wishlistText = useAtomValue(invitationEditorAtom.wishlistText);
 
   return (
     <Box pb={20}>
@@ -80,7 +81,11 @@ function MonetaryGift() {
                   GIFT WISHLIST
                 </Text>
               </Center>
-
+              {wishlistText && (
+                <Center whiteSpace="pre-line" textAlign="center" mb={6}>
+                  <Text>{wishlistText}</Text>
+                </Center>
+              )}
               <Flex direction="column" gap={4}>
                 {wishlistUrl && (
                   <Button

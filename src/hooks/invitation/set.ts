@@ -74,6 +74,7 @@ export function useSetInvitation(invitation: Invitation | null | undefined) {
   const setSelectedFontFamily = useSetAtom(
     invitationEditorAtom.selectedFontFamily,
   );
+  const setWishlistText = useSetAtom(invitationEditorAtom.wishlistText);
 
   useEffect(() => {
     if (!invitation) return;
@@ -155,6 +156,9 @@ export function useSetInvitation(invitation: Invitation | null | undefined) {
     }
     if (invitation.baseFont) {
       setSelectedFontFamily(invitation.baseFont);
+    }
+    if (invitation.wishlistText) {
+      setWishlistText(invitation.wishlistText);
     }
   }, [invitation]);
 }

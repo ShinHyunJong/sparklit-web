@@ -23,14 +23,17 @@ import {
 type GiftForm = {
   bankAccount: string;
   wishlistUrl: string;
+  wishlistText: string;
 };
 
 function MonetaryInput({
   initialBankAccount,
   initialWishlistUrl,
+  initialWishlistText,
 }: {
   initialBankAccount?: string;
   initialWishlistUrl?: string;
+  initialWishlistText?: string;
 }) {
   const searchParams = useSearchParams();
   const invitationId = searchParams.get('uid') || '';
@@ -45,6 +48,9 @@ function MonetaryInput({
   );
   const [wishlistUrl, setWishlistUrl] = useAtom(
     invitationEditorAtom.wishlistUrl,
+  );
+  const [wishlistText, setWishlistText] = useAtom(
+    invitationEditorAtom.wishlistText,
   );
 
   // 2. 현재 'monetary' 항목의 가시성 상태 찾기 (ID 소문자 일치)
@@ -71,11 +77,17 @@ function MonetaryInput({
       setWishlistUrl(initialWishlistUrl);
       setValue('wishlistUrl', initialWishlistUrl);
     }
+    if (initialWishlistText) {
+      setWishlistText(initialWishlistText);
+      setValue('wishlistText', initialWishlistText);
+    }
   }, [
     initialBankAccount,
     initialWishlistUrl,
+    initialWishlistText,
     setBankAccount,
     setWishlistUrl,
+    setWishlistText,
     setValue,
   ]);
 
@@ -91,7 +103,14 @@ function MonetaryInput({
   };
 
   const handleSave = async () => {
-    saved(() => updateMonetaryGiftApi(invitationId, bankAccount, wishlistUrl));
+    saved(() =>
+      updateMonetaryGiftApi(
+        invitationId,
+        bankAccount,
+        wishlistText,
+        wishlistUrl,
+      ),
+    );
   };
 
   return (
@@ -153,7 +172,25 @@ function MonetaryInput({
 
             <DataList.Root orientation={dataListOrientation}>
               <DataList.Item>
-                <DataList.ItemLabel>Wishlist</DataList.ItemLabel>
+                <DataList.ItemLabel>Wishlist Title</DataList.ItemLabel>
+                <DataList.ItemValue w="full">
+                  <Textarea
+                    {...register('wishlistText')}
+                    value={wishlistText}
+                    placeholder="Wishlist title"
+                    variant="subtle"
+                    onChange={(e) => setWishlistText(e.target.value)}
+                    onBlur={handleSave}
+                    size="sm"
+                    w="full"
+                  />
+                </DataList.ItemValue>
+              </DataList.Item>
+            </DataList.Root>
+
+            <DataList.Root orientation={dataListOrientation}>
+              <DataList.Item>
+                <DataList.ItemLabel>Wishlist URL</DataList.ItemLabel>
                 <DataList.ItemValue w="full">
                   <Input
                     {...register('wishlistUrl')}

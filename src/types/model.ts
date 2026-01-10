@@ -48,6 +48,7 @@ export type Invitation = {
   layoutOrder: string | null;
   endingText: string | null;
   wishlistUrl: string | null;
+  wishlistText: string | null;
   bankAccount: string | null;
   ogImageKey: string | null;
   createdAt: Date;

@@ -247,6 +247,7 @@ function InvitationEditor() {
             <MonetaryInput
               initialBankAccount={invitationDetail.bankAccount || ''}
               initialWishlistUrl={invitationDetail.wishlistUrl || ''}
+              initialWishlistText={invitationDetail.wishlistText || ''}
             />
             <OrderInput layoutOrder={invitationDetail.layoutOrder} />
             <DynamicEndingInput

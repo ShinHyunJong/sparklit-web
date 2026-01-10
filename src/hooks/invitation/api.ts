@@ -282,13 +282,22 @@ export async function updateFontApi(id: string, font: string) {
   return data;
 }
 
+export async function updateWishlistTextApi(uid: string, wishlistText: string) {
+  const { data } = await api.put(`/invitation/wishlistText/${uid}`, {
+    wishlistText,
+  });
+  return data;
+}
+
 export async function updateMonetaryGiftApi(
   uid: string,
   bankAccount: string,
+  wishlistText: string,
   wishlistUrl: string,
 ) {
   const { data } = await api.put(`/invitation/monetaryGift/${uid}`, {
     bankAccount,
+    wishlistText,
     wishlistUrl,
   });
   return data;

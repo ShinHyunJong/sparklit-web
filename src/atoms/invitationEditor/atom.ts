@@ -9,6 +9,8 @@ import {
 } from '@/constants/editor';
 import type { LayoutItem } from '@/types/client.model';
 import type { InvitationPhoto, InvitationPlace } from '@/types/model';
+const initialWishlistText =
+  'We’ve put together a small wishlist at [Name] for those who would like to help us fill our new home.';
 
 export const initialOrder: LayoutItem[] = [
   { id: 'Greeting', visible: true },
@@ -76,8 +78,11 @@ export const placeAddress = atom<string>('');
 
 export const bankAccount = atom<string>('');
 export const wishlistUrl = atom<string>('');
+export const wishlistText = atom<string>(initialWishlistText);
 
 export const renderingPhotoList = atom<InvitationPhoto[]>([]);
 export const notice = atom<string>('');
-export const endingText = atom<string>('<p>The best thing to hold onto in life is each other.</p><br/><p>– Audrey Hepburn</p>');
+export const endingText = atom<string>(
+  '<p>The best thing to hold onto in life is each other.</p><br/><p>– Audrey Hepburn</p>',
+);
 export const layoutOrderAtom = atom<LayoutItem[]>(initialOrder);

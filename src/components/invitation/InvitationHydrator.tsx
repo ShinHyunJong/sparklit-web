@@ -53,6 +53,9 @@ export default function InvitationEditorHydrator({
 
           [invitationEditorAtom.endingText, v.endingText ?? ''],
           [invitationEditorAtom.notice, v.notice ?? ''],
+          [invitationEditorAtom.wishlistUrl, v.wishlistUrl ?? ''],
+          [invitationEditorAtom.wishlistText, v.wishlistText ?? ''],
+          [invitationEditorAtom.bankAccount, v.bankAccount ?? ''],
         ] as const;
       })()
     : ([] as const);

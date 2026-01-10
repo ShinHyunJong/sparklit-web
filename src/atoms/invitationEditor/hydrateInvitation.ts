@@ -66,5 +66,6 @@ export function buildInvitationEditorInitialValues(invitation: Invitation) {
       invitation.endingText ??
       '<p>The best thing to hold onto in life is each other.</p><br/><p>– Audrey Hepburn</p>',
     notice: invitation.notice ?? null,
+    wishlistText: invitation.wishlistText ?? '',
   };
 }
