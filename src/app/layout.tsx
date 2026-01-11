@@ -5,8 +5,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import 'react-day-picker/style.css';
 
-import { cookies } from 'next/headers';
-
 import { Provider } from '@/components/ui/provider';
 import {
   arizonia,
@@ -52,14 +50,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = cookies();
-  const timezone = cookieStore.get('spk_tz')?.value || 'UTC';
+  // const cookieStore = cookies();
+  // const timezone = cookieStore.get('spk_tz')?.value || 'UTC';
   const classNames = `${figtree.variable} ${tangerine.variable} ${crimsonPro.variable} ${barriecito.variable} ${montserrat.variable} ${cormorantGaramond.variable} ${lora.variable} ${delius.variable} ${josefinSans.variable} ${greatVibes.variable} ${arizonia.variable} ${satisfy.variable}`;
   return (
     <html
       lang="en"
       className={classNames}
-      data-tz={timezone}
+      // data-tz={timezone}
       suppressHydrationWarning
     >
       <Head></Head>
