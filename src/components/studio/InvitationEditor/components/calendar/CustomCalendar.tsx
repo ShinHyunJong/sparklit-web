@@ -67,9 +67,9 @@ function CustomCalendar() {
     .toDate();
   return (
     <>
-      <Center flexDirection="column">
+      <Center flexDirection="column" mb={9}>
         <SubHeader title="calendar"></SubHeader>
-        <Icon fontSize={24} color={pointColor} mb={6}>
+        <Icon fontSize={24} color={pointColor}>
           <LuCalendar />
         </Icon>
       </Center>

@@ -24,14 +24,14 @@ function Entourage() {
   return (
     <Slide triggerOnce direction="up" duration={800} cascade damping={0.6}>
       <Box>
-        <Center flexDirection="column">
+        <Center flexDirection="column" mb={6}>
           <SubHeader title="Entourage"></SubHeader>
-          <Icon fontSize={24} color={pointColor} mb={6}>
+          <Icon fontSize={24} color={pointColor}>
             <LuUsers />
           </Icon>
         </Center>
 
-        <Box mt={8} px={4}>
+        <Box pt={4} px={4}>
           {/* SimpleGrid를 사용하여 2열 구조를 만듭니다. */}
           <SimpleGrid columns={2} gap={10}>
             {groups.map((item) => (

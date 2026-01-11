@@ -38,14 +38,14 @@ function Location() {
 
   return (
     <Box>
-      <Center flexDirection="column">
+      <Center flexDirection="column" mb={10}>
         <SubHeader title="location"></SubHeader>
-        <Icon mb={6}>
+        <Icon>
           <LuMapPin size={24} color={pointColor} />
         </Icon>
       </Center>
       <Slide triggerOnce direction="up" duration={500} cascade damping={0.8}>
-        <Box mt={8} px={4}>
+        <Box px={4}>
           <Timeline.Root w="full">
             {placeList.map((p) => {
               return (

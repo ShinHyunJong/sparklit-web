@@ -48,7 +48,7 @@ export default function GreetingView({
         <Center>
           <Flex direction="column" justifyContent="center" alignItems="center">
             <SubHeader title="INVITATION" />
-            <Icon mb={6}>
+            <Icon mb={9}>
               <LuMailOpen size={24} color={pointColor} />
             </Icon>
 

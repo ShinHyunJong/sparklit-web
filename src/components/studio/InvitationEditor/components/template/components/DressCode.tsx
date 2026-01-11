@@ -20,13 +20,13 @@ function DressCode() {
   return (
     <Slide triggerOnce direction="up" duration={500} cascade damping={0.8}>
       <Box>
-        <Center flexDirection="column">
+        <Center flexDirection="column" mb={6}>
           <SubHeader title="Dress Code"></SubHeader>
           <Icon color={pointColor} fontSize={24} mb={6}>
             <LuShirt></LuShirt>
           </Icon>
         </Center>
-        <Center>
+        <Center mt={4}>
           <Flex gap={1}>
             <Circle
               w={`${circleSize}px`}

@@ -26,7 +26,7 @@ function MonetaryGift() {
 
   return (
     <Box pb={20}>
-      <Center flexDirection="column">
+      <Center flexDirection="column" mb={6}>
         {/* 헤더 타이틀 변경 */}
         <SubHeader title="Monetary & Gifts"></SubHeader>
         <Icon fontSize={24} mb={6} color={pointColor}>
@@ -34,7 +34,7 @@ function MonetaryGift() {
         </Icon>
       </Center>
 
-      <Stack mt={8} gap={12}>
+      <Stack mt={4} gap={12}>
         <Slide triggerOnce direction="up" duration={800} cascade damping={0.2}>
           {/* 1. 계좌 정보 섹션 */}
           {bankAccount && (

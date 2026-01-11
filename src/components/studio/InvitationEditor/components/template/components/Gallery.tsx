@@ -45,9 +45,9 @@ function Gallery() {
 
   return (
     <Flex direction="column">
-      <Center flexDirection="column">
+      <Center flexDirection="column" mb={10}>
         <SubHeader title="GALLERY"></SubHeader>
-        <Icon fontSize={24} color={pointColor} mb={6}>
+        <Icon fontSize={24} color={pointColor}>
           <LuImage />
         </Icon>
       </Center>
