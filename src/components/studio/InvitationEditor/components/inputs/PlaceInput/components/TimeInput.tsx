@@ -10,13 +10,13 @@ import {
   Spinner,
   Text,
 } from '@chakra-ui/react';
-import dayjs from 'dayjs';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { PiTrashLight } from 'react-icons/pi';
 
 import invitationEditorAtom from '@/atoms/invitationEditor';
+import dayjs, { getUserTimezone } from '@/configs/dayjs.config';
 import { useDeleteInvitationPlaceTime } from '@/hooks/invitation/place';
 import { useUpdateHourMinutePlaceTime } from '@/hooks/place';
 import type { InvitationPlaceTime } from '@/types/model';
@@ -35,16 +35,11 @@ function TimeInput({
   placeId: number;
   timeData: InvitationPlaceTime;
 }) {
-  const [date, setDate] = useAtom(invitationEditorAtom.selectedDate);
-  const [selectedAmPm, setSelectedAmPm] = useState(
-    dayjs(timeData.time).format('A'),
-  );
-  const [selectedHour, setSelectedHour] = useState(
-    dayjs(timeData.time).format('hh'),
-  );
-  const [selectedMinute, setSelectedMinute] = useState(
-    dayjs(timeData.time).format('mm'),
-  );
+  const [selectedDate] = useAtom(invitationEditorAtom.selectedDate);
+  const localTime = dayjs.utc(timeData.time).tz();
+  const [selectedAmPm, setSelectedAmPm] = useState(localTime.format('A'));
+  const [selectedHour, setSelectedHour] = useState(localTime.format('hh'));
+  const [selectedMinute, setSelectedMinute] = useState(localTime.format('mm'));
   const { register, getValues, setValue, handleSubmit } = useForm<FormValues>({
     defaultValues: {
       name: '',
@@ -57,17 +52,45 @@ function TimeInput({
     useDeleteInvitationPlaceTime();
 
   useEffect(() => {
+    const nextLocalTime = dayjs.utc(timeData.time).tz();
+    setSelectedAmPm(nextLocalTime.format('A'));
+    setSelectedHour(nextLocalTime.format('hh'));
+    setSelectedMinute(nextLocalTime.format('mm'));
     setValue('name', timeData.name || '');
     setValue('description', timeData.description || '');
-  }, [timeData]);
+  }, [timeData, setValue]);
+
+  const toUtcTimeParts = (h: string, m: string, ap: string) => {
+    const hour24 =
+      h === '12'
+        ? ap === 'AM'
+          ? 0
+          : 12
+        : ap === 'AM'
+          ? parseInt(h, 10)
+          : parseInt(h, 10) + 12;
+    const localDate = dayjs
+      .tz(selectedDate, getUserTimezone())
+      .hour(hour24)
+      .minute(m ? parseInt(m, 10) : 0);
+    const utcDate = localDate.utc();
+    const utcHour = utcDate.hour();
+    const utcMinute = utcDate.minute();
+    return {
+      h: `${utcHour}`,
+      m: `${utcMinute}`.padStart(2, '0'),
+      ampm: utcHour >= 12 ? 'PM' : 'AM',
+    };
+  };
 
   const handleAmPmClick = (ap: string) => {
     setSelectedAmPm(ap);
+    const utc = toUtcTimeParts(selectedHour, selectedMinute, ap);
     updatePlaceTime(
       timeData.id,
-      selectedHour,
-      selectedMinute,
-      ap,
+      utc.h,
+      utc.m,
+      utc.ampm,
       getValues('name'),
       getValues('description'),
     );
@@ -75,11 +98,12 @@ function TimeInput({
 
   const handleHourClick = async (h: { time: string }) => {
     setSelectedHour(`${h.time}`);
+    const utc = toUtcTimeParts(h.time, selectedMinute, selectedAmPm);
     updatePlaceTime(
       timeData.id,
-      h.time,
-      selectedMinute,
-      selectedAmPm,
+      utc.h,
+      utc.m,
+      utc.ampm,
       getValues('name'),
       getValues('description'),
     );
@@ -87,33 +111,36 @@ function TimeInput({
 
   const handleMinuteClick = (m: { time: string }) => {
     setSelectedMinute(m.time);
+    const utc = toUtcTimeParts(selectedHour, m.time, selectedAmPm);
     updatePlaceTime(
       timeData.id,
-      selectedHour,
-      m.time,
-      selectedAmPm,
+      utc.h,
+      utc.m,
+      utc.ampm,
       getValues('name'),
       getValues('description'),
     );
   };
 
   const onNameBlur = (value: string) => {
+    const utc = toUtcTimeParts(selectedHour, selectedMinute, selectedAmPm);
     updatePlaceTime(
       timeData.id,
-      selectedHour,
-      selectedMinute,
-      selectedAmPm,
+      utc.h,
+      utc.m,
+      utc.ampm,
       value,
       getValues('description'),
     );
   };
 
   const onDescriptionBlur = (value: string) => {
+    const utc = toUtcTimeParts(selectedHour, selectedMinute, selectedAmPm);
     updatePlaceTime(
       timeData.id,
-      selectedHour,
-      selectedMinute,
-      selectedAmPm,
+      utc.h,
+      utc.m,
+      utc.ampm,
       getValues('name'),
       value,
     );
@@ -128,11 +155,7 @@ function TimeInput({
     >
       <DataList.Root orientation="vertical">
         <DataList.Item>
-          <DataList.ItemLabel
-            w="max-content"
-            minW="max-content"
-            flexShrink={0}
-          >
+          <DataList.ItemLabel w="max-content" minW="max-content" flexShrink={0}>
             Time
           </DataList.ItemLabel>
           <DataList.ItemValue w="full">

@@ -81,7 +81,7 @@ function CustomCalendar() {
             </Text>
             <Text fontSize="lg" color="gray.600">
               {dayjs(d).format('ddd')}{' '}
-              {firstTime ? dayjs(firstTime.time).format('HH:mm A') : ''}
+              {firstTime ? dayjs(firstTime.time).format('hh:mm A') : ''}
             </Text>
           </Center>
           <SimpleGrid
