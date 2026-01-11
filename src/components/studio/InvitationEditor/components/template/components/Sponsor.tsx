@@ -14,15 +14,15 @@ function Sponsor() {
 
   return (
     <Box>
-      <Center flexDirection="column">
+      <Center flexDirection="column" mb={6}>
         <SubHeader title="Sponsors"></SubHeader>
-        <Icon fontSize={24} mb={6} color={pointColor}>
+        <Icon fontSize={24} color={pointColor}>
           <LuGift></LuGift>
         </Icon>
       </Center>
-      <Stack mt={8} spaceY={4}>
+      <Stack spaceY={4}>
         <Slide triggerOnce direction="up" duration={800} cascade damping={0.5}>
-          <Box p={4}>
+          <Box p={3}>
             <Center mb={4}>
               <Text letterSpacing="wider" fontFamily="crimsonPro" fontSize="lg">
                 PRINCIPAL SPONSOR
