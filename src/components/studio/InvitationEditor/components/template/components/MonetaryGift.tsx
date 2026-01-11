@@ -44,7 +44,6 @@ function MonetaryGift() {
                   letterSpacing="wider"
                   fontFamily="crimsonPro"
                   fontSize="lg"
-                  fontWeight="semibold"
                 >
                   BANK ACCOUNT
                 </Text>
@@ -69,48 +68,42 @@ function MonetaryGift() {
           )}
 
           {/* 2. 위시리스트 섹션 */}
-          {wishlistUrl && (
-            <Box px={6}>
-              <Center mb={6}>
-                <Text
-                  letterSpacing="wider"
-                  fontFamily="crimsonPro"
-                  fontSize="lg"
-                  fontWeight="semibold"
-                >
-                  GIFT WISHLIST
-                </Text>
+
+          <Box px={6}>
+            <Center mb={6}>
+              <Text fontSize="lg" letterSpacing="wider" fontFamily="crimsonPro">
+                GIFT WISHLIST
+              </Text>
+            </Center>
+            {wishlistText && (
+              <Center whiteSpace="pre-line" textAlign="center" mb={6}>
+                <Text color="gray.600">{wishlistText}</Text>
               </Center>
-              {wishlistText && (
-                <Center whiteSpace="pre-line" textAlign="center" mb={6}>
-                  <Text>{wishlistText}</Text>
-                </Center>
-              )}
-              <Flex direction="column" gap={4}>
-                {wishlistUrl && (
-                  <Button
-                    asChild
-                    variant="outline"
-                    borderColor={pointColor}
-                    color={pointColor}
-                    w="full"
-                    size="sm"
-                    borderRadius="full"
+            )}
+            <Flex direction="column" gap={4}>
+              {wishlistUrl && (
+                <Button
+                  asChild
+                  variant="outline"
+                  borderColor={pointColor}
+                  color={pointColor}
+                  w="full"
+                  size="sm"
+                  borderRadius="full"
+                >
+                  <Link
+                    href={wishlistUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <Link
-                      href={wishlistUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Flex align="center" gap={2}>
-                        View Wishlist <LuExternalLink size={14} />
-                      </Flex>
-                    </Link>
-                  </Button>
-                )}
-              </Flex>
-            </Box>
-          )}
+                    <Flex align="center" gap={2}>
+                      View Wishlist <LuExternalLink size={14} />
+                    </Flex>
+                  </Link>
+                </Button>
+              )}
+            </Flex>
+          </Box>
         </Slide>
       </Stack>
     </Box>

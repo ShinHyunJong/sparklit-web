@@ -162,3 +162,25 @@ export function useSaveInvitation() {
     onClickSave,
   };
 }
+
+export function useAllNames() {
+  const [brideLastName] = useAtom(invitationEditorAtom.brideLastName);
+  const [brideFirstName] = useAtom(invitationEditorAtom.brideFirstName);
+  const [brideMiddleName] = useAtom(invitationEditorAtom.brideMiddleName);
+  const [groomLastName] = useAtom(invitationEditorAtom.groomLastName);
+  const [groomFirstName] = useAtom(invitationEditorAtom.groomFirstName);
+  const [groomMiddleName] = useAtom(invitationEditorAtom.groomMiddleName);
+
+  return {
+    brideLastName,
+    brideFirstName,
+    brideMiddleName,
+    groomLastName,
+    groomFirstName,
+    groomMiddleName,
+    brideFullName:
+      `${brideLastName} ${brideFirstName} ${brideMiddleName}`.trim(),
+    groomFullName:
+      `${groomLastName} ${groomFirstName} ${groomMiddleName}`.trim(),
+  };
+}

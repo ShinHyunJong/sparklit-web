@@ -8,6 +8,7 @@ import Template1 from '../Template1';
 import Template2 from '../Template2';
 import Template3 from '../Template3';
 import Template4 from '../Template4';
+import Template5 from '../Template5';
 
 function MainTemplate() {
   const [selectedDate] = useAtom(invitationEditorAtom.selectedDate);
@@ -60,6 +61,16 @@ function MainTemplate() {
             firstTime={firstTime}
             mainTextColor={mainTextColor}
           ></Template4>
+        );
+
+      case 5:
+        return (
+          <Template5
+            date={selectedDate}
+            mainPhoto={mainPhoto}
+            firstTime={firstTime}
+            mainTextColor={mainTextColor}
+          ></Template5>
         );
 
       default:

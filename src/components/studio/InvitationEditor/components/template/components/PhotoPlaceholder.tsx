@@ -7,7 +7,7 @@ function PhotoPlaceholder({
   overlayComponent?: React.ReactNode;
 }) {
   return (
-    <Box position="relative" aspectRatio="4/5" w="full  " bg="gray.200">
+    <Box position="relative" aspectRatio="4/5" w="full  " bg="gray.300">
       <Box position="absolute" top={0} w="full" h="full">
         {overlayComponent}
       </Box>

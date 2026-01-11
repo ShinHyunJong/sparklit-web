@@ -39,7 +39,7 @@ function Entourage() {
                 <Center mb={4}>
                   <Text
                     fontFamily="crimsonPro"
-                    fontSize="md"
+                    fontSize="lg"
                     textAlign="center"
                     letterSpacing="wider"
                   >
@@ -51,6 +51,7 @@ function Entourage() {
                     whiteSpace="pre-line"
                     textAlign="center"
                     lineHeight="tall"
+                    color="gray.600"
                   >
                     {item.value || '-'}
                   </Text>

@@ -382,13 +382,13 @@ function InvitationEditor() {
         onOpenChange={(e) => setPreviewOpen(e.open)}
       >
         <Portal>
-          <Dialog.Backdrop bg="blackAlpha.600" />
+          {/* <Dialog.Backdrop bg="blackAlpha.600" /> */}
           <Dialog.Positioner style={{ padding: 0 }}>
             <Dialog.Content
               w="100vw"
-              h="100vh"
+              h="100svh"
               maxW="100vw"
-              maxH="100vh"
+              maxH="100svh"
               borderRadius="0"
               overflow="hidden"
               bg="white"

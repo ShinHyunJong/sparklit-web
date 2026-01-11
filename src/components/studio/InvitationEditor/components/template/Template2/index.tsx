@@ -24,7 +24,7 @@ function Template2({
   const groomFirstName = useAtomValue(invitationEditorAtom.groomFirstName);
   const groomMiddleName = useAtomValue(invitationEditorAtom.groomMiddleName);
   const groomLastName = useAtomValue(invitationEditorAtom.groomLastName);
-
+  console.log(mainPhoto);
   return (
     <Flex w="full" h="full" direction="column" pt={16} pb={32}>
       <Center>

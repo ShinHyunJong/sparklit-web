@@ -30,7 +30,7 @@ function TextEditorViewer({
       flexDirection="column"
       overflowY="hidden"
       justifyContent={verticalCenter ? 'center' : 'initial'}
-      color={isImageCover ? 'white' : 'initial'}
+      color={isImageCover ? 'white' : 'gray.600'}
       css={{
         '& h1': {
           fontSize: '3xl',

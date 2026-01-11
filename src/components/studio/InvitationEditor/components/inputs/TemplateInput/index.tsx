@@ -27,7 +27,7 @@ import { updateColorApi, updateTemplateNoApi } from '@/hooks/invitation/api';
 import { useMainUpload } from '@/hooks/upload/main';
 import type { InvitationCoverPhoto } from '@/types/model';
 
-const templateMainTextList = [4];
+const templateMainTextList = [4, 5];
 
 function TemplateInput({
   templateNo,
@@ -128,7 +128,10 @@ function TemplateInput({
               <Text fontSize="sm" mb={2} color="gray.600">
                 Main Photo
               </Text>
-              <Flex gap={{ base: 4, md: 8 }} direction={{ base: 'column', md: 'row' }}>
+              <Flex
+                gap={{ base: 4, md: 8 }}
+                direction={{ base: 'column', md: 'row' }}
+              >
                 {mainPhoto && (
                   <Box w={{ base: 'full', md: '25%' }}>
                     <Image

@@ -17,4 +17,8 @@ export const templateConfig: Template[] = [
     id: 4,
     previewUrl: '/assets/images/templatePreview4.png',
   },
+  {
+    id: 5,
+    previewUrl: '/assets/images/templatePreview4.png',
+  },
 ];
